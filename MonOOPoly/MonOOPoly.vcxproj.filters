@@ -13,10 +13,33 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{34313229-280f-450f-b772-56ca2dac1cae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MonOOPoly.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>utils</Filter>
     </ClCompile>
+    <ClCompile Include="MyString.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MyQueue.hpp">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="MyString.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="MyVector.hpp">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedPtr.hpp">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="UniquePtr.hpp">
+      <Filter>utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

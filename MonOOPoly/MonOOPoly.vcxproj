@@ -139,13 +139,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="Field.cpp" />
     <ClCompile Include="MonOOPoly.cpp" />
+    <ClCompile Include="Monopoly.cpp" />
+    <ClCompile Include="MovePositionCard.cpp" />
     <ClCompile Include="MyString.cpp" />
+    <ClCompile Include="PaymentCard.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Property.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="Card.h" />
+    <ClInclude Include="Field.h" />
+    <ClInclude Include="Monopoly.h" />
+    <ClInclude Include="MovePositionCard.h" />
     <ClInclude Include="MyQueue.hpp" />
     <ClInclude Include="MyString.h" />
     <ClInclude Include="MyVector.hpp" />
+    <ClInclude Include="PaymentCard.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Property.h" />
     <ClInclude Include="SharedPtr.hpp" />
     <ClInclude Include="UniquePtr.hpp" />
   </ItemGroup>

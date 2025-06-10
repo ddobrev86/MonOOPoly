@@ -11,6 +11,8 @@ private:
 	size_t size;
 
 public:
+	size_t getTotalSize() const;
+
 	Board(size_t size);
 
 	UniquePtr<Field>& move(size_t positions);

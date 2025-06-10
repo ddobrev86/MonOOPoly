@@ -5,20 +5,25 @@ Board::Board(size_t size)
 {
 	this->size = size;
 	currentPos = 0;
-	fields = MyVector<UniquePtr<Field>>(size);
+	fields = MyVector<UniquePtr<Field>>(getTotalSize());
+}
+
+size_t Board::getTotalSize() const
+{
+	return 4 * (size - 1);
 }
 
 UniquePtr<Field>& Board::move(size_t positions)
 {
 	currentPos += positions;
-	currentPos %= size;
+	currentPos %= getTotalSize();
 
 	return fields[currentPos];
 }
 
 void Board::addField(const UniquePtr<Field>& field)
 {
-	if (fields.getSize() < size)
+	if (fields.getSize() < getTotalSize())
 	{
 		fields.push_back(field);
 		return;

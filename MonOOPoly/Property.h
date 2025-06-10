@@ -1,11 +1,12 @@
 #pragma once
 #include "Field.h"
 #include "SharedPtr.hpp"
+#include "Player.h"
 
 class Property : public Field
 {
 private:
-	//SharedPtr<> owner;
+	SharedPtr<Player> owner;
 	unsigned price;
 	unsigned cottageCost;
 	unsigned castleCost;

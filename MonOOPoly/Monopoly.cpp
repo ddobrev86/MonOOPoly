@@ -1,6 +1,7 @@
 #include "Monopoly.h"
 #include <stdlib.h>
 #include <ctime>
+#include "InputProcessor.h"
 
 Monopoly* Monopoly::instance = nullptr;
 
@@ -10,21 +11,6 @@ Monopoly::Monopoly(size_t playerCount, size_t boardSize)
 	players = MyVector<SharedPtr<Player>>(playerCount);
 	board = UniquePtr<Board>(new Board(boardSize));
 	currentPlayer = 0;
-}
-
-char Monopoly::askYesOrNo()
-{
-	char answer;
-	std::cin >> answer;
-
-	while (answer != 'y' && answer != 'n')
-	{
-		std::cout << "Invalid input! Only valid options are 'y' and 'n'\n";
-		std::cout << "Enter input(y|n): ";
-		std::cin >> answer;
-	}
-
-	return answer;
 }
 
 Monopoly* Monopoly::getInstance(size_t playerCount = Constants::MIN_PLAYER_COUNT,
@@ -71,6 +57,9 @@ void Monopoly::actPlayerAction()
 		}
 	}
 	movePlayer();
+
+	SharedPtr<Field>& currentField = board->operator[](players[currentPlayer]->getPosition());
+	currentField->printFieldInfo();
 
 	currentPlayer++;
 }
@@ -119,7 +108,7 @@ bool Monopoly::getPlayerOutOfJail()
 	else
 	{
 		std::cout << "Do you want to pay $100 to get out of jail?(y|n): ";
-		if (askYesOrNo() == 'y')
+		if (InputProcessor::askYesOrNo() == 'y')
 		{
 			players[currentPlayer]->removeFromBalance(100);
 			players[currentPlayer]->getOutOfJail();

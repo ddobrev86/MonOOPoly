@@ -143,6 +143,7 @@
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="CardDeck.cpp" />
     <ClCompile Include="Field.cpp" />
+    <ClCompile Include="InputProcessor.cpp" />
     <ClCompile Include="MonOOPoly.cpp" />
     <ClCompile Include="Monopoly.cpp" />
     <ClCompile Include="MovePositionCard.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="Card.h" />
     <ClInclude Include="CardDeck.h" />
     <ClInclude Include="Field.h" />
+    <ClInclude Include="InputProcessor.h" />
     <ClInclude Include="Monopoly.h" />
     <ClInclude Include="MovePositionCard.h" />
     <ClInclude Include="MyQueue.hpp" />

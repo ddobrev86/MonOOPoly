@@ -22,7 +22,6 @@ private:
 	//size_t playerCount;
 
 	Monopoly(size_t playerCount, size_t boardSize);
-	static char askYesOrNo();
 public:
 	static Monopoly* getInstance(size_t playerCount = Constants::MIN_PLAYER_COUNT, 
 		size_t boardSize = Constants::STANDART_BOARD_SIZE);

@@ -18,5 +18,8 @@ public:
 
 	SharedPtr<Field>& move(size_t positions);
 	void addField(const SharedPtr<Field>& field);
+
+	SharedPtr<Field>& operator[](size_t index);
+	const SharedPtr<Field>& operator[](size_t index) const;
 };
 

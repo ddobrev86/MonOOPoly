@@ -50,6 +50,11 @@ void Player::removeFromBalance(size_t balanceChange)
     balance -= balanceChange;
 }
 
+bool Player::canAfford(size_t price)
+{
+    return balance >= price;
+}
+
 size_t Player::getPosition() const
 {
     return currentPos;

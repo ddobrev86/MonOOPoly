@@ -27,6 +27,7 @@ public:
 
 	void addToBalance(size_t balanceChange);
 	void removeFromBalance(size_t balanceChange);
+	bool canAfford(size_t price);
 
 	size_t getPosition() const;
 

@@ -5,7 +5,7 @@ Board::Board(size_t size)
 {
 	this->size = size;
 	currentPos = 0;
-	fields = MyVector<UniquePtr<Field>>(getTotalSize());
+	fields = MyVector<SharedPtr<Field>>(getTotalSize());
 }
 
 size_t Board::getTotalSize() const
@@ -30,4 +30,20 @@ void Board::addField(const SharedPtr<Field>& field)
 	}
 
 	throw std::logic_error("Board has all fields, cannot add a new one");
+}
+
+SharedPtr<Field>& Board::operator[](size_t index)
+{
+	if (index > getTotalSize())
+		throw std::invalid_argument("Invalid index");
+
+	return fields[index];
+}
+
+const SharedPtr<Field>& Board::operator[](size_t index) const
+{
+	if (index > getTotalSize())
+		throw std::invalid_argument("Invalid index");
+
+	return fields[index];
 }

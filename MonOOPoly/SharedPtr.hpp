@@ -46,7 +46,7 @@ public:
 	bool isInitalized() const;
 	operator bool() const;
 
-	//bool compareWith(SharedPtr<T>& obj) const;
+	bool compareWith(const SharedPtr<T>& obj) const;
 };
 
 template<typename T>
@@ -180,4 +180,10 @@ template<typename T>
 SharedPtr<T>::operator bool() const
 {
 	return isInitalized();
+}
+
+template<typename T>
+bool SharedPtr<T>::compareWith(const SharedPtr<T>& obj) const
+{
+	return obj-> == ptr;
 }

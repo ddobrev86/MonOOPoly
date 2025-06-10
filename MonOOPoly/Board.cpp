@@ -13,7 +13,7 @@ size_t Board::getTotalSize() const
 	return 4 * (size - 1);
 }
 
-UniquePtr<Field>& Board::move(size_t positions)
+SharedPtr<Field>& Board::move(size_t positions)
 {
 	currentPos += positions;
 	currentPos %= getTotalSize();
@@ -21,7 +21,7 @@ UniquePtr<Field>& Board::move(size_t positions)
 	return fields[currentPos];
 }
 
-void Board::addField(const UniquePtr<Field>& field)
+void Board::addField(const SharedPtr<Field>& field)
 {
 	if (fields.getSize() < getTotalSize())
 	{

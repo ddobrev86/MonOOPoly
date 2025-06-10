@@ -150,6 +150,7 @@
     <ClCompile Include="PaymentCard.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Property.cpp" />
+    <ClCompile Include="PropertyFamily.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="PaymentCard.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Property.h" />
+    <ClInclude Include="PropertyFamily.h" />
     <ClInclude Include="SharedPtr.hpp" />
     <ClInclude Include="UniquePtr.hpp" />
   </ItemGroup>

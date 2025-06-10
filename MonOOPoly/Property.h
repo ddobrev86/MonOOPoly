@@ -14,5 +14,7 @@ private:
 public:
 	Property(unsigned price, unsigned cottageCost,
 		unsigned castleCost, unsigned rent);
+
+	bool belongsToPlayer(const SharedPtr<Player>& player);
 };
 

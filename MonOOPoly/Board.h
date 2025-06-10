@@ -2,11 +2,12 @@
 #include "Field.h"
 #include "MyVector.hpp"
 #include "UniquePtr.hpp"
+#include "SharedPtr.hpp"
 
 class Board
 {
 private:
-	MyVector<UniquePtr<Field>> fields;
+	MyVector<SharedPtr<Field>> fields;
 	size_t currentPos;
 	size_t size;
 
@@ -15,7 +16,7 @@ public:
 
 	Board(size_t size);
 
-	UniquePtr<Field>& move(size_t positions);
-	void addField(const UniquePtr<Field>& field);
+	SharedPtr<Field>& move(size_t positions);
+	void addField(const SharedPtr<Field>& field);
 };
 

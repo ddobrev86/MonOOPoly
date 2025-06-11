@@ -1,14 +1,14 @@
 #include "CardDeck.h"
 #include <utility>
 
-void CardDeck::addCard(const UniquePtr<Card>& card)
+void CardDeck::addCard(const SharedPtr<Card>& card)
 {
-	cards.push(card);
+	cards.push(SharedPtr<Card>(card));
 }
 
-const UniquePtr<Card>& CardDeck::drawCard()
+const SharedPtr<Card>& CardDeck::drawCard()
 {
-	const UniquePtr<Card>& cardToReturn = cards.peek();
+	const SharedPtr<Card>& cardToReturn = cards.peek();
 	cards.pop();
 
 	return cardToReturn;

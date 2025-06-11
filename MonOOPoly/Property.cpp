@@ -1,17 +1,15 @@
 #include "Property.h"
 #include "InputProcessor.h"
 
-Property::Property(unsigned price, unsigned cottageCost, unsigned castleCost, unsigned rent)
+Property::Property(unsigned price, unsigned rent)
 {
 	this->price = price;
-	this->cottageCost = cottageCost;
-	this->castleCost = castleCost;
 	this->rent = rent;
 }
 
 bool Property::belongsToPlayer(const SharedPtr<Player>& player)
 {
-	if (isFree)
+	if (isFree())
 		return false;
 
 	return owner.compareWith(player);
@@ -50,6 +48,7 @@ void Property::action(SharedPtr<Player>& player)
 		{
 			player->removeFromBalance(rent);
 			std::cout << "You have been taxed\n";
+			//TODO add warning when exceeding balance
 		}
 		//TODO add option to buy houses
 	}
@@ -62,4 +61,9 @@ void Property::buy(SharedPtr<Player>& player)
 		player->removeFromBalance(price);
 	else
 		throw std::runtime_error("You cannot afford to buy this property");
+}
+
+void Property::buyMortgage()
+{
+
 }

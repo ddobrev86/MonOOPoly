@@ -1,6 +1,6 @@
-//Dimitar Dobrev 3MI0600520
 #pragma once
 #include <utility>
+#include <stdexcept>
 
 struct Counter
 {
@@ -185,5 +185,5 @@ SharedPtr<T>::operator bool() const
 template<typename T>
 bool SharedPtr<T>::compareWith(const SharedPtr<T>& obj) const
 {
-	return obj-> == ptr;
+	return ptr == obj.ptr;
 }

@@ -1,8 +1,11 @@
 #include "PropertyFamily.h"
 
-PropertyFamily::PropertyFamily(const MyString& name)
+PropertyFamily::PropertyFamily(const MyString& name,
+	unsigned cottagePrice, unsigned castlePrice)
 {
 	this->name = name;
+	cottage = SharedPtr<Cottage>(new Cottage(cottagePrice));
+	castle = SharedPtr<Castle>(new Castle(castlePrice));
 }
 
 void PropertyFamily::addProperty(const SharedPtr<Property>& property)
@@ -41,4 +44,23 @@ bool PropertyFamily::ownsAll(const SharedPtr<Player>& player)
 	}
 
 	return true;
+}
+
+void PropertyFamily::buyProperty(const SharedPtr<Player>& player, bool isCottage)
+{
+	if (!ownsAll(player))
+		throw std::logic_error("You cannot buy mortgages - you don't own all properties of this color!");
+
+	if (isCottage)
+	{
+		mortgages->buyMortgage(SharedPtr<Mortgage>(new Mortgage(*cottage)));
+	}
+	else
+	{
+		if (!mortgages->canBuyCastle())
+			throw std::runtime_error("You don't have the minimum cottages to buy a castle");
+
+		mortgages->buyMortgage(SharedPtr<Mortgage>(new Mortgage(*castle)));
+
+	}
 }

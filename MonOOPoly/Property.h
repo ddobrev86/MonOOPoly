@@ -1,17 +1,17 @@
 #pragma once
 #include "Field.h"
+#include "MortgageManager.h"
 
 class Property : public Field
 {
 private:
 	SharedPtr<Player> owner;
 	unsigned price;
-	unsigned cottageCost;
-	unsigned castleCost;
+	UniquePtr<MortgageManager> mortgages;
 	unsigned rent;
+
 public:
-	Property(unsigned price, unsigned cottageCost,
-		unsigned castleCost, unsigned rent);
+	Property(unsigned price, unsigned rent);
 
 	bool belongsToPlayer(const SharedPtr<Player>& player);
 	bool isFree() const;
@@ -20,5 +20,6 @@ public:
 	void action(SharedPtr<Player>& player) override;
 
 	void buy(SharedPtr<Player>& player);
+	void buyMortgage();
 };
 

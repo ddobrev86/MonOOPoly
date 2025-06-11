@@ -13,8 +13,7 @@ Monopoly::Monopoly(size_t playerCount, size_t boardSize)
 	currentPlayer = 0;
 }
 
-Monopoly* Monopoly::getInstance(size_t playerCount = Constants::MIN_PLAYER_COUNT,
-	size_t boardSize = Constants::STANDART_BOARD_SIZE)
+Monopoly* Monopoly::getInstance(size_t playerCount, size_t boardSize)
 {
 	if (!instance)
 		instance = new Monopoly(playerCount, boardSize);

@@ -42,7 +42,7 @@ template <typename T>
 void MyQueue<T>::resize()
 {
 	T* resizedData = new T[capacity * 2];
-	for (int = 0; i < size; i++)
+	for (int i = 0; i < size; i++)
 	{
 		resizedData[i] = data[get];
 		(++get) %= capacity;
@@ -141,7 +141,7 @@ void MyQueue<T>::push(const T& obj)
 	if (size == capacity)
 		resize();
 
-	deta[put] = obj;
+	data[put] = obj;
 	(++put) %= capacity;
 	size++;
 }

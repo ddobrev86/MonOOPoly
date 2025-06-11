@@ -16,6 +16,15 @@
     <Filter Include="utils">
       <UniqueIdentifier>{34313229-280f-450f-b772-56ca2dac1cae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mortgage utils">
+      <UniqueIdentifier>{eb866d30-2e7e-4a39-82cd-082177d7e8f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Card utils">
+      <UniqueIdentifier>{530a06cc-bb3b-4294-b418-92cb80a8e4e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Field utils">
+      <UniqueIdentifier>{f3caff37-53fc-4d2b-b998-3b807b2380d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MonOOPoly.cpp">
@@ -23,12 +32,6 @@
     </ClCompile>
     <ClCompile Include="MyString.cpp">
       <Filter>utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Property.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Field.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Board.cpp">
       <Filter>Source Files</Filter>
@@ -39,23 +42,41 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Card.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MovePositionCard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PaymentCard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CardDeck.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PropertyFamily.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="InputProcessor.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Castle.cpp">
+      <Filter>Mortgage utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Cottage.cpp">
+      <Filter>Mortgage utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Mortgage.cpp">
+      <Filter>Mortgage utils</Filter>
+    </ClCompile>
+    <ClCompile Include="MortgageManager.cpp">
+      <Filter>Mortgage utils</Filter>
+    </ClCompile>
+    <ClCompile Include="CardDeck.cpp">
+      <Filter>Card utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Card.cpp">
+      <Filter>Card utils</Filter>
+    </ClCompile>
+    <ClCompile Include="MovePositionCard.cpp">
+      <Filter>Card utils</Filter>
+    </ClCompile>
+    <ClCompile Include="PaymentCard.cpp">
+      <Filter>Card utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Field.cpp">
+      <Filter>Field utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Property.cpp">
+      <Filter>Field utils</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertyFamily.cpp">
+      <Filter>Field utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -74,12 +95,6 @@
     <ClInclude Include="UniquePtr.hpp">
       <Filter>utils</Filter>
     </ClInclude>
-    <ClInclude Include="Property.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Field.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Board.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -89,23 +104,41 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Card.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MovePositionCard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PaymentCard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CardDeck.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PropertyFamily.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="InputProcessor.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cottage.h">
+      <Filter>Mortgage utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Mortgage.h">
+      <Filter>Mortgage utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Castle.h">
+      <Filter>Mortgage utils</Filter>
+    </ClInclude>
+    <ClInclude Include="MortgageManager.h">
+      <Filter>Mortgage utils</Filter>
+    </ClInclude>
+    <ClInclude Include="CardDeck.h">
+      <Filter>Card utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Card.h">
+      <Filter>Card utils</Filter>
+    </ClInclude>
+    <ClInclude Include="MovePositionCard.h">
+      <Filter>Card utils</Filter>
+    </ClInclude>
+    <ClInclude Include="PaymentCard.h">
+      <Filter>Card utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Field.h">
+      <Filter>Field utils</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyFamily.h">
+      <Filter>Field utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Property.h">
+      <Filter>Field utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

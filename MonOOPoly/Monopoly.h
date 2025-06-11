@@ -23,8 +23,7 @@ private:
 
 	Monopoly(size_t playerCount, size_t boardSize);
 public:
-	static Monopoly* getInstance(size_t playerCount = Constants::MIN_PLAYER_COUNT, 
-		size_t boardSize = Constants::STANDART_BOARD_SIZE);
+	static Monopoly* getInstance(size_t playerCount, size_t boardSize);
 
 	Monopoly(const Monopoly& other) = delete;
 	Monopoly& operator=(const Monopoly& other) = delete;

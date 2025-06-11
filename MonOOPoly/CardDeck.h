@@ -6,10 +6,10 @@
 class CardDeck
 {
 private:
-	MyQueue<UniquePtr<Card>> cards;
+	MyQueue<SharedPtr<Card>> cards;
 
 public:
-	void addCard(const UniquePtr<Card>& card);
-	const UniquePtr<Card>& drawCard();
+	void addCard(const SharedPtr<Card>& card);
+	const SharedPtr<Card>& drawCard();
 };
 

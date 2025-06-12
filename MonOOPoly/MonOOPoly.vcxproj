@@ -140,12 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="BuyableField.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="CardDeck.cpp" />
     <ClCompile Include="CardField.cpp" />
     <ClCompile Include="Castle.cpp" />
     <ClCompile Include="Cottage.cpp" />
     <ClCompile Include="Field.cpp" />
+    <ClCompile Include="FieldFamily.cpp" />
     <ClCompile Include="InputProcessor.cpp" />
     <ClCompile Include="MonOOPoly.cpp" />
     <ClCompile Include="Monopoly.cpp" />
@@ -160,10 +162,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
+    <ClInclude Include="BuyableField.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="CardDeck.h" />
     <ClInclude Include="CardField.h" />
     <ClInclude Include="Castle.h" />
+    <ClInclude Include="FieldFamily.h" />
     <ClInclude Include="IteratibleContainer.hpp" />
     <ClInclude Include="Cottage.h" />
     <ClInclude Include="Field.h" />

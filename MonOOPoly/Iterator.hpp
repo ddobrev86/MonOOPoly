@@ -11,7 +11,7 @@ public:
     Iterator(const MyVector<T>& data);
 
     bool hasNext() const;
-    //T next();
+    T next();
     const T& next() const;
     void toStart();
 };
@@ -23,14 +23,14 @@ Iterator<T>::Iterator(const MyVector<T>& data) : data(data)
 template <typename T>
 bool Iterator<T>::hasNext() const
 {
-    return index < data.size();
+    return index < data.getSize();
 }
 
-//template <typename T>
-//T Iterator<T>::next()
-//{
-//    return data[index++];
-//}
+template <typename T>
+T Iterator<T>::next()
+{
+    return data[index++];
+}
 
 template <typename T>
 const T& Iterator<T>::next() const

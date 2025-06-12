@@ -8,31 +8,29 @@
 #include "Castle.h"
 #include "Cottage.h"
 #include "IteratibleContainer.hpp"
+#include "FieldFamily.h"
 
-class PropertyFamily : public IteratibleContainer<SharedPtr<Property>>
+class PropertyFamily : public FieldFamily
 {
 private:
 	//MyVector<SharedPtr<Property>> properties;
-	MyString name;
-	UniquePtr<MortgageManager> mortgages;
+	//MyString name;
+	//UniquePtr<MortgageManager> mortgages;
 
 	SharedPtr<Mortgage> castle;
 	SharedPtr<Mortgage> cottage;
-
-	//SharedPtr<Castle> castle;
-	//SharedPtr<Cottage> cottage;
 
 public:
 	PropertyFamily(const MyString& name, 
 		unsigned cottagePrice, unsigned castlePrice);
 
 	void addProperty(const SharedPtr<Property>& property);
-	bool containsProperty(const SharedPtr<Property>& property);
+	//bool containsProperty(const SharedPtr<Property>& property);
 
-	size_t howManyBelongToPlayer(const SharedPtr<Player>& player);
-	bool ownsAll(const SharedPtr<Player>& player);
+	//size_t howManyBelongToPlayer(const SharedPtr<Player>& player);
+	//bool ownsAll(const SharedPtr<Player>& player);
 
-	void buyProperty(const SharedPtr<Player>& player, bool isCottage);
+	//void buyProperty(const SharedPtr<Player>& player, bool isCottage);
 
 };
 

@@ -22,7 +22,8 @@ private:
 
 public:
 	MyVector();
-	MyVector(size_t size);
+	//MyVector(size_t size);
+	MyVector(size_t capacity);
 	MyVector(const MyVector& other);
 	MyVector& operator=(const MyVector& other);
 	MyVector(MyVector&& other) noexcept;
@@ -122,12 +123,20 @@ MyVector<T>::MyVector()
 	size = 0;
 }
 
+//template <typename T>
+//MyVector<T>::MyVector(size_t size)
+//{
+//	capacity = getNextPowerOfTwo(size);
+//	data = new T[capacity];
+//	this->size = size;
+//}
+
 template <typename T>
-MyVector<T>::MyVector(size_t size)
+MyVector<T>::MyVector(size_t capacity)
 {
-	capacity = getNextPowerOfTwo(size);
+	this->capacity = capacity;
 	data = new T[capacity];
-	this->size = size;
+	this->size = 0;
 }
 
 template <typename T>

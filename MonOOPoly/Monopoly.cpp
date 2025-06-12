@@ -76,8 +76,11 @@ void Monopoly::addPropertyFamily(const SharedPtr<PropertyFamily>& propFamily)
 		mainIterator->toStart();
 		while (mainIterator->hasNext())
 		{
-			//board->addField(mainIterator->next());
+			SharedPtr<Field> placeholder(mainIterator->next().operator->());
+			board->addField(placeholder);
 		}
+
+		propFamilies.push_back(propFamily);
 	}
 }
 

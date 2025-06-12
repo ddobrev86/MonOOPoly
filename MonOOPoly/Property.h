@@ -1,17 +1,19 @@
 #pragma once
 #include "Field.h"
 #include "MortgageManager.h"
+#include "MyString.h"
 
 class Property : public Field
 {
 private:
+	MyString name;
 	SharedPtr<Player> owner;
 	unsigned price;
-	UniquePtr<MortgageManager> mortgages;
+	UniquePtr<MortgageManager> mortgageManager;
 	unsigned rent;
 
 public:
-	Property(unsigned price, unsigned rent);
+	Property(const MyString& name, unsigned price, unsigned rent);
 
 	bool belongsToPlayer(const SharedPtr<Player>& player);
 	bool isFree() const;

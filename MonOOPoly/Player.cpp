@@ -33,9 +33,10 @@ void Player::moveTo(size_t newPos)
     currentPos = newPos;
 }
 
-void Player::moveWith(size_t positions)
+void Player::moveWith(size_t positions, size_t boardSize)
 {
     currentPos += positions;
+    currentPos %= boardSize;
 }
 
 void Player::addToBalance(size_t balanceChange)
@@ -46,7 +47,9 @@ void Player::addToBalance(size_t balanceChange)
 void Player::removeFromBalance(size_t balanceChange)
 {
     //TODO: add validation if balanceChange is smaller than balance 
-
+    if (!canAfford(balanceChange))
+        throw std::invalid_argument("You don't have enough money to continue with this action!");
+    
     balance -= balanceChange;
 }
 

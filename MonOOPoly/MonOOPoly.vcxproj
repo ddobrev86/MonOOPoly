@@ -142,6 +142,7 @@
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="CardDeck.cpp" />
+    <ClCompile Include="CardField.cpp" />
     <ClCompile Include="Castle.cpp" />
     <ClCompile Include="Cottage.cpp" />
     <ClCompile Include="Field.cpp" />
@@ -161,10 +162,13 @@
     <ClInclude Include="Board.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="CardDeck.h" />
+    <ClInclude Include="CardField.h" />
     <ClInclude Include="Castle.h" />
+    <ClInclude Include="IteratibleContainer.hpp" />
     <ClInclude Include="Cottage.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="InputProcessor.h" />
+    <ClInclude Include="Iterator.hpp" />
     <ClInclude Include="Monopoly.h" />
     <ClInclude Include="Mortgage.h" />
     <ClInclude Include="MortgageManager.h" />

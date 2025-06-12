@@ -1,8 +1,9 @@
 #include "Property.h"
 #include "InputProcessor.h"
 
-Property::Property(unsigned price, unsigned rent)
+Property::Property(const MyString& name, unsigned price, unsigned rent)
 {
+	this->name = name;
 	this->price = price;
 	this->rent = rent;
 }
@@ -22,6 +23,8 @@ bool Property::isFree() const
 
 void Property::printFieldInfo() const
 {
+	std::cout << "You have landed on " << name << '\n';
+
 	if (isFree())
 	{
 		std::cout << "No one owns this property. You can buy it!\n";
@@ -30,7 +33,7 @@ void Property::printFieldInfo() const
 	else
 	{
 		std::cout << "This property belongs to " << owner->getUsername() << '\n';
-		std::cout << "Rent: " << rent << '\n';
+		std::cout << "Rent: " << mortgageManager->getTotalRent(rent) << '\n';
 	}
 }
 
@@ -46,7 +49,7 @@ void Property::action(SharedPtr<Player>& player)
 	{
 		if (!belongsToPlayer(player))
 		{
-			player->removeFromBalance(rent);
+			player->removeFromBalance(mortgageManager->getTotalRent(rent));
 			std::cout << "You have been taxed\n";
 			//TODO add warning when exceeding balance
 		}

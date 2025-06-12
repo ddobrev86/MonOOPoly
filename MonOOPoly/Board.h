@@ -3,11 +3,12 @@
 #include "MyVector.hpp"
 #include "UniquePtr.hpp"
 #include "SharedPtr.hpp"
+#include "IteratibleContainer.hpp"
 
-class Board
+class Board : public IteratibleContainer<SharedPtr<Field>>
 {
 private:
-	MyVector<SharedPtr<Field>> fields;
+	//MyVector<SharedPtr<Field>> fields;
 	size_t currentPos;
 	size_t size;
 

@@ -7,16 +7,20 @@
 #include "MortgageManager.h"
 #include "Castle.h"
 #include "Cottage.h"
+#include "IteratibleContainer.hpp"
 
-class PropertyFamily
+class PropertyFamily : public IteratibleContainer<SharedPtr<Property>>
 {
 private:
+	//MyVector<SharedPtr<Property>> properties;
 	MyString name;
-	MyVector<SharedPtr<Property>> properties;
 	UniquePtr<MortgageManager> mortgages;
 
-	SharedPtr<Castle> castle;
-	SharedPtr<Cottage> cottage;
+	SharedPtr<Mortgage> castle;
+	SharedPtr<Mortgage> cottage;
+
+	//SharedPtr<Castle> castle;
+	//SharedPtr<Cottage> cottage;
 
 public:
 	PropertyFamily(const MyString& name, 

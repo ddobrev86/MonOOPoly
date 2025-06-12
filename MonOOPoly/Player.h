@@ -23,7 +23,7 @@ public:
 	const MyString& getUsername() const;
 
 	void moveTo(size_t newPos);
-	void moveWith(size_t positions);
+	void moveWith(size_t positions, size_t boardSize);
 
 	void addToBalance(size_t balanceChange);
 	void removeFromBalance(size_t balanceChange);

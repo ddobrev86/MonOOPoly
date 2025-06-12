@@ -78,6 +78,9 @@
     <ClCompile Include="PropertyFamily.cpp">
       <Filter>Field utils</Filter>
     </ClCompile>
+    <ClCompile Include="CardField.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyQueue.hpp">
@@ -139,6 +142,15 @@
     </ClInclude>
     <ClInclude Include="Property.h">
       <Filter>Field utils</Filter>
+    </ClInclude>
+    <ClInclude Include="CardField.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IteratibleContainer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Iterator.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

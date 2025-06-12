@@ -16,8 +16,13 @@ Monopoly::Monopoly(size_t playerCount, size_t boardSize)
 Monopoly* Monopoly::getInstance(size_t playerCount, size_t boardSize)
 {
 	if (!instance)
+	{
+		if (playerCount < Constants::MIN_PLAYER_COUNT || playerCount > Constants::MAX_PLAYER_COUNT)
+				throw std::invalid_argument("Invalid player count");
+
 		instance = new Monopoly(playerCount, boardSize);
 
+	}
 	return instance;
 }
 
@@ -37,6 +42,43 @@ void Monopoly::addPlayer(const SharedPtr<Player>& player)
 void Monopoly::addPlayer(const MyString& username)
 {
 	addPlayer(SharedPtr<Player>(new Player(username)));
+}
+
+bool Monopoly::canAddPropertyFamily(const SharedPtr<PropertyFamily>& propFamily,
+	UniquePtr<Iterator<SharedPtr<Property>>>& mainIterator)
+{
+	UniquePtr<Iterator<SharedPtr<Property>>> secondaryIterator;
+
+	while (mainIterator->hasNext())
+	{
+		SharedPtr<Property> currentProperty = mainIterator->next();
+
+		for (size_t currentFamily = 0; currentFamily < propFamilies.getSize(); currentFamily++)
+		{
+			secondaryIterator = std::move(propFamilies[currentFamily]->createIterator());
+			while (secondaryIterator->hasNext())
+			{
+				if (currentProperty.compareWith(secondaryIterator->next()))
+					throw std::invalid_argument("This Property Familty contains a property already on board");
+			}
+		}
+	}
+
+	return true;
+}
+
+void Monopoly::addPropertyFamily(const SharedPtr<PropertyFamily>& propFamily)
+{
+	UniquePtr<Iterator<SharedPtr<Property>>> mainIterator(propFamily->createIterator());
+
+	if (canAddPropertyFamily(propFamily, mainIterator))
+	{
+		mainIterator->toStart();
+		while (mainIterator->hasNext())
+		{
+			//board->addField(mainIterator->next());
+		}
+	}
 }
 
 size_t Monopoly::getPlayerCount() const
@@ -59,6 +101,7 @@ void Monopoly::actPlayerAction()
 
 	SharedPtr<Field>& currentField = board->operator[](players[currentPlayer]->getPosition());
 	currentField->printFieldInfo();
+	currentField->action(players[currentPlayer]);
 
 	currentPlayer++;
 }
@@ -92,7 +135,7 @@ size_t Monopoly::throwDice() const
 void Monopoly::movePlayer()
 {
 	size_t positions = throwDice();
-	players[currentPlayer]->moveWith(positions);
+	players[currentPlayer]->moveWith(positions, board->getTotalSize());
 }
 
 bool Monopoly::getPlayerOutOfJail()
@@ -123,8 +166,8 @@ bool Monopoly::getPlayerOutOfJail()
 	}
 	else
 	{
-		std::cout << "You got out of jail!";
+		std::cout << "You got out of jail!\n";
 		players[currentPlayer]->getOutOfJail();
-		return false;
+		return true;
 	}
 }

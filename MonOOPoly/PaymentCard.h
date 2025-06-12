@@ -8,6 +8,6 @@ private:
 public:
 	PaymentCard(int balanceChange);
 
-	void applyEffect(Player& player) const override;
+	void applyEffect(SharedPtr<Player>& player) const override;
 };
 

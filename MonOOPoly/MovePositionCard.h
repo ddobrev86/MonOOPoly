@@ -9,6 +9,6 @@ private:
 public:
 	MovePositionCard(size_t positionsToMove, size_t boardSize);
 
-	void applyEffect(Player& player) const override;
+	void applyEffect(SharedPtr<Player>& player) const override;
 };
 

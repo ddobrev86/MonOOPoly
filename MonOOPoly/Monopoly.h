@@ -3,6 +3,7 @@
 #include "Board.h"
 #include "Player.h"
 #include "SharedPtr.hpp"
+#include "PropertyFamily.h"
 
 namespace Constants
 {
@@ -19,6 +20,7 @@ private:
 	UniquePtr<Board> board;
 	MyVector<SharedPtr<Player>> players;
 	size_t currentPlayer;
+	MyVector<SharedPtr<PropertyFamily>> propFamilies;
 	//size_t playerCount;
 
 	Monopoly(size_t playerCount, size_t boardSize);
@@ -30,6 +32,10 @@ public:
 	
 	void addPlayer(const SharedPtr<Player>& player);
 	void addPlayer(const MyString& username);
+
+	bool canAddPropertyFamily(const SharedPtr<PropertyFamily>& propFamily,
+		UniquePtr<Iterator<SharedPtr<Property>>>& mainIterator);
+	void addPropertyFamily(const SharedPtr<PropertyFamily>& propFamily);
 
 	size_t getPlayerCount() const;
 

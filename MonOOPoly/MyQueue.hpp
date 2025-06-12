@@ -42,7 +42,7 @@ template <typename T>
 void MyQueue<T>::resize()
 {
 	T* resizedData = new T[capacity * 2];
-	for (int i = 0; i < size; i++)
+	for (size_t i = 0; i < size; i++)
 	{
 		resizedData[i] = data[get];
 		(++get) %= capacity;

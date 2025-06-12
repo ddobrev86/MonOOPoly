@@ -4,20 +4,21 @@ PropertyFamily::PropertyFamily(const MyString& name,
 	unsigned cottagePrice, unsigned castlePrice)
 {
 	this->name = name;
-	cottage = SharedPtr<Cottage>(new Cottage(cottagePrice));
-	castle = SharedPtr<Castle>(new Castle(castlePrice));
+	cottage = SharedPtr<Mortgage>(new Cottage(cottagePrice));
+	castle = SharedPtr<Mortgage>(new Castle(castlePrice));
 }
 
 void PropertyFamily::addProperty(const SharedPtr<Property>& property)
 {
-	properties.push_back(property);
+	this->add(property);
+	//properties.push_back(property);
 }
 
 bool PropertyFamily::containsProperty(const SharedPtr<Property>& property)
 {
-	for (size_t i = 0; i < properties.getSize(); i++)
+	for (size_t i = 0; i < data.getSize(); i++)
 	{
-		if (properties[i].compareWith(property))
+		if (data[i].compareWith(property))
 			return true;
 	}
 	return false;
@@ -26,9 +27,9 @@ bool PropertyFamily::containsProperty(const SharedPtr<Property>& property)
 size_t PropertyFamily::howManyBelongToPlayer(const SharedPtr<Player>& player)
 {
 	size_t count = 0;
-	for (size_t i = 0; i < properties.getSize(); i++)
+	for (size_t i = 0; i < data.getSize(); i++)
 	{
-		if (properties[i]->belongsToPlayer(player))
+		if (data[i]->belongsToPlayer(player))
 			count++;
 	}
 
@@ -37,9 +38,9 @@ size_t PropertyFamily::howManyBelongToPlayer(const SharedPtr<Player>& player)
 
 bool PropertyFamily::ownsAll(const SharedPtr<Player>& player)
 {
-	for (size_t i = 0; i < properties.getSize(); i++)
+	for (size_t i = 0; i < data.getSize(); i++)
 	{
-		if (!properties[i]->belongsToPlayer(player))
+		if (!data[i]->belongsToPlayer(player))
 			return false;
 	}
 
@@ -53,14 +54,14 @@ void PropertyFamily::buyProperty(const SharedPtr<Player>& player, bool isCottage
 
 	if (isCottage)
 	{
-		mortgages->buyMortgage(SharedPtr<Mortgage>(new Mortgage(*cottage)));
+		mortgages->buyMortgage(SharedPtr<Mortgage>(cottage));
 	}
 	else
 	{
 		if (!mortgages->canBuyCastle())
 			throw std::runtime_error("You don't have the minimum cottages to buy a castle");
 
-		mortgages->buyMortgage(SharedPtr<Mortgage>(new Mortgage(*castle)));
+		mortgages->buyMortgage(SharedPtr<Mortgage>(castle));
 
 	}
 }

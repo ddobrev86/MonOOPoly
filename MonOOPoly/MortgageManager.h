@@ -10,7 +10,16 @@ private:
 
 	MyVector<SharedPtr<Mortgage>> mortgages;
 
+	SharedPtr<Mortgage> castle;
+	SharedPtr<Mortgage> cottage;
+
 public:
+	MortgageManager(const SharedPtr<Mortgage>& castle,
+		const SharedPtr<Mortgage>& cottage);
+
+	void setUpMortgages(const SharedPtr<Mortgage>& castle,
+		const SharedPtr<Mortgage>& cottage);
+
 	void buyMortgage(const SharedPtr<Mortgage>& mortgage);
 
 	bool canBuyCastle() const;

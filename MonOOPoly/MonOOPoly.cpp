@@ -18,9 +18,13 @@ int main()
 {
 	Monopoly* monopoly = Monopoly::getInstance(2, 11);
 
-	PropertyFamily* browns = new PropertyFamily("Brown", 10, 20);
-	browns->addProperty(SharedPtr<Property>(new Property("Old Kent Road", 10, 10)));
-	browns->addProperty(SharedPtr<Property>(new Property("Whitechapel Road", 10, 10)));
+	FieldFamily* browns = new PropertyFamily("Brown", 10, 20);
+	SharedPtr<BuyableField> ptr1(new Property("Old Kent Road", 10, 10));
 
-	monopoly->addPropertyFamily(SharedPtr<PropertyFamily>(browns));
+	browns->addField(ptr1);
+	browns->addField(SharedPtr<BuyableField>(new Property("Whitechapel Road", 10, 10)));
+
+	monopoly->addFieldFamily(SharedPtr<FieldFamily>(browns));
+
+	monopoly->printBoard();
 }

@@ -24,13 +24,8 @@ public:
 	PropertyFamily(const MyString& name, 
 		unsigned cottagePrice, unsigned castlePrice);
 
-	void addProperty(const SharedPtr<Property>& property);
-	//bool containsProperty(const SharedPtr<Property>& property);
-
-	//size_t howManyBelongToPlayer(const SharedPtr<Player>& player);
-	//bool ownsAll(const SharedPtr<Player>& player);
-
-	//void buyProperty(const SharedPtr<Player>& player, bool isCottage);
+	void addField(SharedPtr<BuyableField>& field) override;
+	void addField(SharedPtr<BuyableField>&& field) override;
 
 };
 

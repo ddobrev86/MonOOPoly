@@ -5,12 +5,18 @@
 class Property : public BuyableField
 {
 private:
-	UniquePtr<MortgageManager> mortgageManager;
+	SharedPtr<MortgageManager> mortgageManager;
 
 public:
 	Property(const MyString& name, unsigned price, unsigned rent);
 	void buyMortgage();
+
 	size_t calculateTotalRent() const override;
+	BuyableField* clone() const override;
+
+	void setUpMortgages(const SharedPtr<Mortgage>& castle,
+		const SharedPtr<Mortgage>& cottage) override;
+	bool canBuyMortgages() const override;
 
 	/*bool belongsToPlayer(const SharedPtr<Player>& player);
 	bool isFree() const;*/

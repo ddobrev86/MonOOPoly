@@ -42,6 +42,15 @@ SharedPtr<Field>& Board::operator[](size_t index)
 	return data[index];
 }
 
+void Board::printBoard() const
+{
+	for (size_t i = 0; i < data.getSize(); i++)
+	{
+		data[i]->printFieldInfo();
+		std::cout << '\n';
+	}
+}
+
 const SharedPtr<Field>& Board::operator[](size_t index) const
 {
 	if (index > getTotalSize())

@@ -5,9 +5,19 @@ FieldFamily::FieldFamily(const MyString& name)
 	this->name = name;
 }
 
-void FieldFamily::addField(const SharedPtr<BuyableField>& field)
+void FieldFamily::addField(SharedPtr<BuyableField>& field)
 {
 	this->add(field);
+}
+
+void FieldFamily::addField(SharedPtr<BuyableField>&& field)
+{
+	this->add(std::move(field));
+}
+
+void FieldFamily::addField(const BuyableField* field)
+{
+	this->add(SharedPtr<BuyableField>(field->clone()));
 }
 
 bool FieldFamily::containsField(const SharedPtr<BuyableField>& property)

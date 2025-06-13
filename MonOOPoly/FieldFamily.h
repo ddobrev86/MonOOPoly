@@ -11,7 +11,10 @@ protected:
 public:
 	FieldFamily(const MyString& name);
 
-	void addField(const SharedPtr<BuyableField>& property);
+	virtual void addField(SharedPtr<BuyableField>& property);
+	virtual void addField(SharedPtr<BuyableField>&& field);
+	void addField(const BuyableField* field);
+
 	bool containsField(const SharedPtr<BuyableField>& property);
 
 	size_t howManyBelongToPlayer(const SharedPtr<Player>& player);

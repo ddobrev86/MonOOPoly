@@ -22,5 +22,7 @@ public:
 
 	SharedPtr<Field>& operator[](size_t index);
 	const SharedPtr<Field>& operator[](size_t index) const;
+
+	void printBoard() const;
 };
 

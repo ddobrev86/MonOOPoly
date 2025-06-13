@@ -81,11 +81,11 @@
     <ClCompile Include="CardField.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FieldFamily.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BuyableField.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Field utils</Filter>
+    </ClCompile>
+    <ClCompile Include="FieldFamily.cpp">
+      <Filter>Field utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -158,11 +158,11 @@
     <ClInclude Include="Iterator.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FieldFamily.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BuyableField.h">
-      <Filter>Header Files</Filter>
+      <Filter>Field utils</Filter>
+    </ClInclude>
+    <ClInclude Include="FieldFamily.h">
+      <Filter>Field utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

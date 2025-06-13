@@ -8,11 +8,16 @@ PropertyFamily::PropertyFamily(const MyString& name,
 	castle = SharedPtr<Mortgage>(new Castle(castlePrice));
 }
 
-void PropertyFamily::addProperty(const SharedPtr<Property>& property)
+void PropertyFamily::addField(SharedPtr<BuyableField>& field)
 {
-	/*SharedPtr<BuyableField> ptr(new Property(*property));
-	this->add(property);*/
-	//properties.push_back(property);
+	field->setUpMortgages(castle, cottage);
+	FieldFamily::addField(field);
+}
+
+void PropertyFamily::addField(SharedPtr<BuyableField>&& field)
+{
+	field->setUpMortgages(castle, cottage);
+	FieldFamily::addField(field);
 }
 
 //bool PropertyFamily::containsProperty(const SharedPtr<Property>& property)

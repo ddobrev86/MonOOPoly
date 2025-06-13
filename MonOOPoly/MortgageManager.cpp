@@ -1,5 +1,15 @@
 #include "MortgageManager.h"
 
+MortgageManager::MortgageManager(const SharedPtr<Mortgage>& castle, 
+	const SharedPtr<Mortgage>& cottage) : castle(castle), cottage(cottage)
+{}
+
+void MortgageManager::setUpMortgages(const SharedPtr<Mortgage>& castle, const SharedPtr<Mortgage>& cottage)
+{
+	this->castle = castle;
+	this->cottage = cottage;
+}
+
 void MortgageManager::buyMortgage(const SharedPtr<Mortgage>& mortgage)
 {
 	mortgages.push_back(mortgage);

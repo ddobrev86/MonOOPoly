@@ -26,6 +26,11 @@ Monopoly* Monopoly::getInstance(size_t playerCount, size_t boardSize)
 	return instance;
 }
 
+void Monopoly::printBoard() const
+{
+	board->printBoard();
+}
+
 void Monopoly::addPlayer(const SharedPtr<Player>& player)
 {
 	if (players.getSize() == Constants::MAX_PLAYER_COUNT)
@@ -44,21 +49,21 @@ void Monopoly::addPlayer(const MyString& username)
 	addPlayer(SharedPtr<Player>(new Player(username)));
 }
 
-bool Monopoly::canAddPropertyFamily(const SharedPtr<PropertyFamily>& propFamily,
-	UniquePtr<Iterator<SharedPtr<Property>>>& mainIterator)
+bool Monopoly::canAddFieldFamily(const SharedPtr<FieldFamily>& fieldFamily,
+	UniquePtr<Iterator<SharedPtr<BuyableField>>>& mainIterator)
 {
-	UniquePtr<Iterator<SharedPtr<Property>>> secondaryIterator;
+	UniquePtr<Iterator<SharedPtr<BuyableField>>> secondaryIterator;
 
 	while (mainIterator->hasNext())
 	{
-		SharedPtr<Property> currentProperty = mainIterator->next();
+		SharedPtr<BuyableField> currentField = mainIterator->next();
 
-		for (size_t currentFamily = 0; currentFamily < propFamilies.getSize(); currentFamily++)
+		for (size_t currentFamily = 0; currentFamily < fieldFamilies.getSize(); currentFamily++)
 		{
-			secondaryIterator = std::move(propFamilies[currentFamily]->createIterator());
+			secondaryIterator = std::move(fieldFamilies[currentFamily]->createIterator());
 			while (secondaryIterator->hasNext())
 			{
-				if (currentProperty.compareWith(secondaryIterator->next()))
+				if (currentField.compareWith(secondaryIterator->next()))
 					throw std::invalid_argument("This Property Familty contains a property already on board");
 			}
 		}
@@ -67,20 +72,20 @@ bool Monopoly::canAddPropertyFamily(const SharedPtr<PropertyFamily>& propFamily,
 	return true;
 }
 
-void Monopoly::addPropertyFamily(const SharedPtr<PropertyFamily>& propFamily)
+void Monopoly::addFieldFamily(const SharedPtr<FieldFamily>& fieldFamily)
 {
-	UniquePtr<Iterator<SharedPtr<Property>>> mainIterator(propFamily->createIterator());
+	UniquePtr<Iterator<SharedPtr<BuyableField>>> mainIterator(fieldFamily->createIterator());
 
-	if (canAddPropertyFamily(propFamily, mainIterator))
+	if (canAddFieldFamily(fieldFamily, mainIterator))
 	{
 		mainIterator->toStart();
 		while (mainIterator->hasNext())
 		{
-			SharedPtr<Field> placeholder(mainIterator->next().operator->());
+			SharedPtr<Field> placeholder(mainIterator->next().get());
 			board->addField(placeholder);
 		}
 
-		propFamilies.push_back(propFamily);
+		fieldFamilies.push_back(fieldFamily);
 	}
 }
 

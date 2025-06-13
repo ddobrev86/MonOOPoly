@@ -43,6 +43,9 @@ public:
 	T* operator->();
 	const T* operator->() const;
 
+	T* get();
+	const T* get() const;
+
 	bool isInitalized() const;
 	operator bool() const;
 
@@ -166,6 +169,18 @@ T* SharedPtr<T>::operator->()
 
 template<typename T>
 const T* SharedPtr<T>::operator->() const
+{
+	return ptr;
+}
+
+template<typename T>
+T* SharedPtr<T>::get()
+{
+	return ptr;
+}
+
+template<typename T>
+const T* SharedPtr<T>::get() const
 {
 	return ptr;
 }

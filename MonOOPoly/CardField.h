@@ -11,6 +11,6 @@ public:
 	CardField(const SharedPtr<CardDeck>& deck);
 
 	void printFieldInfo() const override;
-	void action(SharedPtr<Player>& player) override;
+	bool action(SharedPtr<Player>& player) override;
 };
 

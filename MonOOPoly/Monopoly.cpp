@@ -17,7 +17,8 @@ Monopoly* Monopoly::getInstance(size_t playerCount, size_t boardSize)
 {
 	if (!instance)
 	{
-		if (playerCount < Constants::MIN_PLAYER_COUNT || playerCount > Constants::MAX_PLAYER_COUNT)
+		if (playerCount < GameConstants::MIN_PLAYER_COUNT 
+			|| playerCount > GameConstants::MAX_PLAYER_COUNT)
 				throw std::invalid_argument("Invalid player count");
 
 		instance = new Monopoly(playerCount, boardSize);
@@ -33,7 +34,7 @@ void Monopoly::printBoard() const
 
 void Monopoly::addPlayer(const SharedPtr<Player>& player)
 {
-	if (players.getSize() == Constants::MAX_PLAYER_COUNT)
+	if (players.getSize() == GameConstants::MAX_PLAYER_COUNT)
 		throw std::runtime_error("Max player count reached");
 
 	for (size_t i = 0; i < players.getSize(); i++)
@@ -109,9 +110,23 @@ void Monopoly::actPlayerAction()
 
 	SharedPtr<Field>& currentField = board->operator[](players[currentPlayer]->getPosition());
 	currentField->printFieldInfo();
-	currentField->action(players[currentPlayer]);
+	fieldActionUntilSuccess(currentField);
 
 	currentPlayer++;
+}
+
+void Monopoly::fieldActionUntilSuccess(SharedPtr<Field>& currentField)
+{
+	do
+	{
+		bool success = currentField->action(players[currentPlayer]);
+		players[currentPlayer]->moveWith(0, board->getTotalSize());
+		if (success)
+			break;
+
+		currentField = board->operator[](players[currentPlayer]->getPosition());
+
+	} while (true);
 }
 
 bool Monopoly::throwPair() const

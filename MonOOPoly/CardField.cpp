@@ -10,9 +10,11 @@ void CardField::printFieldInfo() const
 	std::cout << "You have landed on a card field\n";
 }
 
-void CardField::action(SharedPtr<Player>& player)
+bool CardField::action(SharedPtr<Player>& player)
 {
 	SharedPtr<Card> drawnCard = deck->drawCard();
 	drawnCard->applyEffect(player);
 	deck->addCard(drawnCard);
+
+	return true;
 }

@@ -1,10 +1,5 @@
 #pragma once
-
-namespace MortgageConstants
-{
-	static const double COTTAGE_RENT_INCREASE = 0.15;
-	static const double CASTLE_RENT_INCREASE = 0.5;
-}
+#include "utilities.h"
 
 class Mortgage
 {

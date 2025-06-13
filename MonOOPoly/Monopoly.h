@@ -5,13 +5,7 @@
 #include "SharedPtr.hpp"
 #include "PropertyFamily.h"
 #include "FieldFamily.h"
-
-namespace Constants
-{
-	const size_t MAX_PLAYER_COUNT = 6;
-	const size_t MIN_PLAYER_COUNT = 2;
-	const size_t STANDART_BOARD_SIZE = 11;
-}
+#include "utilities.h"
 
 class Monopoly
 {
@@ -43,6 +37,7 @@ public:
 	size_t getPlayerCount() const;
 
 	void actPlayerAction();
+	void fieldActionUntilSuccess(SharedPtr<Field>& currentField);
 
 	bool throwPair() const;
 	size_t throwDice() const;

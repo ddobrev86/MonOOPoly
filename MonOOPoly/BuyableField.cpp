@@ -17,7 +17,7 @@ void BuyableField::buy(SharedPtr<Player>& player)
 	player->removeFromBalance(price);
 }
 
-void BuyableField::action(SharedPtr<Player>& player)
+bool BuyableField::action(SharedPtr<Player>& player)
 {
 	if (isFree())
 	{
@@ -34,6 +34,8 @@ void BuyableField::action(SharedPtr<Player>& player)
 			//TODO add warning when exceeding balance
 		}
 	}
+
+	return true;
 }
 
 bool BuyableField::belongsToPlayer(const SharedPtr<Player>& player)

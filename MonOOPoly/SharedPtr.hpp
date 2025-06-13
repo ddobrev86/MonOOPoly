@@ -50,6 +50,7 @@ public:
 	operator bool() const;
 
 	bool compareWith(const SharedPtr<T>& obj) const;
+	bool operator==(const SharedPtr<T>&obj) const;
 };
 
 template<typename T>
@@ -201,4 +202,10 @@ template<typename T>
 bool SharedPtr<T>::compareWith(const SharedPtr<T>& obj) const
 {
 	return ptr == obj.ptr;
+}
+
+template<typename T>
+inline bool SharedPtr<T>::operator==(const SharedPtr<T>& obj) const
+{
+	return compareWith(obj);
 }

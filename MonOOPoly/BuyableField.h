@@ -18,8 +18,8 @@ public:
 		const SharedPtr<Mortgage>& cottage) = 0;
 	virtual bool canBuyMortgages() const = 0;
 
-	void buy(SharedPtr<Player>& player);
-	void action(SharedPtr<Player>& player) override;
+	virtual void buy(SharedPtr<Player>& player);
+	bool action(SharedPtr<Player>& player) override;
 
 	bool belongsToPlayer(const SharedPtr<Player>& player);
 	bool isFree() const;

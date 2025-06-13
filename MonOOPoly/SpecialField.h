@@ -1,0 +1,13 @@
+#pragma once
+#include "BuyableField.h"
+
+class SpecialField : public BuyableField
+{
+public:
+	SpecialField(const MyString& name, unsigned price, unsigned rent);
+
+	void setUpMortgages(const SharedPtr<Mortgage>& castle,
+		const SharedPtr<Mortgage>& cottage) override;
+	bool canBuyMortgages() const override;
+};
+

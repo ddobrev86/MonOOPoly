@@ -4,7 +4,8 @@
 
 MyDictionary<SharedPtr<Player>, size_t> Station::ownersipMap;
 
-Station::Station(const MyString& name, unsigned price, unsigned rent) : BuyableField(name, price, rent)
+Station::Station(const MyString& name,
+	unsigned price, unsigned rent) : SpecialField(name, price, rent)
 {}
 
 void Station::buy(SharedPtr<Player>&player)
@@ -28,12 +29,12 @@ BuyableField* Station::clone() const
 	return new Station(*this);
 }
 
-void Station::setUpMortgages(const SharedPtr<Mortgage>& castle, const SharedPtr<Mortgage>& cottage){}
-
-bool Station::canBuyMortgages() const
-{
-	return false;
-}
+//void Station::setUpMortgages(const SharedPtr<Mortgage>& castle, const SharedPtr<Mortgage>& cottage){}
+//
+//bool Station::canBuyMortgages() const
+//{
+//	return false;
+//}
 
 bool Station::action(SharedPtr<Player>& player)
 {

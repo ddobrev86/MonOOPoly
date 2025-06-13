@@ -28,6 +28,9 @@
     <Filter Include="Field utils\FieldFamilies">
       <UniqueIdentifier>{f6b12155-c282-4d4f-8d88-e5f39341d0d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Field utils\SpecialFields">
+      <UniqueIdentifier>{2b8e4de4-bb39-408f-bcf3-ccf03676b96d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MonOOPoly.cpp">
@@ -81,9 +84,6 @@
     <ClCompile Include="BuyableField.cpp">
       <Filter>Field utils</Filter>
     </ClCompile>
-    <ClCompile Include="Station.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="utilities.cpp">
       <Filter>utils</Filter>
     </ClCompile>
@@ -95,6 +95,15 @@
     </ClCompile>
     <ClCompile Include="PropertyFamily.cpp">
       <Filter>Field utils\FieldFamilies</Filter>
+    </ClCompile>
+    <ClCompile Include="Facility.cpp">
+      <Filter>Field utils\SpecialFields</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialField.cpp">
+      <Filter>Field utils\SpecialFields</Filter>
+    </ClCompile>
+    <ClCompile Include="Station.cpp">
+      <Filter>Field utils\SpecialFields</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -158,9 +167,6 @@
     <ClInclude Include="BuyableField.h">
       <Filter>Field utils</Filter>
     </ClInclude>
-    <ClInclude Include="Station.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MyDictionary.hpp">
       <Filter>utils</Filter>
     </ClInclude>
@@ -184,6 +190,15 @@
     </ClInclude>
     <ClInclude Include="PropertyFamily.h">
       <Filter>Field utils\FieldFamilies</Filter>
+    </ClInclude>
+    <ClInclude Include="Station.h">
+      <Filter>Field utils\SpecialFields</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialField.h">
+      <Filter>Field utils\SpecialFields</Filter>
+    </ClInclude>
+    <ClInclude Include="Facility.h">
+      <Filter>Field utils\SpecialFields</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -30,6 +30,7 @@ public:
 	bool canAfford(size_t price);
 
 	size_t getPosition() const;
+	unsigned getBalance() const;
 
 	bool isInJail() const;
 	void goToJail();

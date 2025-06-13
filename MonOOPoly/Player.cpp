@@ -63,6 +63,11 @@ size_t Player::getPosition() const
     return currentPos;
 }
 
+unsigned Player::getBalance() const
+{
+    return balance;
+}
+
 bool Player::isInJail() const
 {
     return inJail;

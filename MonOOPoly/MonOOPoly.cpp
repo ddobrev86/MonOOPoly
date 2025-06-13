@@ -1,9 +1,10 @@
 #include <iostream>
 #include "Monopoly.h"
 #include "Station.h"
+#include "Facility.h"
 
-//TODO add Stations
-//TODO add Facilities
+//-----TODO add Stations-----
+//-----TODO add Facilities-----
 //TODO add switchFields method in Monopoly class
 //TODO add CornerFields
 //TODO create default game
@@ -11,8 +12,8 @@
 //TODO add CommandFactory
 //TODO add FieldFactory
 //TODO add PayAllCard
-//TODO add FieldFamily -> child PropertyFamily
-//TODO change buyMortgage logic from PropertyFamily to Property class
+//-----TODO add FieldFamily -> child PropertyFamily-----
+//-----TODO change buyMortgage logic from PropertyFamily to Property class-----
 //TODO add Bank and Trade
 
 int main()
@@ -37,6 +38,7 @@ int main()
 	FieldFamily* greens = new PropertyFamily("Green", 200, 200);
 	FieldFamily* darkBlues = new PropertyFamily("Dark Blue", 200, 200);
 	FieldFamily* stations = new FieldFamily("Stations");
+	FieldFamily* facilities = new FieldFamily("Facilities");
 
 	browns->addField(SharedPtr<BuyableField>(new Property("Old Kent Road", 60, 80)));
 	browns->addField(SharedPtr<BuyableField>(new Property("Whitechapel Road", 60, 100)));
@@ -73,6 +75,9 @@ int main()
 	stations->addField(SharedPtr<BuyableField>(new Station("Fenchurch St. Station", 200, 25)));
 	stations->addField(SharedPtr<BuyableField>(new Station("Liverpool Street Station", 200, 25)));
 
+	facilities->addField(SharedPtr<BuyableField>(new Facility("Electric Company", 150, 50)));
+	facilities->addField(SharedPtr<BuyableField>(new Facility("Water Works", 150, 50)));
+
 	monopoly->addFieldFamily(SharedPtr<FieldFamily>(browns));
 	monopoly->addFieldFamily(SharedPtr<FieldFamily>(lightBlues));
 	monopoly->addFieldFamily(SharedPtr<FieldFamily>(pinks));
@@ -82,6 +87,7 @@ int main()
 	monopoly->addFieldFamily(SharedPtr<FieldFamily>(greens));
 	monopoly->addFieldFamily(SharedPtr<FieldFamily>(darkBlues));
 	monopoly->addFieldFamily(SharedPtr<FieldFamily>(stations));
+	monopoly->addFieldFamily(SharedPtr<FieldFamily>(facilities));
 
 	monopoly->printBoard();
 }

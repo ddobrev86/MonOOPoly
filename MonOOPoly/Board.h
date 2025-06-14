@@ -17,11 +17,17 @@ private:
 
 public:
 	size_t getTotalSize() const;
+	void setSize(size_t size);
+	
+	void setUpCorners();
+	bool canAddCorners() const;
 
 	Board(size_t size);
 
 	SharedPtr<Field>& move(size_t positions);
+
 	void addField(const SharedPtr<Field>& field);
+	void addCardFields(size_t count);
 
 	SharedPtr<Field>& operator[](size_t index);
 	const SharedPtr<Field>& operator[](size_t index) const;
@@ -29,7 +35,5 @@ public:
 	void printBoard() const;
 
 	void switchFields(size_t firstIndex, size_t secondIndex);
-
-	void addCardFields(size_t count);
 };
 

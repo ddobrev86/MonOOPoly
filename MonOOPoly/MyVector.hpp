@@ -210,7 +210,7 @@ void MyVector<T>::pop_back()
 template <typename T>
 void MyVector<T>::insertAt(size_t index, const T& element)
 {
-	if (index >= size)
+	if (index >= capacity)
 		throw std::invalid_argument("Invalid index");
 
 	if (size == capacity)
@@ -226,7 +226,7 @@ void MyVector<T>::insertAt(size_t index, const T& element)
 template <typename T>
 void MyVector<T>::insertAt(size_t index, T&& element)
 {
-	if (index >= size)
+	if (index >= capacity)
 		throw std::invalid_argument("Invalid index");
 
 	if (size == capacity)

@@ -1,9 +1,15 @@
 #include "Board.h"
 #include <stdexcept>
+#include "Start.h"
+#include "Jail.h"
+#include "GoToJail.h"
+#include "FreeParking.h"
+
+const size_t MIN_BOARD_SIZE = 3;
 
 Board::Board(size_t size)
 {
-	this->size = size;
+	setSize(size);
 	currentPos = 0;
 	data = MyVector<SharedPtr<Field>>(getTotalSize());
 	//fields = MyVector<SharedPtr<Field>>(getTotalSize());
@@ -12,6 +18,27 @@ Board::Board(size_t size)
 size_t Board::getTotalSize() const
 {
 	return 4 * (size - 1);
+}
+
+void Board::setUpCorners()
+{
+	data.insertAt(0, SharedPtr<Field>(new Start()));
+	data.insertAt(size - 1, SharedPtr<Field>(new Jail()));
+	data.insertAt((size - 1) * 2, SharedPtr<Field>(new FreeParking()));
+	data.insertAt((size - 1) * 3, SharedPtr<Field>(new GoToJail(size)));
+}
+
+bool Board::canAddCorners() const
+{
+	return data.getSize() == getTotalSize() - 4;
+}
+
+void Board::setSize(size_t size)
+{
+	if (size < MIN_BOARD_SIZE)
+		throw std::invalid_argument("Size is below the minimum allowed size");
+	
+	this->size = size;
 }
 
 SharedPtr<Field>& Board::move(size_t positions)
@@ -33,7 +60,9 @@ void Board::addField(const SharedPtr<Field>& field)
 		}
 
 		this->add(field);
-		//data.push_back(field);
+		if (canAddCorners())
+			setUpCorners();
+
 		return;
 	}
 
@@ -61,6 +90,9 @@ void Board::switchFields(size_t firstIndex, size_t secondIndex)
 {
 	if (firstIndex >= getTotalSize() || secondIndex >= getTotalSize())
 		throw std::invalid_argument("Indexes exceed board size");
+
+	if (firstIndex % (size - 1) == 0 || secondIndex % (size - 1) == 0)
+		throw std::invalid_argument("Cannot switch corner fields");
 
 	std::swap(data[firstIndex], data[secondIndex]);
 }

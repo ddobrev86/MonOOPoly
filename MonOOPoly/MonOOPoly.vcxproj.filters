@@ -40,6 +40,9 @@
     <Filter Include="Commands\GameCreationCommands">
       <UniqueIdentifier>{afa53f8c-a4bf-44de-bde3-e56a6c36b721}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Commands\Game Commands">
+      <UniqueIdentifier>{e689c1e0-104c-47dc-80e3-7ea1c309a190}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MonOOPoly.cpp">
@@ -114,18 +117,6 @@
     <ClCompile Include="Station.cpp">
       <Filter>Field utils\SpecialFields</Filter>
     </ClCompile>
-    <ClCompile Include="ThrowDiceCommand.cpp">
-      <Filter>Commands</Filter>
-    </ClCompile>
-    <ClCompile Include="Command.cpp">
-      <Filter>Commands</Filter>
-    </ClCompile>
-    <ClCompile Include="BuyMortgageCommand.cpp">
-      <Filter>Commands</Filter>
-    </ClCompile>
-    <ClCompile Include="BuildCommand.cpp">
-      <Filter>Commands</Filter>
-    </ClCompile>
     <ClCompile Include="CornerField.cpp">
       <Filter>Field utils\CornerFields</Filter>
     </ClCompile>
@@ -152,6 +143,24 @@
     </ClCompile>
     <ClCompile Include="GameCreationCommandFactory.cpp">
       <Filter>Commands\GameCreationCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildCommand.cpp">
+      <Filter>Commands\Game Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="BuyMortgageCommand.cpp">
+      <Filter>Commands\Game Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="GameCommandFactory.cpp">
+      <Filter>Commands\Game Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="ThrowDiceCommand.cpp">
+      <Filter>Commands\Game Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Command.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Launcher.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -248,18 +257,6 @@
     <ClInclude Include="Facility.h">
       <Filter>Field utils\SpecialFields</Filter>
     </ClInclude>
-    <ClInclude Include="Command.h">
-      <Filter>Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="BuildCommand.h">
-      <Filter>Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="BuyMortgageCommand.h">
-      <Filter>Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="ThrowDiceCommand.h">
-      <Filter>Commands</Filter>
-    </ClInclude>
     <ClInclude Include="CornerField.h">
       <Filter>Field utils\CornerFields</Filter>
     </ClInclude>
@@ -286,6 +283,24 @@
     </ClInclude>
     <ClInclude Include="GameCreationCommandFactory.h">
       <Filter>Commands\GameCreationCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildCommand.h">
+      <Filter>Commands\Game Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="BuyMortgageCommand.h">
+      <Filter>Commands\Game Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="GameCommandFactory.h">
+      <Filter>Commands\Game Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="ThrowDiceCommand.h">
+      <Filter>Commands\Game Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Launcher.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

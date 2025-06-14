@@ -2,6 +2,7 @@
 #include "Monopoly.h"
 #include "Station.h"
 #include "Facility.h"
+#include "Launcher.h"
 
 //-----TODO add Stations-----
 //-----TODO add Facilities-----
@@ -20,8 +21,6 @@
 
 int main()
 {
-	Monopoly* monopoly = Monopoly::getInstance(2, 11);
-
 	//monopoly->addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily("Brown", 10, 20)));
 	//monopoly->addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily("Light Blue", 15, 30)));
 	//monopoly->addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily("Pink", 25, 50)));
@@ -31,6 +30,9 @@ int main()
 	//monopoly->addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily("Green", 15, 30)));
 	//monopoly->addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily("Dark Blue", 15, 30)));
 
+	/*
+	Monopoly* monopoly = Monopoly::getInstance(2, 11);
+	
 	FieldFamily* browns = new PropertyFamily("Brown", 50, 50);
 	FieldFamily* lightBlues = new PropertyFamily("Light Blue", 50, 50);
 	FieldFamily* pinks = new PropertyFamily("Pink", 100, 100);
@@ -94,4 +96,7 @@ int main()
 
 	monopoly->randomiseBoard();
 	monopoly->printBoard();
+	*/
+
+	Launcher::run();
 }

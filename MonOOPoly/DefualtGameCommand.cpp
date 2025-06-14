@@ -8,6 +8,7 @@ void DefualtGameCommand::execute(Monopoly* monopoly) const
     std::cin >> playerCount;
 
     monopoly = Monopoly::getInstance(playerCount, 11);
+    monopoly->loadDefualtGame();
 }
 
 Command* DefualtGameCommand::clone() const

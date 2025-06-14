@@ -22,7 +22,10 @@ private:
 	Monopoly(size_t playerCount, size_t boardSize);
 public:
 	static Monopoly* getInstance(size_t playerCount, size_t boardSize);
+	static Monopoly* getInstance();
 	static void printGameTypeOptions();
+
+	void loadDefualtGame();
 
 	Monopoly(const Monopoly& other) = delete;
 	Monopoly& operator=(const Monopoly& other) = delete;

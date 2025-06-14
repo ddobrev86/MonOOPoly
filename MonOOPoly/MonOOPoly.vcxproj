@@ -155,10 +155,12 @@
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="FieldFamily.cpp" />
     <ClCompile Include="FreeParking.cpp" />
+    <ClCompile Include="GameCommandFactory.cpp" />
     <ClCompile Include="GameCreationCommandFactory.cpp" />
     <ClCompile Include="GoToJail.cpp" />
     <ClCompile Include="InputProcessor.cpp" />
     <ClCompile Include="Jail.cpp" />
+    <ClCompile Include="Launcher.cpp" />
     <ClCompile Include="LoadGameCommand.cpp" />
     <ClCompile Include="ManualGameCommand.cpp" />
     <ClCompile Include="MonOOPoly.cpp" />
@@ -192,6 +194,7 @@
     <ClInclude Include="Facility.h" />
     <ClInclude Include="FieldFamily.h" />
     <ClInclude Include="FreeParking.h" />
+    <ClInclude Include="GameCommandFactory.h" />
     <ClInclude Include="GameCreationCommandFactory.h" />
     <ClInclude Include="GoToJail.h" />
     <ClInclude Include="IteratibleContainer.hpp" />
@@ -200,6 +203,7 @@
     <ClInclude Include="InputProcessor.h" />
     <ClInclude Include="Iterator.hpp" />
     <ClInclude Include="Jail.h" />
+    <ClInclude Include="Launcher.h" />
     <ClInclude Include="LoadGameCommand.h" />
     <ClInclude Include="ManualGameCommand.h" />
     <ClInclude Include="Monopoly.h" />

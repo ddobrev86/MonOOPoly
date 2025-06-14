@@ -9,6 +9,8 @@ private:
 	MyQueue<SharedPtr<Card>> cards;
 
 public:
+	CardDeck() = default;
+
 	void addCard(const SharedPtr<Card>& card);
 	const SharedPtr<Card>& drawCard();
 };

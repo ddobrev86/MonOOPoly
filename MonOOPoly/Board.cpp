@@ -57,6 +57,25 @@ void Board::printBoard() const
 	}
 }
 
+void Board::switchFields(size_t firstIndex, size_t secondIndex)
+{
+	if (firstIndex >= getTotalSize() || secondIndex >= getTotalSize())
+		throw std::invalid_argument("Indexes exceed board size");
+
+	std::swap(data[firstIndex], data[secondIndex]);
+}
+
+void Board::addCardFields(size_t count)
+{
+	size_t current = data.getSize();
+	while (current < getTotalSize() && count > 0)
+	{
+		addField(SharedPtr<Field>(new CardField(deck)));
+		current++;
+		count--;
+	}
+}
+
 const SharedPtr<Field>& Board::operator[](size_t index) const
 {
 	if (index > getTotalSize())

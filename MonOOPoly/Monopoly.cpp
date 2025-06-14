@@ -32,6 +32,16 @@ void Monopoly::printBoard() const
 	board->printBoard();
 }
 
+void Monopoly::switchFields(size_t firstIndex, size_t secondIndex)
+{
+	board->switchFields(firstIndex, secondIndex);
+}
+
+void Monopoly::addCardFields(size_t count)
+{
+	board->addCardFields(count);
+}
+
 void Monopoly::addPlayer(const SharedPtr<Player>& player)
 {
 	if (players.getSize() == GameConstants::MAX_PLAYER_COUNT)

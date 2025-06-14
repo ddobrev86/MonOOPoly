@@ -31,6 +31,12 @@
     <Filter Include="Field utils\SpecialFields">
       <UniqueIdentifier>{2b8e4de4-bb39-408f-bcf3-ccf03676b96d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Commands">
+      <UniqueIdentifier>{9ce1ad78-66df-4acc-9d45-01d247dbe0b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Field utils\CornerFields">
+      <UniqueIdentifier>{32e34129-6c9a-4a2d-b397-e265e5e34563}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MonOOPoly.cpp">
@@ -105,17 +111,32 @@
     <ClCompile Include="Station.cpp">
       <Filter>Field utils\SpecialFields</Filter>
     </ClCompile>
-    <ClCompile Include="Command.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ThrowDiceCommand.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Command.cpp">
+      <Filter>Commands</Filter>
     </ClCompile>
     <ClCompile Include="BuyMortgageCommand.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Commands</Filter>
     </ClCompile>
     <ClCompile Include="BuildCommand.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="CornerField.cpp">
+      <Filter>Field utils\CornerFields</Filter>
+    </ClCompile>
+    <ClCompile Include="Start.cpp">
+      <Filter>Field utils\CornerFields</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeParking.cpp">
+      <Filter>Field utils\CornerFields</Filter>
+    </ClCompile>
+    <ClCompile Include="GoToJail.cpp">
+      <Filter>Field utils\CornerFields</Filter>
+    </ClCompile>
+    <ClCompile Include="Jail.cpp">
+      <Filter>Field utils\CornerFields</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -213,16 +234,31 @@
       <Filter>Field utils\SpecialFields</Filter>
     </ClInclude>
     <ClInclude Include="Command.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ThrowDiceCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BuyMortgageCommand.h">
-      <Filter>Header Files</Filter>
+      <Filter>Commands</Filter>
     </ClInclude>
     <ClInclude Include="BuildCommand.h">
-      <Filter>Header Files</Filter>
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="BuyMortgageCommand.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="ThrowDiceCommand.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="CornerField.h">
+      <Filter>Field utils\CornerFields</Filter>
+    </ClInclude>
+    <ClInclude Include="Start.h">
+      <Filter>Field utils\CornerFields</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeParking.h">
+      <Filter>Field utils\CornerFields</Filter>
+    </ClInclude>
+    <ClInclude Include="GoToJail.h">
+      <Filter>Field utils\CornerFields</Filter>
+    </ClInclude>
+    <ClInclude Include="Jail.h">
+      <Filter>Field utils\CornerFields</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

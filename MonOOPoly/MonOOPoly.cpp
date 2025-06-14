@@ -15,7 +15,7 @@
 //-----TODO add FieldFamily -> child PropertyFamily-----
 //-----TODO change buyMortgage logic from PropertyFamily to Property class-----
 //TODO add Bank and Trade
-//TODO make ransom and stations move change constants in a namespace
+//TODO make ransom, stations move change and start constants in a namespace
 
 int main()
 {
@@ -89,6 +89,7 @@ int main()
 	monopoly->addFieldFamily(SharedPtr<FieldFamily>(darkBlues));
 	monopoly->addFieldFamily(SharedPtr<FieldFamily>(stations));
 	monopoly->addFieldFamily(SharedPtr<FieldFamily>(facilities));
+	monopoly->addCardFields(8);
 
 	monopoly->printBoard();
 }

@@ -6,6 +6,7 @@
 #include "PropertyFamily.h"
 #include "FieldFamily.h"
 #include "utilities.h"
+#include "CardField.h"
 
 class Monopoly
 {
@@ -26,6 +27,8 @@ public:
 	Monopoly& operator=(const Monopoly& other) = delete;
 	
 	void printBoard() const;
+	void switchFields(size_t firstIndex, size_t secondIndex);
+	void addCardFields(size_t count);
 
 	void addPlayer(const SharedPtr<Player>& player);
 	void addPlayer(const MyString& username);

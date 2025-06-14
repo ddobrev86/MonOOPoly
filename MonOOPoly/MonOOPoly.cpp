@@ -15,6 +15,7 @@
 //-----TODO add FieldFamily -> child PropertyFamily-----
 //-----TODO change buyMortgage logic from PropertyFamily to Property class-----
 //TODO add Bank and Trade
+//TODO make ransom and stations move change constants in a namespace
 
 int main()
 {

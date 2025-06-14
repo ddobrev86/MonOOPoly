@@ -51,7 +51,7 @@ bool BuyableField::isFree() const
 	return !owner.isInitalized();
 }
 
-void BuyableField::printFieldInfo() const
+void BuyableField::printLandingMessage() const
 {
 	std::cout << "You have landed on " << name << '\n';
 
@@ -65,4 +65,14 @@ void BuyableField::printFieldInfo() const
 		std::cout << "This property belongs to " << owner->getUsername() << '\n';
 		std::cout << "Rent: " << calculateTotalRent() << '\n';
 	}
+}
+
+void BuyableField::printFieldInfo() const
+{
+	std::cout << name;
+}
+
+bool BuyableField::compareName(const MyString& name) const
+{
+	return this->name == name;
 }

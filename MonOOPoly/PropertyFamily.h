@@ -27,5 +27,6 @@ public:
 	void addField(SharedPtr<BuyableField>& field) override;
 	void addField(SharedPtr<BuyableField>&& field) override;
 
+	void printFamilyInfo() const override;
 };
 

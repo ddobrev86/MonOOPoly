@@ -11,3 +11,7 @@ bool SpecialField::canBuyMortgages() const
 {
     return false;
 }
+
+void SpecialField::buildMortgage(const MyString& mortgageType)
+{}
+

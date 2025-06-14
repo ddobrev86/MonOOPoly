@@ -15,6 +15,22 @@ void MortgageManager::buyMortgage(const SharedPtr<Mortgage>& mortgage)
 	mortgages.push_back(mortgage);
 }
 
+void MortgageManager::buildMortgage(const MyString& mortgageType)
+{
+	if (mortgageType == "cottage")
+	{
+		mortgages.push_back(cottage);
+		return;
+	}
+	else if (mortgageType == "castle")
+	{
+		mortgages.push_back(castle);
+		return;
+	}
+
+	throw std::invalid_argument("Invalid mortgage type");
+}
+
 bool MortgageManager::canBuyCastle() const
 {
 	return mortgages.getSize() >= MIN_COTTAGES_FOR_CASTLE;

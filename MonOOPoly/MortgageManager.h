@@ -2,6 +2,7 @@
 #include "SharedPtr.hpp"
 #include "Mortgage.h"
 #include "MyVector.hpp"
+#include "MyString.h"
 
 class MortgageManager
 {
@@ -21,6 +22,7 @@ public:
 		const SharedPtr<Mortgage>& cottage);
 
 	void buyMortgage(const SharedPtr<Mortgage>& mortgage);
+	void buildMortgage(const MyString& mortgageType);
 
 	bool canBuyCastle() const;
 

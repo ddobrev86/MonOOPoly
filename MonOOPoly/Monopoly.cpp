@@ -65,7 +65,7 @@ bool Monopoly::canAddFieldFamily(const SharedPtr<FieldFamily>& fieldFamily,
 			while (secondaryIterator->hasNext())
 			{
 				if (currentField.compareWith(secondaryIterator->next()))
-					throw std::invalid_argument("This Property Familty contains a property already on board");
+					throw std::invalid_argument("This Field Familty contains a field already on board");
 			}
 		}
 	}
@@ -90,14 +90,20 @@ void Monopoly::addFieldFamily(const SharedPtr<FieldFamily>& fieldFamily)
 	}
 }
 
+void Monopoly::addField(const SharedPtr<Field>& field)
+{
+	board->addField(field);
+}
+
 size_t Monopoly::getPlayerCount() const
 {
 	return players.getSize();
 }
 
-void Monopoly::actPlayerAction()
+void Monopoly::printPlayersTurnMessage()
 {
-	std::cout << "Player " << players[currentPlayer]->getUsername() << "\'s turn: \n";
+	std::cout << "Player " << players[currentPlayer]->getUsername() << "\'s turn\n";
+	
 	if (players[currentPlayer]->isInJail())
 	{
 		if (!getPlayerOutOfJail())
@@ -106,6 +112,16 @@ void Monopoly::actPlayerAction()
 			return;
 		}
 	}
+
+	std::cout << "Choose action: \n";
+	std::cout << "\t1. throw_dice\n";
+	std::cout << "\t2. buy_mortgage\n";
+	std::cout << "\t3. trade\n";
+}
+
+//throw_dice
+void Monopoly::actPlayerThrowDiceCommand()
+{
 	movePlayer();
 
 	SharedPtr<Field>& currentField = board->operator[](players[currentPlayer]->getPosition());
@@ -129,19 +145,6 @@ void Monopoly::fieldActionUntilSuccess(SharedPtr<Field>& currentField)
 	} while (true);
 }
 
-bool Monopoly::throwPair() const
-{
-	int firstDice, secondDice;
-	srand(time(0));
-
-	firstDice = (rand() % 6) + 1;
-	secondDice = (rand() % 6) + 1;
-
-	std::cout << "You threw a " << firstDice << " and a " << secondDice << '\n';
-
-	return firstDice == secondDice;
-}
-
 size_t Monopoly::throwDice() const
 {
 	int firstDice, secondDice;
@@ -159,6 +162,88 @@ void Monopoly::movePlayer()
 {
 	size_t positions = throwDice();
 	players[currentPlayer]->moveWith(positions, board->getTotalSize());
+}
+
+//buy_mortgage
+void Monopoly::actBuyMortgageCommand()
+{
+	MyVector<SharedPtr<FieldFamily>> validFamilies;
+	bool canBuy = false;
+
+	findValidFamilies(validFamilies, canBuy);
+
+	if (!canBuy)
+		throw std::runtime_error("You can't buy any mortgages");
+	
+	printValidFamiliesMessage(validFamilies);
+}
+
+void Monopoly::findValidFamilies(MyVector<SharedPtr<FieldFamily>>& validFamilies,
+	bool& canBuy)
+{
+	for (size_t i = 0; i < fieldFamilies.getSize(); i++)
+	{
+		if (fieldFamilies[i]->canBuyMortgages() &&
+			fieldFamilies[i]->ownsAll(players[currentPlayer]))
+		{
+			validFamilies.push_back(fieldFamilies[i]);
+			canBuy = true;
+		}
+	}
+}
+
+void Monopoly::printValidFamiliesMessage(const MyVector<SharedPtr<FieldFamily>>& validFamilies) const
+{
+	std::cout << "Choose one of the following properties and the type of mortgage";
+	std::cout << "\nFormat: build <mortgage_type> <property_name>";
+	for (size_t i = 0; i < validFamilies.getSize(); i++)
+	{
+		validFamilies[i]->printFamilyInfo();
+		std::cout << '\n';
+	}
+}
+
+//build
+void Monopoly::actBuildCommand(const MyString& propertyName, 
+	const MyString& mortgageType)
+{
+	MyVector<SharedPtr<FieldFamily>> validFamilies;
+	bool canBuy = false;
+	findValidFamilies(validFamilies, canBuy);
+
+	UniquePtr<Iterator<SharedPtr<BuyableField>>> fieldIterator;
+
+	for (size_t i = 0; i < validFamilies.getSize(); i++)
+	{
+		fieldIterator = std::move(validFamilies[i]->createIterator());
+
+		while (fieldIterator->hasNext())
+		{
+			SharedPtr<BuyableField> current = fieldIterator->next();
+			if (current->compareName(propertyName))
+			{
+				current->buildMortgage(mortgageType);
+				std::cout << "You successfully built a " << mortgageType;
+				return;
+			}
+		}
+	}
+
+	throw std::invalid_argument("Wrong property name");
+}
+
+//in Jail
+bool Monopoly::throwPair() const
+{
+	int firstDice, secondDice;
+	srand(time(0));
+
+	firstDice = (rand() % 6) + 1;
+	secondDice = (rand() % 6) + 1;
+
+	std::cout << "You threw a " << firstDice << " and a " << secondDice << '\n';
+
+	return firstDice == secondDice;
 }
 
 bool Monopoly::getPlayerOutOfJail()

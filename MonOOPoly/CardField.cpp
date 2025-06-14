@@ -5,7 +5,7 @@ CardField::CardField(const SharedPtr<CardDeck>& deck)
 	this->deck = deck;
 }
 
-void CardField::printFieldInfo() const
+void CardField::printLandingMessage() const
 {
 	std::cout << "You have landed on a card field\n";
 }
@@ -17,4 +17,9 @@ bool CardField::action(SharedPtr<Player>& player)
 	deck->addCard(drawnCard);
 
 	return true;
+}
+
+void CardField::printFieldInfo() const
+{
+	std::cout << "Card Field";
 }

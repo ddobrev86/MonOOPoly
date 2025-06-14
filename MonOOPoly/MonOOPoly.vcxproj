@@ -140,11 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="BuildCommand.cpp" />
     <ClCompile Include="BuyableField.cpp" />
+    <ClCompile Include="BuyMortgageCommand.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="CardDeck.cpp" />
     <ClCompile Include="CardField.cpp" />
     <ClCompile Include="Castle.cpp" />
+    <ClCompile Include="Command.cpp" />
     <ClCompile Include="Cottage.cpp" />
     <ClCompile Include="Facility.cpp" />
     <ClCompile Include="Field.cpp" />
@@ -162,15 +165,19 @@
     <ClCompile Include="PropertyFamily.cpp" />
     <ClCompile Include="SpecialField.cpp" />
     <ClCompile Include="Station.cpp" />
+    <ClCompile Include="ThrowDiceCommand.cpp" />
     <ClCompile Include="utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
+    <ClInclude Include="BuildCommand.h" />
     <ClInclude Include="BuyableField.h" />
+    <ClInclude Include="BuyMortgageCommand.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="CardDeck.h" />
     <ClInclude Include="CardField.h" />
     <ClInclude Include="Castle.h" />
+    <ClInclude Include="Command.h" />
     <ClInclude Include="Facility.h" />
     <ClInclude Include="FieldFamily.h" />
     <ClInclude Include="IteratibleContainer.hpp" />
@@ -194,6 +201,7 @@
     <ClInclude Include="SharedPtr.hpp" />
     <ClInclude Include="SpecialField.h" />
     <ClInclude Include="Station.h" />
+    <ClInclude Include="ThrowDiceCommand.h" />
     <ClInclude Include="UniquePtr.hpp" />
     <ClInclude Include="utilities.h" />
   </ItemGroup>

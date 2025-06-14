@@ -9,7 +9,7 @@ private:
 
 public:
 	Property(const MyString& name, unsigned price, unsigned rent);
-	void buyMortgage();
+	void buildMortgage(const MyString& mortgageType) override;
 
 	size_t calculateTotalRent() const override;
 	BuyableField* clone() const override;

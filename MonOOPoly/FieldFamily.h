@@ -19,5 +19,9 @@ public:
 
 	size_t howManyBelongToPlayer(const SharedPtr<Player>& player);
 	bool ownsAll(const SharedPtr<Player>& player);
+
+	bool canBuyMortgages() const;
+
+	virtual void printFamilyInfo() const;
 };
 

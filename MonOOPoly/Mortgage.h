@@ -10,5 +10,6 @@ public:
 	Mortgage(unsigned price);
 
 	double getRentIncrease() const;
+	unsigned getPrice() const;
 };
 

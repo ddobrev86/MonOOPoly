@@ -9,5 +9,6 @@ public:
 	void setUpMortgages(const SharedPtr<Mortgage>& castle,
 		const SharedPtr<Mortgage>& cottage) override;
 	bool canBuyMortgages() const override;
+	void buildMortgage(const MyString& mortgageType) override;
 };
 

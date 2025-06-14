@@ -26,6 +26,12 @@ void Board::addField(const SharedPtr<Field>& field)
 {
 	if (data.getSize() < getTotalSize())
 	{
+		for (size_t i = 0; i < data.getSize(); i++)
+		{
+			if (data[i] == field)
+				throw std::runtime_error("This field is already on the board");
+		}
+
 		this->add(field);
 		//data.push_back(field);
 		return;

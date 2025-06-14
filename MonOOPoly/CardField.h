@@ -10,7 +10,9 @@ private:
 public:
 	CardField(const SharedPtr<CardDeck>& deck);
 
-	void printFieldInfo() const override;
+	void printLandingMessage() const override;
 	bool action(SharedPtr<Player>& player) override;
+
+	void printFieldInfo() const override;
 };
 

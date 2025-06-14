@@ -33,11 +33,20 @@ public:
 	bool canAddFieldFamily(const SharedPtr<FieldFamily>& fieldFamily,
 		UniquePtr<Iterator<SharedPtr<BuyableField>>>& mainIterator);
 	void addFieldFamily(const SharedPtr<FieldFamily>& fieldFamily);
+	void addField(const SharedPtr<Field>& field);
 
 	size_t getPlayerCount() const;
 
-	void actPlayerAction();
+	void printPlayersTurnMessage();
 	void fieldActionUntilSuccess(SharedPtr<Field>& currentField);
+	
+	void actPlayerThrowDiceCommand();
+	void actBuyMortgageCommand();
+	void actBuildCommand(const MyString& propertyName, const MyString& mortgageType);
+
+	void findValidFamilies(MyVector<SharedPtr<FieldFamily>>& validFamilies,
+		bool& canBuy);
+	void printValidFamiliesMessage(const MyVector<SharedPtr<FieldFamily>>& validFamilies) const;
 
 	bool throwPair() const;
 	size_t throwDice() const;

@@ -14,8 +14,10 @@ public:
 
 	virtual unsigned calculateTotalRent() const = 0;
 	virtual BuyableField* clone() const = 0;
+
 	virtual void setUpMortgages(const SharedPtr<Mortgage>& castle,
 		const SharedPtr<Mortgage>& cottage) = 0;
+	virtual void buildMortgage(const MyString& mortgageType) = 0;
 	virtual bool canBuyMortgages() const = 0;
 
 	virtual void buy(SharedPtr<Player>& player);
@@ -24,6 +26,9 @@ public:
 	bool belongsToPlayer(const SharedPtr<Player>& player);
 	bool isFree() const;
 
-	void printFieldInfo() const;
+	void printLandingMessage() const override;
+	void printFieldInfo() const override;
+
+	bool compareName(const MyString& name) const;
 };
 

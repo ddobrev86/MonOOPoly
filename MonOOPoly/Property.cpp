@@ -4,9 +4,9 @@
 Property::Property(const MyString& name, unsigned price, unsigned rent) : BuyableField(name, price, rent)
 {}
 
-void Property::buyMortgage()
+void Property::buildMortgage(const MyString & mortgageType)
 {
-
+	mortgageManager->buildMortgage(mortgageType);
 }
 
 size_t Property::calculateTotalRent() const

@@ -20,6 +20,20 @@ void PropertyFamily::addField(SharedPtr<BuyableField>&& field)
 	FieldFamily::addField(field);
 }
 
+void PropertyFamily::printFamilyInfo() const
+{
+	std::cout << name << '\n';
+	std::cout << "Cottage cost: " << cottage->getPrice() 
+		<< '\t' << "Castle cost: " << castle->getPrice() << '\n';
+		
+	for (size_t i = 0; i < data.getSize(); i++)
+	{
+		std::cout << '\t';
+		data[i]->printFieldInfo();
+		std::cout << '\n';
+	}
+}
+
 //bool PropertyFamily::containsProperty(const SharedPtr<Property>& property)
 //{
 //	for (size_t i = 0; i < data.getSize(); i++)

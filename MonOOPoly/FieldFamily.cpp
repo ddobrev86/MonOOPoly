@@ -52,3 +52,25 @@ bool FieldFamily::ownsAll(const SharedPtr<Player>& player)
 
 	return true;
 }
+
+void FieldFamily::printFamilyInfo() const
+{
+	std::cout << name << '\n';
+	for (size_t i = 0; i < data.getSize(); i++)
+	{
+		std::cout << '\t';
+		data[i]->printFieldInfo();
+		std::cout << '\n';
+	}
+}
+
+bool FieldFamily::canBuyMortgages() const
+{
+	for (size_t i = 0; i < data.getSize(); i++)
+	{
+		if (!data[i]->canBuyMortgages())
+			return false;
+	}
+
+	return true;
+}

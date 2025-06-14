@@ -27,9 +27,24 @@ Monopoly* Monopoly::getInstance(size_t playerCount, size_t boardSize)
 	return instance;
 }
 
+void Monopoly::printGameTypeOptions()
+{
+	std::cout << "Choose game type: \n";
+	std::cout << "\t1. Start default game -> default\n";
+	std::cout << "\t2. Enter board manually -> manual\n";
+	std::cout << "\t3. Load from file -> load\n";
+	
+
+}
+
 void Monopoly::printBoard() const
 {
 	board->printBoard();
+}
+
+void Monopoly::randomiseBoard()
+{
+	board->randomiseBoard();
 }
 
 void Monopoly::switchFields(size_t firstIndex, size_t secondIndex)

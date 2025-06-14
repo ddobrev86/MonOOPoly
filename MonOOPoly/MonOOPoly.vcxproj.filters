@@ -37,6 +37,9 @@
     <Filter Include="Field utils\CornerFields">
       <UniqueIdentifier>{32e34129-6c9a-4a2d-b397-e265e5e34563}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Commands\GameCreationCommands">
+      <UniqueIdentifier>{afa53f8c-a4bf-44de-bde3-e56a6c36b721}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MonOOPoly.cpp">
@@ -137,6 +140,18 @@
     </ClCompile>
     <ClCompile Include="Jail.cpp">
       <Filter>Field utils\CornerFields</Filter>
+    </ClCompile>
+    <ClCompile Include="DefualtGameCommand.cpp">
+      <Filter>Commands\GameCreationCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadGameCommand.cpp">
+      <Filter>Commands\GameCreationCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="ManualGameCommand.cpp">
+      <Filter>Commands\GameCreationCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="GameCreationCommandFactory.cpp">
+      <Filter>Commands\GameCreationCommands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +274,18 @@
     </ClInclude>
     <ClInclude Include="Jail.h">
       <Filter>Field utils\CornerFields</Filter>
+    </ClInclude>
+    <ClInclude Include="DefualtGameCommand.h">
+      <Filter>Commands\GameCreationCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadGameCommand.h">
+      <Filter>Commands\GameCreationCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="ManualGameCommand.h">
+      <Filter>Commands\GameCreationCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="GameCreationCommandFactory.h">
+      <Filter>Commands\GameCreationCommands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,6 +4,8 @@
 #include "Jail.h"
 #include "GoToJail.h"
 #include "FreeParking.h"
+#include <stdlib.h>
+#include <ctime>
 
 const size_t MIN_BOARD_SIZE = 3;
 
@@ -106,6 +108,29 @@ void Board::addCardFields(size_t count)
 		current++;
 		count--;
 	}
+}
+
+void Board::randomiseBoard()
+{
+	srand(time(0));
+
+	size_t positionToMove, end, factor;
+	end = getTotalSize();
+	factor = size - 1;
+	for (size_t i = 1; i < end; i++)
+	{
+		positionToMove = 0;
+		if (i % factor == 0)
+			continue;
+
+		do 
+		{
+			positionToMove = rand() % end;
+		} while (positionToMove % factor == 0);
+
+		switchFields(i, positionToMove);
+	}
+	//size_t secondDice = (rand() % 6) + 1;
 }
 
 const SharedPtr<Field>& Board::operator[](size_t index) const

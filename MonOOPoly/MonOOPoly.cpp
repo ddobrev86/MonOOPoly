@@ -5,10 +5,10 @@
 
 //-----TODO add Stations-----
 //-----TODO add Facilities-----
-//TODO add switchFields method in Monopoly class
-//TODO add CornerFields
-//TODO create default game
-//TODO add Command
+//-----TODO add switchFields method in Monopoly class-----
+//-----TODO add CornerFields-----
+//-----TODO create default game-----
+//-----TODO add Command-----
 //TODO add CommandFactory
 //TODO add FieldFactory
 //TODO add PayAllCard
@@ -16,6 +16,7 @@
 //-----TODO change buyMortgage logic from PropertyFamily to Property class-----
 //TODO add Bank and Trade
 //TODO make ransom, stations move change and start constants in a namespace
+//TODO add Load From file
 
 int main()
 {
@@ -91,5 +92,6 @@ int main()
 	monopoly->addFieldFamily(SharedPtr<FieldFamily>(facilities));
 	monopoly->addCardFields(8);
 
+	monopoly->randomiseBoard();
 	monopoly->printBoard();
 }

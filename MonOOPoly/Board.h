@@ -35,5 +35,7 @@ public:
 	void printBoard() const;
 
 	void switchFields(size_t firstIndex, size_t secondIndex);
+
+	void randomiseBoard();
 };
 

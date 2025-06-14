@@ -15,4 +15,5 @@ void FreeParking::printFieldInfo() const
 
 bool FreeParking::action(SharedPtr<Player>& player)
 {
+    return true;
 }

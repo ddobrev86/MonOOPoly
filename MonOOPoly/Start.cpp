@@ -17,4 +17,5 @@ void Start::printFieldInfo() const
 bool Start::action(SharedPtr<Player>& player)
 {
     player->addToBalance(200);
+    return true;
 }

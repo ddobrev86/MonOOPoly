@@ -3,6 +3,9 @@
 
 class SpecialField : public BuyableField
 {
+protected:
+	mutable size_t multiplier;
+
 public:
 	SpecialField(const MyString& name, unsigned price, unsigned rent);
 

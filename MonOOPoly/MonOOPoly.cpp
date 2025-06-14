@@ -76,8 +76,8 @@ int main()
 	stations->addField(SharedPtr<BuyableField>(new Station("Fenchurch St. Station", 200, 25)));
 	stations->addField(SharedPtr<BuyableField>(new Station("Liverpool Street Station", 200, 25)));
 
-	facilities->addField(SharedPtr<BuyableField>(new Facility("Electric Company", 150, 50)));
-	facilities->addField(SharedPtr<BuyableField>(new Facility("Water Works", 150, 50)));
+	facilities->addField(SharedPtr<BuyableField>(new Facility("Electric Company", 150)));
+	facilities->addField(SharedPtr<BuyableField>(new Facility("Water Works", 150)));
 
 	monopoly->addFieldFamily(SharedPtr<FieldFamily>(browns));
 	monopoly->addFieldFamily(SharedPtr<FieldFamily>(lightBlues));

@@ -15,4 +15,5 @@ void Jail::printFieldInfo() const
 
 bool Jail::action(SharedPtr<Player>& player)
 {
+    return true;
 }

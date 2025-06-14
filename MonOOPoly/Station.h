@@ -2,9 +2,9 @@
 #include "SpecialField.h"
 #include "MyDictionary.hpp"
 
-//the rent is based on the total amount of Stations a player owns
-// + when someone, other than the owner, steps on this 
-//field he moves 3 positions ahead
+//after each stepping on the field, the rent increases by a 
+//factor of the times someone has stepped on the field,
+//multiplied by the number of stations owned by the same player
 class Station : public SpecialField
 {
 private:
@@ -17,8 +17,6 @@ public:
 
 	size_t calculateTotalRent() const override;
 	BuyableField* clone() const override;
-
-	bool action(SharedPtr<Player>& player) override;
 };
 
 

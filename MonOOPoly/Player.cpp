@@ -53,6 +53,12 @@ void Player::removeFromBalance(size_t balanceChange)
     balance -= balanceChange;
 }
 
+void Player::removePercent(double percent)
+{
+    unsigned toRemove = percent * balance;
+    balance -= toRemove;
+}
+
 bool Player::canAfford(size_t price)
 {
     return balance >= price;

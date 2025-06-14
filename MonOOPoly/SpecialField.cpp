@@ -2,7 +2,9 @@
 
 SpecialField::SpecialField(const MyString& name, 
     unsigned price, unsigned rent) : BuyableField(name, price, rent)
-{}
+{
+    multiplier = 0;
+}
 
 void SpecialField::setUpMortgages(const SharedPtr<Mortgage>& castle, const SharedPtr<Mortgage>& cottage)
 {}

@@ -2,17 +2,15 @@
 #include "SpecialField.h"
 #include "MyDictionary.hpp"
 
-//after each stepping on the field, the rent increases by a 
-// factor of the times someone has stepped on the field
+//removes <times someone has landed on the field> * 5 % of the balance
 class Facility : public SpecialField
 {
-private:
-	mutable size_t multiplier;
-
 public:
-	Facility(const MyString& name, unsigned price, unsigned rent);
+	Facility(const MyString& name, unsigned price);
 
 	size_t calculateTotalRent() const override;
 	BuyableField* clone() const override;
+
+	bool action(SharedPtr<Player>& player) override;
 };
 

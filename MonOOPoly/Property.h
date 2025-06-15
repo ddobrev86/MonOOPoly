@@ -11,7 +11,7 @@ public:
 	Property(const MyString& name, unsigned price, unsigned rent);
 	void buildMortgage(const MyString& mortgageType) override;
 
-	size_t calculateTotalRent() const override;
+	unsigned calculateTotalRent() const override;
 	BuyableField* clone() const override;
 
 	void setUpMortgages(const SharedPtr<Mortgage>& castle,

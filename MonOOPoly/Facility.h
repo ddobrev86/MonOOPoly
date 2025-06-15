@@ -8,7 +8,7 @@ class Facility : public SpecialField
 public:
 	Facility(const MyString& name, unsigned price);
 
-	size_t calculateTotalRent() const override;
+	unsigned calculateTotalRent() const override;
 	BuyableField* clone() const override;
 
 	bool action(SharedPtr<Player>& player) override;

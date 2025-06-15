@@ -9,7 +9,7 @@ void Property::buildMortgage(const MyString & mortgageType)
 	mortgageManager->buildMortgage(mortgageType, owner, rent);
 }
 
-size_t Property::calculateTotalRent() const
+unsigned Property::calculateTotalRent() const
 {
 	return mortgageManager->getTotalRent(rent);
 }

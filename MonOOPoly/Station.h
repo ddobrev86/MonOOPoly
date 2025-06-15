@@ -15,7 +15,7 @@ public:
 
 	void buy(SharedPtr<Player>& player) override;
 
-	size_t calculateTotalRent() const override;
+	unsigned calculateTotalRent() const override;
 	BuyableField* clone() const override;
 };
 

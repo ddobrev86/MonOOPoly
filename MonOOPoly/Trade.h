@@ -1,9 +1,9 @@
 #pragma once
 #include "SharedPtr.hpp"
+#include "UniquePtr.hpp"
 #include "Player.h"
 #include "BuyableField.h"
 #include "Bank.h"
-#include "UniquePtr.hpp"
 
 class Trade
 {

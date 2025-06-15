@@ -1,7 +1,7 @@
 #include "Launcher.h"
 #include "GameCommandFactory.h"
-#include "GameCreationCommandFactory.h"
 #include "GameElementsCommandFactory.h"
+#include "GameCreationCommandFactory.h"
 
 void Launcher::run()
 {

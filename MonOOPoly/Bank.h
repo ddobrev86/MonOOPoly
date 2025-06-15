@@ -1,7 +1,7 @@
 #pragma once
 #include "SharedPtr.hpp"
-#include "Player.h"
 #include "MyVector.hpp"
+#include "Player.h"
 
 class Bank
 {

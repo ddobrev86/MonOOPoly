@@ -1,8 +1,8 @@
 #pragma once
 #include "MyString.h"
 #include "IteratibleContainer.hpp"
-#include "BuyableField.h"
 #include "SharedPtr.hpp"
+#include "BuyableField.h"
 
 class FieldFamily : public IteratibleContainer<SharedPtr<BuyableField>>
 {

@@ -18,7 +18,7 @@ void Station::buy(SharedPtr<Player>&player)
 	ownersipMap[player]++;
 }
 
-size_t Station::calculateTotalRent() const
+unsigned Station::calculateTotalRent() const
 {
 	if (!ownersipMap.containsKey(owner))
 		return 0;

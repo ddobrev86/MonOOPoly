@@ -1,9 +1,9 @@
 #pragma once
 #include "SharedPtr.hpp"
-#include "Mortgage.h"
 #include "MyVector.hpp"
 #include "MyString.h"
 #include "Player.h"
+#include "Mortgage.h"
 
 class MortgageManager
 {

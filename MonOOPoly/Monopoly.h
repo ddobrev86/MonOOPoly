@@ -1,10 +1,10 @@
 #pragma once
 #include "MyVector.hpp"
+#include "SharedPtr.hpp"
 #include "Board.h"
 #include "Player.h"
-#include "SharedPtr.hpp"
-#include "PropertyFamily.h"
 #include "FieldFamily.h"
+#include "PropertyFamily.h"
 #include "utilities.h"
 #include "CardField.h"
 #include "CardDeck.h"

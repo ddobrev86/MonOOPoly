@@ -7,7 +7,7 @@ Facility::Facility(const MyString& name,
     multiplier = 1;
 }
 
-size_t Facility::calculateTotalRent() const
+unsigned Facility::calculateTotalRent() const
 {   
     return 0;
 }

@@ -139,6 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AddCardFieldCommand.cpp" />
+    <ClCompile Include="AddFacilityCommand.cpp" />
+    <ClCompile Include="AddPropertyCommand.cpp" />
+    <ClCompile Include="AddPropertyFamilyCommand.cpp" />
+    <ClCompile Include="AddPlayerCommand.cpp" />
+    <ClCompile Include="AddStationCommand.cpp" />
     <ClCompile Include="Bank.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="BuildCommand.cpp" />
@@ -158,6 +164,7 @@
     <ClCompile Include="FreeParking.cpp" />
     <ClCompile Include="GameCommandFactory.cpp" />
     <ClCompile Include="GameCreationCommandFactory.cpp" />
+    <ClCompile Include="GameElementsCommandFactory.cpp" />
     <ClCompile Include="GoToJail.cpp" />
     <ClCompile Include="InputProcessor.cpp" />
     <ClCompile Include="Jail.cpp" />
@@ -184,6 +191,12 @@
     <ClCompile Include="utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddCardFieldCommand.h" />
+    <ClInclude Include="AddFacilityCommand.h" />
+    <ClInclude Include="AddPropertyCommand.h" />
+    <ClInclude Include="AddPropertyFamilyCommand.h" />
+    <ClInclude Include="AddPlayerCommand.h" />
+    <ClInclude Include="AddStationCommand.h" />
     <ClInclude Include="Bank.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="BuildCommand.h" />
@@ -201,6 +214,7 @@
     <ClInclude Include="FreeParking.h" />
     <ClInclude Include="GameCommandFactory.h" />
     <ClInclude Include="GameCreationCommandFactory.h" />
+    <ClInclude Include="GameElementsCommandFactory.h" />
     <ClInclude Include="GoToJail.h" />
     <ClInclude Include="IteratibleContainer.hpp" />
     <ClInclude Include="Cottage.h" />

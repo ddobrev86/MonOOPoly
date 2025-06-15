@@ -18,6 +18,9 @@ private:
 public:
 	size_t getTotalSize() const;
 	void setSize(size_t size);
+	unsigned getMissingFields() const;
+
+	bool isBoardFull() const;
 	
 	void setUpCorners();
 	bool canAddCorners() const;
@@ -26,7 +29,8 @@ public:
 
 	SharedPtr<Field>& move(size_t positions);
 
-	void addField(const SharedPtr<Field>& field);
+	void addField(SharedPtr<Field>& field);
+	void addField(SharedPtr<Field>&& field);
 	void addCardFields(size_t count);
 
 	SharedPtr<Field>& operator[](size_t index);

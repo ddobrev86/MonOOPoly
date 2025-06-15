@@ -35,12 +35,27 @@ bool Board::canAddCorners() const
 	return data.getSize() == getTotalSize() - 4;
 }
 
+unsigned Board::getMissingFields() const
+{
+	return getTotalSize() - data.getSize();
+}
+
+//bool Board::validateSize(size_t size)
+//{
+//	return false;
+//}
+
 void Board::setSize(size_t size)
 {
 	if (size < MIN_BOARD_SIZE)
 		throw std::invalid_argument("Size is below the minimum allowed size");
 	
 	this->size = size;
+}
+
+bool Board::isBoardFull() const
+{
+	return data.getSize() == getTotalSize();
 }
 
 SharedPtr<Field>& Board::move(size_t positions)
@@ -51,7 +66,12 @@ SharedPtr<Field>& Board::move(size_t positions)
 	return data[currentPos];
 }
 
-void Board::addField(const SharedPtr<Field>& field)
+void Board::addField(SharedPtr<Field>& field)
+{
+	addField(std::move(field));
+}
+
+void Board::addField(SharedPtr<Field>&& field)
 {
 	if (data.getSize() < getTotalSize())
 	{

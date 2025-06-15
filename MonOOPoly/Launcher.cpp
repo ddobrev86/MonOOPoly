@@ -1,14 +1,17 @@
 #include "Launcher.h"
 #include "GameCommandFactory.h"
 #include "GameCreationCommandFactory.h"
+#include "GameElementsCommandFactory.h"
 
 void Launcher::run()
 {
-	Monopoly* system = nullptr;
+	Monopoly* monopoly = nullptr;
 	MyString cmd = "";
 
-	startGame(system);
-
+	startGame(monopoly);
+	system("cls");
+	createElements(monopoly);
+	//system("cls");
 	/*while (true)
 	{
 		Monopoly::printGameTypeOptions();
@@ -38,9 +41,10 @@ void Launcher::run()
 	}*/
 }
 
-void Launcher::startGame(Monopoly* system)
+void Launcher::startGame(Monopoly* monopoly)
 {
 	MyString cmd;
+	//system = Monopoly::getInstance();
 
 	Monopoly::printGameTypeOptions();
 
@@ -54,29 +58,75 @@ void Launcher::startGame(Monopoly* system)
 
 		if (!command)
 		{
+			std::cout << "Invalid command\n\n";
+			continue;
+		}
+
+		try
+		{
+			command->execute(monopoly);
+			break;
+		}
+		catch (const std::exception& excp)
+		{
+			std::cout << excp.what() << '\n\n';
+		}
+	}
+}
+
+void Launcher::createElements(Monopoly* monopoly)
+{
+	MyString cmd;
+	monopoly = Monopoly::getInstance();
+
+	while (true)
+	{
+		Monopoly::printCreateElementsCommands();
+		std::cout << "Enter command: ";
+		std::cin >> cmd;
+
+		if (cmd == "start")
+		{
+			try
+			{
+				monopoly->startGame();
+				break;
+			}
+			catch (const std::exception& excp)
+			{
+				std::cout << excp.what() << '\n';
+			}
+		}
+
+		Command* command = GameElementsCommandFactory::createCommand(cmd);
+
+		if (!command)
+		{
+			system("cls");
 			std::cout << "Invalid command\n";
 			continue;
 		}
 
 		try
 		{
-			command->execute(system);
-			break;
+			command->execute(monopoly);
 		}
 		catch (const std::exception& excp)
 		{
+			system("cls");
 			std::cout << excp.what() << '\n';
 		}
 	}
 }
 
-void Launcher::playGame(Monopoly* system)
+void Launcher::playGame(Monopoly* monopoly)
 {
 	MyString cmd;
+	monopoly = Monopoly::getInstance();
 
 	while (true)
 	{
-		system->printPlayersTurnMessage();
+		monopoly->printPlayersTurnMessage();
 		std::cout << "Enter command: ";
 		std::cin >> cmd;
 
@@ -90,7 +140,7 @@ void Launcher::playGame(Monopoly* system)
 
 		try
 		{
-			command->execute(system);
+			command->execute(monopoly);
 			break;
 		}
 		catch (const std::exception& excp)

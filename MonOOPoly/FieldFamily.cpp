@@ -64,6 +64,16 @@ void FieldFamily::printFamilyInfo() const
 	}
 }
 
+bool FieldFamily::comapreName(const SharedPtr<FieldFamily>& other) const
+{
+	return name == other->name;
+}
+
+bool FieldFamily::comapreName(const MyString& name) const
+{
+	return this->name == name;
+}
+
 bool FieldFamily::canBuyMortgages() const
 {
 	for (size_t i = 0; i < data.getSize(); i++)

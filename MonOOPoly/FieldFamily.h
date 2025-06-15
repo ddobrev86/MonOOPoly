@@ -23,5 +23,8 @@ public:
 	bool canBuyMortgages() const;
 
 	virtual void printFamilyInfo() const;
+
+	bool comapreName(const SharedPtr<FieldFamily>& other) const;
+	bool comapreName(const MyString& name) const;
 };
 

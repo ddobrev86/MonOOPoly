@@ -1,5 +1,7 @@
 #include "GameCommandFactory.h"
 
+bool GameCommandFactory::shouldBuild = false;
+
 Command* GameCommandFactory::createCommand(const MyString& command)
 {
     if (shouldBuild)

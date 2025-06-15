@@ -7,6 +7,7 @@
 #include "FieldFamily.h"
 #include "utilities.h"
 #include "CardField.h"
+#include "CardDeck.h"
 
 class Monopoly
 {
@@ -17,15 +18,23 @@ private:
 	MyVector<SharedPtr<Player>> players;
 	size_t currentPlayer;
 	MyVector<SharedPtr<FieldFamily>> fieldFamilies;
-	//size_t playerCount;
+	size_t playerCount;
+	SharedPtr<CardDeck> deck;
+
+	bool hasStations;
+	bool hasFacilities;
 
 	Monopoly(size_t playerCount, size_t boardSize);
 public:
 	static Monopoly* getInstance(size_t playerCount, size_t boardSize);
 	static Monopoly* getInstance();
+
 	static void printGameTypeOptions();
+	static void printCreateElementsCommands();
 
 	void loadDefualtGame();
+	bool canStartGame() const;
+	void startGame();
 
 	Monopoly(const Monopoly& other) = delete;
 	Monopoly& operator=(const Monopoly& other) = delete;
@@ -36,13 +45,30 @@ public:
 	void switchFields(size_t firstIndex, size_t secondIndex);
 	void addCardFields(size_t count);
 
-	void addPlayer(const SharedPtr<Player>& player);
+	void addPlayer(SharedPtr<Player>& player);
+	void addPlayer(SharedPtr<Player>&& player);
 	void addPlayer(const MyString& username);
 
+	bool checkUniqueFieldFamilyName(const SharedPtr<FieldFamily>& fieldFamily) const;
 	bool canAddFieldFamily(const SharedPtr<FieldFamily>& fieldFamily,
 		UniquePtr<Iterator<SharedPtr<BuyableField>>>& mainIterator);
-	void addFieldFamily(const SharedPtr<FieldFamily>& fieldFamily);
-	void addField(const SharedPtr<Field>& field);
+
+	void addFieldFamily(SharedPtr<FieldFamily>& fieldFamily);
+	void addFieldFamily(SharedPtr<FieldFamily>&& fieldFamily);
+
+	void addFieldFamily(const MyString& fieldFamilyName);
+	void addPropertyFamily(const MyString& propertyFamilyName, 
+		unsigned cottageCost, unsigned castleCost);
+
+	void addField(SharedPtr<Field>& field);
+	void addField(SharedPtr<Field>&& field);
+
+	void addProperty(const MyString& propertyFamilyName,
+		const MyString& propertyName, unsigned price, unsigned rent);
+	void addFacility(const MyString& propertyName, unsigned price);
+	void addStation(const MyString& propertyName, unsigned price, unsigned rent);
+
+	void addCardField();
 
 	size_t getPlayerCount() const;
 
@@ -70,5 +96,7 @@ public:
 	SharedPtr<BuyableField>& findBuyableField(const MyVector<SharedPtr<FieldFamily>>& families,
 		const MyString& propertyName);
 	SharedPtr<Player>& findPlayer(const MyString& playerName);
+
+	SharedPtr<FieldFamily>& findFieldFamily(const MyString& familyName);
 };
 

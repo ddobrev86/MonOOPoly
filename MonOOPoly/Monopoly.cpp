@@ -15,6 +15,10 @@ Monopoly::Monopoly(size_t playerCount, size_t boardSize)
 	players = MyVector<SharedPtr<Player>>(playerCount);
 	board = UniquePtr<Board>(new Board(boardSize));
 	currentPlayer = 0;
+	this->playerCount = playerCount;
+
+	hasStations = false;
+	hasFacilities = false;
 }
 
 Monopoly* Monopoly::getInstance(size_t playerCount, size_t boardSize)
@@ -45,6 +49,19 @@ void Monopoly::printGameTypeOptions()
 	std::cout << "\t1. Start default game -> default\n";
 	std::cout << "\t2. Enter board manually -> manual\n";
 	std::cout << "\t3. Load from file -> load\n";
+	//std::cout << "\t When ready, type start\n";
+}
+
+void Monopoly::printCreateElementsCommands()
+{
+	std::cout << "Choose option: \n";
+	std::cout << "\t1. Add player -> add_player <username>\n";
+	std::cout << "\t2. Add property family -> add_property_family <family_name> <cottage_price> <castle_price>\n";
+	std::cout << "\t3. Add property -> add_property <property_family> <property_name> <price> <rent>\n";
+	std::cout << "\t4. Add station -> add_station <station_name> <price> <rent>\n";
+	std::cout << "\t5. Add facility -> add_facility <facility_name> <price>\n";
+	std::cout << "\t6. Add card field -> add_card_field\n";
+	std::cout << "\nWhen ready, type start\n";
 }
 
 void Monopoly::loadDefualtGame()
@@ -109,6 +126,22 @@ void Monopoly::loadDefualtGame()
 	addFieldFamily(SharedPtr<FieldFamily>(stations));
 	addFieldFamily(SharedPtr<FieldFamily>(facilities));
 	addCardFields(8);
+}
+
+bool Monopoly::canStartGame() const
+{
+	return players.getSize() == playerCount && board->isBoardFull();
+}
+
+void Monopoly::startGame()
+{
+	if (!canStartGame())
+	{
+		MyString message = "You have " + playerCount - players.getSize();
+		message += " missing players and " + board->getMissingFields();
+		message += " missing fields";
+		throw std::runtime_error(message.c_str());
+	}
 
 	randomiseBoard();
 	printBoard();
@@ -134,9 +167,14 @@ void Monopoly::addCardFields(size_t count)
 	board->addCardFields(count);
 }
 
-void Monopoly::addPlayer(const SharedPtr<Player>& player)
+void Monopoly::addPlayer(SharedPtr<Player>& player)
 {
-	if (players.getSize() == GameConstants::MAX_PLAYER_COUNT)
+	addPlayer(std::move(player));
+}
+
+void Monopoly::addPlayer(SharedPtr<Player>&& player)
+{
+	if (players.getSize() == GameConstants::MAX_PLAYER_COUNT || players.getSize() == playerCount)
 		throw std::runtime_error("Max player count reached");
 
 	for (size_t i = 0; i < players.getSize(); i++)
@@ -144,7 +182,7 @@ void Monopoly::addPlayer(const SharedPtr<Player>& player)
 		if (players[i]->compareUsername(player))
 			throw std::invalid_argument("There already is a player with this username");
 	}
-	players.push_back(player);
+	players.push_back(std::move(player));
 }
 
 void Monopoly::addPlayer(const MyString& username)
@@ -152,9 +190,23 @@ void Monopoly::addPlayer(const MyString& username)
 	addPlayer(SharedPtr<Player>(new Player(username)));
 }
 
+bool Monopoly::checkUniqueFieldFamilyName(const SharedPtr<FieldFamily>& fieldFamily) const
+{
+	for (size_t i = 0; i < fieldFamilies.getSize(); i++)
+	{
+		if (fieldFamilies[i]->comapreName(fieldFamily))
+			return false;
+	}
+
+	return true;
+}
+
 bool Monopoly::canAddFieldFamily(const SharedPtr<FieldFamily>& fieldFamily,
 	UniquePtr<Iterator<SharedPtr<BuyableField>>>& mainIterator)
 {
+	if(!checkUniqueFieldFamilyName(fieldFamily))
+		throw std::invalid_argument("There already is a field family with this name");
+
 	UniquePtr<Iterator<SharedPtr<BuyableField>>> secondaryIterator;
 
 	while (mainIterator->hasNext())
@@ -175,7 +227,12 @@ bool Monopoly::canAddFieldFamily(const SharedPtr<FieldFamily>& fieldFamily,
 	return true;
 }
 
-void Monopoly::addFieldFamily(const SharedPtr<FieldFamily>& fieldFamily)
+void Monopoly::addFieldFamily(SharedPtr<FieldFamily>& fieldFamily)
+{
+	addFieldFamily(std::move(fieldFamily));
+}
+
+void Monopoly::addFieldFamily(SharedPtr<FieldFamily>&& fieldFamily)
 {
 	UniquePtr<Iterator<SharedPtr<BuyableField>>> mainIterator(fieldFamily->createIterator());
 
@@ -188,13 +245,71 @@ void Monopoly::addFieldFamily(const SharedPtr<FieldFamily>& fieldFamily)
 			board->addField(placeholder);
 		}
 
-		fieldFamilies.push_back(fieldFamily);
+		fieldFamilies.push_back(std::move(fieldFamily));
 	}
 }
 
-void Monopoly::addField(const SharedPtr<Field>& field)
+void Monopoly::addFieldFamily(const MyString& fieldFamilyName)
+{
+	addFieldFamily(SharedPtr<FieldFamily>(new FieldFamily(fieldFamilyName)));
+}
+
+void Monopoly::addPropertyFamily(const MyString& propertyFamilyName, unsigned cottageCost, unsigned castleCost)
+{
+	addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily(propertyFamilyName, cottageCost, castleCost)));
+}
+
+void Monopoly::addProperty(const MyString& propertyFamilyName, 
+	const MyString& propertyName, unsigned price, unsigned rent)
+{
+	SharedPtr<FieldFamily> propertyFamily = findFieldFamily(propertyFamilyName);
+	Property* ptr = new Property(propertyName, price, rent);
+
+	addField(SharedPtr<Field>(ptr));
+	propertyFamily->addField(SharedPtr<BuyableField>(ptr));
+}
+
+void Monopoly::addFacility(const MyString& propertyName, unsigned price)
+{
+	if (!hasFacilities)
+		addFieldFamily("Facilities");
+
+	SharedPtr<FieldFamily> facilities = findFieldFamily("Facilities");
+	Facility* ptr = new Facility(propertyName, price);
+
+	addField(SharedPtr<Field>(ptr));
+	facilities->addField(SharedPtr<BuyableField>(ptr));
+
+	hasFacilities = true;
+}
+
+void Monopoly::addStation(const MyString& propertyName, unsigned price, unsigned rent)
+{
+	if (!hasStations)
+		addFieldFamily("Stations");
+
+	SharedPtr<FieldFamily> stations = findFieldFamily("Stations");
+	Station* ptr = new Station(propertyName, price, rent);
+
+	addField(SharedPtr<Field>(ptr));
+	stations->addField(SharedPtr<BuyableField>(ptr));
+
+	hasStations = true;
+}
+
+void Monopoly::addCardField()
+{
+	addField(SharedPtr<Field>(new CardField(deck)));
+}
+
+void Monopoly::addField(SharedPtr<Field>& field)
 {
 	board->addField(field);
+}
+
+void Monopoly::addField(SharedPtr<Field>&& field)
+{
+	board->addField(std::move(field));
 }
 
 size_t Monopoly::getPlayerCount() const
@@ -413,4 +528,15 @@ SharedPtr<Player>& Monopoly::findPlayer(const MyString& playerName)
 	}
 
 	throw std::invalid_argument("Invalid username");
+}
+
+SharedPtr<FieldFamily>& Monopoly::findFieldFamily(const MyString& familyName)
+{
+	for (size_t i = 0; i < fieldFamilies.getSize(); i++)
+	{
+		if (fieldFamilies[i]->comapreName(familyName));
+			return fieldFamilies[i];
+	}
+
+	throw std::invalid_argument("There isn't a field family with this name");
 }

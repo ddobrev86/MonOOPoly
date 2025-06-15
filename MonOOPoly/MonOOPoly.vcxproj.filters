@@ -49,6 +49,9 @@
     <Filter Include="Trade utils">
       <UniqueIdentifier>{948fcdda-8ad2-49f1-a7c1-42c3dfa9cc05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Commands\GameElementsCommands">
+      <UniqueIdentifier>{4cf8c72e-28a7-4951-a8da-b5473332face}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MonOOPoly.cpp">
@@ -179,6 +182,27 @@
     </ClCompile>
     <ClCompile Include="Bank.cpp">
       <Filter>Trade utils</Filter>
+    </ClCompile>
+    <ClCompile Include="AddPropertyFamilyCommand.cpp">
+      <Filter>Commands\GameElementsCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="AddPlayerCommand.cpp">
+      <Filter>Commands\GameElementsCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="GameElementsCommandFactory.cpp">
+      <Filter>Commands\GameElementsCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="AddCardFieldCommand.cpp">
+      <Filter>Commands\GameElementsCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="AddFacilityCommand.cpp">
+      <Filter>Commands\GameElementsCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="AddPropertyCommand.cpp">
+      <Filter>Commands\GameElementsCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="AddStationCommand.cpp">
+      <Filter>Commands\GameElementsCommands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -331,6 +355,27 @@
     </ClInclude>
     <ClInclude Include="Trade.h">
       <Filter>Trade utils</Filter>
+    </ClInclude>
+    <ClInclude Include="AddPropertyFamilyCommand.h">
+      <Filter>Commands\GameElementsCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="AddPlayerCommand.h">
+      <Filter>Commands\GameElementsCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="GameElementsCommandFactory.h">
+      <Filter>Commands\GameElementsCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="AddCardFieldCommand.h">
+      <Filter>Commands\GameElementsCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="AddFacilityCommand.h">
+      <Filter>Commands\GameElementsCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="AddPropertyCommand.h">
+      <Filter>Commands\GameElementsCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="AddStationCommand.h">
+      <Filter>Commands\GameElementsCommands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

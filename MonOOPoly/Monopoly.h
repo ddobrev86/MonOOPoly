@@ -62,5 +62,13 @@ public:
 	void movePlayer();
 
 	bool getPlayerOutOfJail();
+
+	void tradeBetweenPlayers(const MyString& receiverName,
+		const MyString& propertyName);
+	void tradeWithBank(const MyString& propertyName);
+
+	SharedPtr<BuyableField>& findBuyableField(const MyVector<SharedPtr<FieldFamily>>& families,
+		const MyString& propertyName);
+	SharedPtr<Player>& findPlayer(const MyString& playerName);
 };
 

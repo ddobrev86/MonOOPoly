@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bank.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="BuildCommand.cpp" />
     <ClCompile Include="BuyableField.cpp" />
@@ -177,9 +178,13 @@
     <ClCompile Include="Start.cpp" />
     <ClCompile Include="Station.cpp" />
     <ClCompile Include="ThrowDiceCommand.cpp" />
+    <ClCompile Include="Trade.cpp" />
+    <ClCompile Include="TradeWithBankCommand.cpp" />
+    <ClCompile Include="TradeWithPlayerCommand.cpp" />
     <ClCompile Include="utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bank.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="BuildCommand.h" />
     <ClInclude Include="BuyableField.h" />
@@ -224,6 +229,9 @@
     <ClInclude Include="Start.h" />
     <ClInclude Include="Station.h" />
     <ClInclude Include="ThrowDiceCommand.h" />
+    <ClInclude Include="Trade.h" />
+    <ClInclude Include="TradeWithBankCommand.h" />
+    <ClInclude Include="TradeWithPlayerCommand.h" />
     <ClInclude Include="UniquePtr.hpp" />
     <ClInclude Include="utilities.h" />
   </ItemGroup>

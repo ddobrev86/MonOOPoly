@@ -15,6 +15,11 @@ public:
 	virtual unsigned calculateTotalRent() const = 0;
 	virtual BuyableField* clone() const = 0;
 
+	unsigned sellPriceToBank() const;
+	unsigned sellPriceToPlayer() const;
+	void sell();
+	void changeOwner(const SharedPtr<Player>& newOwner);
+
 	virtual void setUpMortgages(const SharedPtr<Mortgage>& castle,
 		const SharedPtr<Mortgage>& cottage) = 0;
 	virtual void buildMortgage(const MyString& mortgageType) = 0;
@@ -30,5 +35,7 @@ public:
 	void printFieldInfo() const override;
 
 	bool compareName(const MyString& name) const;
+
+	const MyString& getName() const;
 };
 

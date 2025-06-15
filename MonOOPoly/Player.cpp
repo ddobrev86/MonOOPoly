@@ -59,7 +59,7 @@ void Player::removePercent(double percent)
     balance -= toRemove;
 }
 
-bool Player::canAfford(size_t price)
+bool Player::canAfford(size_t price) const
 {
     return balance >= price;
 }

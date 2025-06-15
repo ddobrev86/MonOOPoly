@@ -1,4 +1,5 @@
 #include "PaymentCard.h"
+#include "Bank.h"
 
 PaymentCard::PaymentCard(int balanceChange)
 {
@@ -8,7 +9,7 @@ PaymentCard::PaymentCard(int balanceChange)
 void PaymentCard::applyEffect(SharedPtr<Player>& player) const
 {
 	if (balanceChange < 0)
-		player->removeFromBalance(-balanceChange);
+		Bank::getFrom(player, -balanceChange);
 	else
-		player->addToBalance(balanceChange);
+		Bank::giveTo(player, balanceChange);
 }

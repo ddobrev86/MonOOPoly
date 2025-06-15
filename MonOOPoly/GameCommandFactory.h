@@ -6,6 +6,8 @@
 
 class GameCommandFactory
 {
+private:
+	static bool shouldBuild;
 public:
 	static Command* createCommand(const MyString& command);
 };

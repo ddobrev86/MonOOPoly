@@ -6,7 +6,7 @@ Property::Property(const MyString& name, unsigned price, unsigned rent) : Buyabl
 
 void Property::buildMortgage(const MyString & mortgageType)
 {
-	mortgageManager->buildMortgage(mortgageType);
+	mortgageManager->buildMortgage(mortgageType, owner, rent);
 }
 
 size_t Property::calculateTotalRent() const

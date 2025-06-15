@@ -28,7 +28,7 @@ public:
 	void addToBalance(size_t balanceChange);
 	void removeFromBalance(size_t balanceChange);
 	void removePercent(double percent);
-	bool canAfford(size_t price);
+	bool canAfford(size_t price) const;
 
 	size_t getPosition() const;
 	unsigned getBalance() const;

@@ -2,12 +2,18 @@
 
 Command* GameCommandFactory::createCommand(const MyString& command)
 {
-    if (command == "throw_dice")
-        return new ThrowDiceCommand();
-    else if (command == "buy_mortgage")
-        return new BuyMortgageCommand();
-    else if (command == "build")
-        return new BuildCommand();
+    if (shouldBuild)
+    {
+        if (command == "build")
+            return new BuildCommand(shouldBuild);
+    }
+    else
+    {
+        if (command == "throw_dice")
+            return new ThrowDiceCommand();
+        else if (command == "buy_mortgage")
+            return new BuyMortgageCommand(shouldBuild);
+    }
 
     return nullptr;
 }

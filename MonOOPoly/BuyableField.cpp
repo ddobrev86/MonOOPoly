@@ -1,5 +1,6 @@
 #include "BuyableField.h"
 #include "InputProcessor.h"
+#include "Bank.h"
 
 BuyableField::BuyableField(const MyString& name, unsigned price, unsigned rent)
 {
@@ -8,13 +9,35 @@ BuyableField::BuyableField(const MyString& name, unsigned price, unsigned rent)
 	this->rent = rent;
 }
 
+unsigned BuyableField::sellPriceToBank() const
+{
+	unsigned result = calculateTotalRent() / 3;
+	return result;
+}
+
+unsigned BuyableField::sellPriceToPlayer() const
+{
+	unsigned result = 2 * calculateTotalRent() / 3;
+	return result;
+}
+
+void BuyableField::sell()
+{
+	owner = nullptr;
+}
+
+void BuyableField::changeOwner(const SharedPtr<Player>& newOwner)
+{
+	owner = newOwner;
+}
+
 void BuyableField::buy(SharedPtr<Player>& player)
 {
 	if (!player->canAfford(price))
 		throw std::runtime_error("You cannot afford to buy this property");
 
+	Bank::getFrom(player, price);
 	owner = player;
-	player->removeFromBalance(price);
 }
 
 bool BuyableField::action(SharedPtr<Player>& player)
@@ -29,7 +52,7 @@ bool BuyableField::action(SharedPtr<Player>& player)
 	{
 		if (!belongsToPlayer(player))
 		{
-			player->removeFromBalance(calculateTotalRent());
+			Bank::getFrom(player, calculateTotalRent());
 			std::cout << "You have been taxed\n";
 			//TODO add warning when exceeding balance
 		}
@@ -75,4 +98,9 @@ void BuyableField::printFieldInfo() const
 bool BuyableField::compareName(const MyString& name) const
 {
 	return this->name == name;
+}
+
+const MyString& BuyableField::getName() const
+{
+	return name;
 }

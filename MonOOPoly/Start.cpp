@@ -1,4 +1,5 @@
 #include "Start.h"
+#include "Bank.h"
 
 Start::Start() : CornerField()
 {}
@@ -16,6 +17,6 @@ void Start::printFieldInfo() const
 
 bool Start::action(SharedPtr<Player>& player)
 {
-    player->addToBalance(200);
+    Bank::giveTo(player, 200);
     return true;
 }

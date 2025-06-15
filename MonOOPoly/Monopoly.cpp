@@ -4,6 +4,8 @@
 #include "InputProcessor.h"
 #include "Station.h"
 #include "Facility.h"
+#include "Bank.h"
+#include "Trade.h"
 
 Monopoly* Monopoly::instance = nullptr;
 
@@ -311,25 +313,9 @@ void Monopoly::actBuildCommand(const MyString& propertyName,
 	bool canBuy = false;
 	findValidFamilies(validFamilies, canBuy);
 
-	UniquePtr<Iterator<SharedPtr<BuyableField>>> fieldIterator;
-
-	for (size_t i = 0; i < validFamilies.getSize(); i++)
-	{
-		fieldIterator = std::move(validFamilies[i]->createIterator());
-
-		while (fieldIterator->hasNext())
-		{
-			SharedPtr<BuyableField> current = fieldIterator->next();
-			if (current->compareName(propertyName))
-			{
-				current->buildMortgage(mortgageType);
-				std::cout << "You successfully built a " << mortgageType;
-				return;
-			}
-		}
-	}
-
-	throw std::invalid_argument("Wrong property name");
+	SharedPtr<BuyableField> field = findBuyableField(validFamilies, propertyName);
+	field->buildMortgage(mortgageType);
+	std::cout << "You successfully built a " << mortgageType;
 }
 
 //in Jail
@@ -360,7 +346,7 @@ bool Monopoly::getPlayerOutOfJail()
 		std::cout << "Do you want to pay $100 to get out of jail?(y|n): ";
 		if (InputProcessor::askYesOrNo() == 'y')
 		{
-			players[currentPlayer]->removeFromBalance(100);
+			Bank::getFrom(players[currentPlayer], 100);
 			players[currentPlayer]->getOutOfJail();
 			return true;
 		}
@@ -378,4 +364,53 @@ bool Monopoly::getPlayerOutOfJail()
 		players[currentPlayer]->getOutOfJail();
 		return true;
 	}
+}
+
+void Monopoly::tradeBetweenPlayers(const MyString& receiverName, 
+	const MyString& propertyName)
+{
+	if (players[currentPlayer]->compareUsername(receiverName))
+		throw std::invalid_argument("You can't trade with yourself");
+
+	SharedPtr<BuyableField> field = findBuyableField(fieldFamilies, propertyName);
+	SharedPtr<Player> receiver = findPlayer(receiverName);
+	
+	Trade::sellToPlayer(players[currentPlayer], receiver, field);
+}
+
+void Monopoly::tradeWithBank(const MyString& propertyName)
+{
+	SharedPtr<BuyableField> field = findBuyableField(fieldFamilies, propertyName);
+	Trade::sellToBank(players[currentPlayer], field);
+}
+
+SharedPtr<BuyableField>& Monopoly::findBuyableField(const MyVector<SharedPtr<FieldFamily>>& families,
+	const MyString& propertyName)
+{
+	UniquePtr<Iterator<SharedPtr<BuyableField>>> fieldIterator;
+
+	for (size_t i = 0; i < families.getSize(); i++)
+	{
+		fieldIterator = std::move(families[i]->createIterator());
+
+		while (fieldIterator->hasNext())
+		{
+			SharedPtr<BuyableField> current = fieldIterator->next();
+			if (current->compareName(propertyName))
+				return current;
+		}
+	}
+
+	throw std::invalid_argument("Wrong property name");
+}
+
+SharedPtr<Player>& Monopoly::findPlayer(const MyString& playerName)
+{
+	for (size_t i = 0; i < players.getSize(); i++)
+	{
+		if (players[i]->compareUsername(playerName))
+			return players[i];
+	}
+
+	throw std::invalid_argument("Invalid username");
 }

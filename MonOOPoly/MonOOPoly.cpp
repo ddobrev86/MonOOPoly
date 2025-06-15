@@ -18,6 +18,8 @@
 //TODO add Bank and Trade
 //TODO make ransom, stations move change and start constants in a namespace
 //TODO add Load From file
+//TODO startGame()
+//TODO fillDeckWithCards
 
 int main()
 {

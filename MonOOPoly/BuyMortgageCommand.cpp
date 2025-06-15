@@ -1,8 +1,12 @@
 #include "BuyMortgageCommand.h"
 
+BuyMortgageCommand::BuyMortgageCommand(bool& shouldBuild) : shouldBuild(shouldBuild)
+{}
+
 void BuyMortgageCommand::execute(Monopoly* monopoly) const
 {
 	monopoly->actBuyMortgageCommand();
+	shouldBuild = true;
 }
 
 Command* BuyMortgageCommand::clone() const

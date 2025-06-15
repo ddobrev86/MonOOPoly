@@ -43,6 +43,12 @@
     <Filter Include="Commands\Game Commands">
       <UniqueIdentifier>{e689c1e0-104c-47dc-80e3-7ea1c309a190}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Commands\Game Commands\TradeCommands">
+      <UniqueIdentifier>{e734379a-22ab-4447-aea6-7e473d18253b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Trade utils">
+      <UniqueIdentifier>{948fcdda-8ad2-49f1-a7c1-42c3dfa9cc05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MonOOPoly.cpp">
@@ -161,6 +167,18 @@
     </ClCompile>
     <ClCompile Include="Launcher.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TradeWithBankCommand.cpp">
+      <Filter>Commands\Game Commands\TradeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="TradeWithPlayerCommand.cpp">
+      <Filter>Commands\Game Commands\TradeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="Trade.cpp">
+      <Filter>Trade utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Bank.cpp">
+      <Filter>Trade utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -301,6 +319,18 @@
     </ClInclude>
     <ClInclude Include="Launcher.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TradeWithBankCommand.h">
+      <Filter>Commands\Game Commands\TradeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="TradeWithPlayerCommand.h">
+      <Filter>Commands\Game Commands\TradeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="Bank.h">
+      <Filter>Trade utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Trade.h">
+      <Filter>Trade utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

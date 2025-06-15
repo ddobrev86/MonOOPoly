@@ -69,3 +69,33 @@ void Launcher::startGame(Monopoly* system)
 		}
 	}
 }
+
+void Launcher::playGame(Monopoly* system)
+{
+	MyString cmd;
+
+	while (true)
+	{
+		system->printPlayersTurnMessage();
+		std::cout << "Enter command: ";
+		std::cin >> cmd;
+
+		Command* command = GameCommandFactory::createCommand(cmd);
+
+		if (!command)
+		{
+			std::cout << "Invalid command\n";
+			continue;
+		}
+
+		try
+		{
+			command->execute(system);
+			break;
+		}
+		catch (const std::exception& excp)
+		{
+			std::cout << excp.what() << '\n';
+		}
+	}
+}

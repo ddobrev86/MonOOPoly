@@ -1,0 +1,16 @@
+#pragma once
+#include "SharedPtr.hpp"
+#include "Player.h"
+#include "MyVector.hpp"
+
+class Bank
+{
+private:
+	unsigned bankBalance = 20580;
+public:
+	static void giveInitialBalance(MyVector<SharedPtr<Player>>& players);
+
+	static void getFrom(SharedPtr<Player>& player, unsigned sum);
+	static void giveTo(SharedPtr<Player>& player, unsigned sum);
+};
+

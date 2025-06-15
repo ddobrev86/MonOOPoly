@@ -11,6 +11,8 @@ void Launcher::run()
 	startGame(monopoly);
 	system("cls");
 	createElements(monopoly);
+
+	playGame(monopoly);
 	//system("cls");
 	/*while (true)
 	{
@@ -94,7 +96,9 @@ void Launcher::createElements(Monopoly* monopoly)
 			}
 			catch (const std::exception& excp)
 			{
+				system("cls");
 				std::cout << excp.what() << '\n';
+				continue;
 			}
 		}
 
@@ -138,10 +142,11 @@ void Launcher::playGame(Monopoly* monopoly)
 			continue;
 		}
 
+		system("cls");
+
 		try
 		{
 			command->execute(monopoly);
-			break;
 		}
 		catch (const std::exception& excp)
 		{

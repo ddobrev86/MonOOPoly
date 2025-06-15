@@ -16,6 +16,7 @@ Monopoly::Monopoly(size_t playerCount, size_t boardSize)
 	board = UniquePtr<Board>(new Board(boardSize));
 	currentPlayer = 0;
 	this->playerCount = playerCount;
+	deck = SharedPtr<CardDeck>(new CardDeck());
 
 	hasStations = false;
 	hasFacilities = false;
@@ -137,7 +138,7 @@ void Monopoly::startGame()
 {
 	if (!canStartGame())
 	{
-		MyString message = "You have " + playerCount - players.getSize();
+		MyString message = " You have " + playerCount - players.getSize();
 		message += " missing players and " + board->getMissingFields();
 		message += " missing fields";
 		throw std::runtime_error(message.c_str());

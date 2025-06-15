@@ -92,7 +92,7 @@ void BuyableField::printLandingMessage() const
 
 void BuyableField::printFieldInfo() const
 {
-	std::cout << name;
+	std::cout << name << "\tPrice: " << price << "\tRent: " << rent << '\n';
 }
 
 bool BuyableField::compareName(const MyString& name) const

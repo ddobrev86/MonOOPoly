@@ -1,6 +1,9 @@
 #pragma once
 
 unsigned twoToPower(unsigned power);
+size_t digitCount(unsigned num);
+char digitToChar(unsigned digit);
+void reverse(char* str, size_t size);
 
 namespace GameConstants
 {

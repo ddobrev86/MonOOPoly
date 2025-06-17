@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <stdexcept>
 #include <utility>
+#include "utilities.h"
 #pragma warning (disable : 4996)
 
 void MyString::free()
@@ -67,6 +68,24 @@ MyString::MyString(const char* str)
 	capacity = getMaxResizeCapacity(size);
 	data = new char[capacity + 1];
 	strcpy(data, str);
+}
+
+MyString::MyString(unsigned num)
+{
+	size = digitCount(num);
+	capacity = getMaxResizeCapacity(size);
+	data = new char[capacity + 1];
+
+	size_t current = 0;
+	do
+	{
+		data[current++] = digitToChar(num % 10);
+		num /= 10;
+	} while (num);
+
+	data[current] = '\0';
+
+	reverse(data, size);
 }
 
 MyString::MyString(const MyString& other)

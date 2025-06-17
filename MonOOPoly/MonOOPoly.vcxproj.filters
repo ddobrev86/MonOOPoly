@@ -52,6 +52,12 @@
     <Filter Include="Commands\GameElementsCommands">
       <UniqueIdentifier>{4cf8c72e-28a7-4951-a8da-b5473332face}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Commands\GameElementsCommands\Cards">
+      <UniqueIdentifier>{9013529b-7ade-480f-aa44-b0f08a09a156}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands\GameElementsCommands\Fields">
+      <UniqueIdentifier>{6e286a88-9f2d-418c-ada0-aefc86d32d61}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MonOOPoly.cpp">
@@ -193,16 +199,22 @@
       <Filter>Commands\GameElementsCommands</Filter>
     </ClCompile>
     <ClCompile Include="AddCardFieldCommand.cpp">
-      <Filter>Commands\GameElementsCommands</Filter>
+      <Filter>Commands\GameElementsCommands\Fields</Filter>
     </ClCompile>
     <ClCompile Include="AddFacilityCommand.cpp">
-      <Filter>Commands\GameElementsCommands</Filter>
+      <Filter>Commands\GameElementsCommands\Fields</Filter>
     </ClCompile>
     <ClCompile Include="AddPropertyCommand.cpp">
-      <Filter>Commands\GameElementsCommands</Filter>
+      <Filter>Commands\GameElementsCommands\Fields</Filter>
     </ClCompile>
     <ClCompile Include="AddStationCommand.cpp">
-      <Filter>Commands\GameElementsCommands</Filter>
+      <Filter>Commands\GameElementsCommands\Fields</Filter>
+    </ClCompile>
+    <ClCompile Include="AddMoveCardCommand.cpp">
+      <Filter>Commands\GameElementsCommands\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="AddPaymentCardCommand.cpp">
+      <Filter>Commands\GameElementsCommands\Cards</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -366,16 +378,22 @@
       <Filter>Commands\GameElementsCommands</Filter>
     </ClInclude>
     <ClInclude Include="AddCardFieldCommand.h">
-      <Filter>Commands\GameElementsCommands</Filter>
+      <Filter>Commands\GameElementsCommands\Fields</Filter>
     </ClInclude>
     <ClInclude Include="AddFacilityCommand.h">
-      <Filter>Commands\GameElementsCommands</Filter>
+      <Filter>Commands\GameElementsCommands\Fields</Filter>
     </ClInclude>
     <ClInclude Include="AddPropertyCommand.h">
-      <Filter>Commands\GameElementsCommands</Filter>
+      <Filter>Commands\GameElementsCommands\Fields</Filter>
     </ClInclude>
     <ClInclude Include="AddStationCommand.h">
-      <Filter>Commands\GameElementsCommands</Filter>
+      <Filter>Commands\GameElementsCommands\Fields</Filter>
+    </ClInclude>
+    <ClInclude Include="AddMoveCardCommand.h">
+      <Filter>Commands\GameElementsCommands\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="AddPaymentCardCommand.h">
+      <Filter>Commands\GameElementsCommands\Cards</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

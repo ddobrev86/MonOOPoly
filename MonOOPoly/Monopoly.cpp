@@ -12,8 +12,8 @@ Monopoly* Monopoly::instance = nullptr;
 Monopoly::Monopoly(size_t playerCount, size_t boardSize)
 {
 	//this->playerCount = playerCount;
-	players = MyVector<SharedPtr<Player>>(playerCount);
 	board = UniquePtr<Board>(new Board(boardSize));
+	players = MyVector<SharedPtr<Player>>(playerCount);
 	currentPlayer = 0;
 	this->playerCount = playerCount;
 	deck = SharedPtr<CardDeck>(new CardDeck());
@@ -53,7 +53,13 @@ void Monopoly::printGameTypeOptions()
 	//std::cout << "\t When ready, type start\n";
 }
 
-void Monopoly::printCreateElementsCommands()
+void Monopoly::printDefaultCreateElementsCommands()
+{
+	std::cout << "To add player -> add_player <username>\n";
+	std::cout << "\nWhen ready, type start\n";
+}
+
+void Monopoly::printManualCreateElementsCommands()
 {
 	std::cout << "Choose option: \n";
 	std::cout << "\t1. Add player -> add_player <username>\n";
@@ -138,14 +144,17 @@ void Monopoly::startGame()
 {
 	if (!canStartGame())
 	{
-		MyString message = " You have " + playerCount - players.getSize();
-		message += " missing players and " + board->getMissingFields();
+		MyString message = " You have ";
+		message += MyString(playerCount - players.getSize());
+		message += " missing players and ";
+		message += MyString(board->getMissingFields());
 		message += " missing fields";
 		throw std::runtime_error(message.c_str());
 	}
 
 	randomiseBoard();
-	printBoard();
+	//printBoard();
+	Bank::giveInitialBalance(players);
 }
 
 void Monopoly::printBoard() const
@@ -165,7 +174,7 @@ void Monopoly::switchFields(size_t firstIndex, size_t secondIndex)
 
 void Monopoly::addCardFields(size_t count)
 {
-	board->addCardFields(count);
+	board->addCardFields(count, deck);
 }
 
 void Monopoly::addPlayer(SharedPtr<Player>& player)
@@ -303,6 +312,16 @@ void Monopoly::addCardField()
 	addField(SharedPtr<Field>(new CardField(deck)));
 }
 
+void Monopoly::addMoveCard(unsigned positions)
+{
+	deck->addCard(SharedPtr<Card>(new MovePositionCard(positions, board->getTotalSize())));
+}
+
+void Monopoly::addPaymentCard(int value)
+{
+	deck->addCard(SharedPtr<Card>(new PaymentCard(value)));
+}
+
 void Monopoly::addField(SharedPtr<Field>& field)
 {
 	board->addField(field);
@@ -320,6 +339,10 @@ size_t Monopoly::getPlayerCount() const
 
 void Monopoly::printPlayersTurnMessage()
 {
+	//system("cls");
+	printBoard();
+	std::cout << "\n----------\n\n";
+
 	std::cout << "Player " << players[currentPlayer]->getUsername() << "\'s turn\n";
 	
 	if (players[currentPlayer]->isInJail())
@@ -327,6 +350,7 @@ void Monopoly::printPlayersTurnMessage()
 		if (!getPlayerOutOfJail())
 		{
 			currentPlayer++;
+			currentPlayer %= playerCount;
 			return;
 		}
 	}
@@ -342,26 +366,28 @@ void Monopoly::actPlayerThrowDiceCommand()
 {
 	movePlayer();
 
-	SharedPtr<Field>& currentField = board->operator[](players[currentPlayer]->getPosition());
-	currentField->printFieldInfo();
-	fieldActionUntilSuccess(currentField);
+	SharedPtr<Field>& currentField = (*board)[players[currentPlayer]->getPosition()];
+	currentField->printLandingMessage();
+	currentField->action(players[currentPlayer]);
+	//fieldActionUntilSuccess(currentField);
 
 	currentPlayer++;
+	currentPlayer %= playerCount;
 }
 
-void Monopoly::fieldActionUntilSuccess(SharedPtr<Field>& currentField)
-{
-	do
-	{
-		bool success = currentField->action(players[currentPlayer]);
-		players[currentPlayer]->moveWith(0, board->getTotalSize());
-		if (success)
-			break;
-
-		currentField = board->operator[](players[currentPlayer]->getPosition());
-
-	} while (true);
-}
+//void Monopoly::fieldActionUntilSuccess(SharedPtr<Field>& currentField)
+//{
+//	do
+//	{
+//		bool success = currentField->action(players[currentPlayer]);
+//		players[currentPlayer]->moveWith(0, board->getTotalSize());
+//		if (success)
+//			break;
+//
+//		currentField = board->operator[](players[currentPlayer]->getPosition());
+//
+//	} while (true);
+//}
 
 size_t Monopoly::throwDice() const
 {
@@ -371,7 +397,7 @@ size_t Monopoly::throwDice() const
 	firstDice = (rand() % 6) + 1;
 	secondDice = (rand() % 6) + 1;
 
-	std::cout << "You threw a " << firstDice << " and a " << secondDice << '\n';
+	std::cout << "You threw a " << firstDice << " and a " << secondDice << "\n\n";
 
 	return firstDice + secondDice;
 }

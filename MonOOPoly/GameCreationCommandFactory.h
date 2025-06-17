@@ -7,6 +7,6 @@
 class GameCreationCommandFactory
 {
 public:
-	static Command* createCommand(const MyString& command);
+	static Command* createCommand(const MyString& command, bool& isDefault);
 };
 

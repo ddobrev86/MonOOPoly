@@ -141,6 +141,8 @@
   <ItemGroup>
     <ClCompile Include="AddCardFieldCommand.cpp" />
     <ClCompile Include="AddFacilityCommand.cpp" />
+    <ClCompile Include="AddMoveCardCommand.cpp" />
+    <ClCompile Include="AddPaymentCardCommand.cpp" />
     <ClCompile Include="AddPropertyCommand.cpp" />
     <ClCompile Include="AddPropertyFamilyCommand.cpp" />
     <ClCompile Include="AddPlayerCommand.cpp" />
@@ -193,6 +195,8 @@
   <ItemGroup>
     <ClInclude Include="AddCardFieldCommand.h" />
     <ClInclude Include="AddFacilityCommand.h" />
+    <ClInclude Include="AddMoveCardCommand.h" />
+    <ClInclude Include="AddPaymentCardCommand.h" />
     <ClInclude Include="AddPropertyCommand.h" />
     <ClInclude Include="AddPropertyFamilyCommand.h" />
     <ClInclude Include="AddPlayerCommand.h" />

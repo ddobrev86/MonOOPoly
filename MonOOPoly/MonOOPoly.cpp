@@ -22,6 +22,7 @@
 //TODO fillDeckWithCards
 //TODO add name check when adding field to board
 //TODO add fillCardDeck
+//TODO when answer is No to buying property -> go to next player
 
 int main()
 {

@@ -10,7 +10,7 @@ void FreeParking::printLandingMessage() const
 
 void FreeParking::printFieldInfo() const
 {
-    std::cout << "Free Parking";
+    std::cout << "Free Parking\n";
 }
 
 bool FreeParking::action(SharedPtr<Player>& player)

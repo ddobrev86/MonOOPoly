@@ -12,7 +12,7 @@ void Start::printLandingMessage() const
 
 void Start::printFieldInfo() const
 {
-    std::cout << "Start";
+    std::cout << "Start\n";
 }
 
 bool Start::action(SharedPtr<Player>& player)

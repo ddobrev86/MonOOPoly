@@ -17,6 +17,7 @@ class MyString
 public:
 	MyString();
 	MyString(const char* str);
+	MyString(unsigned num);
 	MyString(const MyString& other);
 	MyString& operator=(const MyString& other);
 	MyString(MyString&& other) noexcept;

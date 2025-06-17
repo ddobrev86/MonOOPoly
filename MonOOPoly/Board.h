@@ -13,7 +13,7 @@ private:
 	//MyVector<SharedPtr<Field>> fields;
 	size_t currentPos;
 	size_t size;
-	SharedPtr<CardDeck> deck;
+	//SharedPtr<CardDeck> deck;
 
 public:
 	size_t getTotalSize() const;
@@ -31,7 +31,7 @@ public:
 
 	void addField(SharedPtr<Field>& field);
 	void addField(SharedPtr<Field>&& field);
-	void addCardFields(size_t count);
+	void addCardFields(size_t count, const SharedPtr<CardDeck>& deck);
 
 	SharedPtr<Field>& operator[](size_t index);
 	const SharedPtr<Field>& operator[](size_t index) const;

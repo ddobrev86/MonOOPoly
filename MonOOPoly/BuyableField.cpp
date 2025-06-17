@@ -44,7 +44,7 @@ bool BuyableField::action(SharedPtr<Player>& player)
 {
 	if (isFree())
 	{
-		std::cout << "Do you want to buy this property?(y|n): ";
+		std::cout << "\nDo you want to buy this property?(y|n): ";
 		if (InputProcessor::askYesOrNo() == 'y')
 			buy(player);
 	}
@@ -77,6 +77,7 @@ bool BuyableField::isFree() const
 void BuyableField::printLandingMessage() const
 {
 	std::cout << "You have landed on " << name << '\n';
+	//std::cout << "Price: " << price << "\tRent: " << rent << '\n';
 
 	if (isFree())
 	{
@@ -92,8 +93,13 @@ void BuyableField::printLandingMessage() const
 
 void BuyableField::printFieldInfo() const
 {
-	std::cout << name << "\tPrice: " << price << "\tRent: " << rent << '\n';
+	std::cout << name << '\n';
 }
+
+//void BuyableField::printFieldInfo() const
+//{
+//	std::cout << name << "\tPrice: " << price << "\tRent: " << rent << '\n';
+//}
 
 bool BuyableField::compareName(const MyString& name) const
 {

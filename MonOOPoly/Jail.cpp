@@ -10,7 +10,7 @@ void Jail::printLandingMessage() const
 
 void Jail::printFieldInfo() const
 {
-    std::cout << "Jail";
+    std::cout << "Jail\n";
 }
 
 bool Jail::action(SharedPtr<Player>& player)

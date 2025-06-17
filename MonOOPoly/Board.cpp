@@ -14,6 +14,7 @@ Board::Board(size_t size)
 	setSize(size);
 	currentPos = 0;
 	data = MyVector<SharedPtr<Field>>(getTotalSize());
+	//deck = SharedPtr<CardDeck>(new CardDeck)
 	//fields = MyVector<SharedPtr<Field>>(getTotalSize());
 }
 
@@ -39,11 +40,6 @@ unsigned Board::getMissingFields() const
 {
 	return getTotalSize() - data.getSize();
 }
-
-//bool Board::validateSize(size_t size)
-//{
-//	return false;
-//}
 
 void Board::setSize(size_t size)
 {
@@ -104,7 +100,6 @@ void Board::printBoard() const
 	for (size_t i = 0; i < data.getSize(); i++)
 	{
 		data[i]->printFieldInfo();
-		std::cout << '\n';
 	}
 }
 
@@ -119,7 +114,7 @@ void Board::switchFields(size_t firstIndex, size_t secondIndex)
 	std::swap(data[firstIndex], data[secondIndex]);
 }
 
-void Board::addCardFields(size_t count)
+void Board::addCardFields(size_t count, const SharedPtr<CardDeck>& deck)
 {
 	size_t current = data.getSize();
 	while (current < getTotalSize() && count > 0)

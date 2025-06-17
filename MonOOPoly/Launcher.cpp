@@ -7,10 +7,11 @@ void Launcher::run()
 {
 	Monopoly* monopoly = nullptr;
 	MyString cmd = "";
+	bool isDefault;
 
-	startGame(monopoly);
+	startGame(monopoly, isDefault);
 	system("cls");
-	createElements(monopoly);
+	createElements(monopoly, isDefault);
 
 	playGame(monopoly);
 	//system("cls");
@@ -43,7 +44,7 @@ void Launcher::run()
 	}*/
 }
 
-void Launcher::startGame(Monopoly* monopoly)
+void Launcher::startGame(Monopoly* monopoly, bool& isDefault)
 {
 	MyString cmd;
 	//system = Monopoly::getInstance();
@@ -56,7 +57,7 @@ void Launcher::startGame(Monopoly* monopoly)
 		std::cout << "Enter command: ";
 		std::cin >> cmd;
 
-		Command* command = GameCreationCommandFactory::createCommand(cmd);
+		Command* command = GameCreationCommandFactory::createCommand(cmd, isDefault);
 
 		if (!command)
 		{
@@ -71,19 +72,23 @@ void Launcher::startGame(Monopoly* monopoly)
 		}
 		catch (const std::exception& excp)
 		{
-			std::cout << excp.what() << '\n\n';
+			std::cout << excp.what() << "\n\n";
 		}
 	}
 }
 
-void Launcher::createElements(Monopoly* monopoly)
+void Launcher::createElements(Monopoly* monopoly, bool isDefault)
 {
 	MyString cmd;
 	monopoly = Monopoly::getInstance();
 
 	while (true)
 	{
-		Monopoly::printCreateElementsCommands();
+		if (isDefault)
+			Monopoly::printDefaultCreateElementsCommands();
+		else
+			Monopoly::printManualCreateElementsCommands();
+		
 		std::cout << "Enter command: ";
 		std::cin >> cmd;
 
@@ -91,6 +96,7 @@ void Launcher::createElements(Monopoly* monopoly)
 		{
 			try
 			{
+				system("cls");
 				monopoly->startGame();
 				break;
 			}
@@ -138,6 +144,7 @@ void Launcher::playGame(Monopoly* monopoly)
 
 		if (!command)
 		{
+			system("cls");
 			std::cout << "Invalid command\n";
 			continue;
 		}
@@ -146,10 +153,12 @@ void Launcher::playGame(Monopoly* monopoly)
 
 		try
 		{
+			//system("cls");
 			command->execute(monopoly);
 		}
 		catch (const std::exception& excp)
 		{
+			//system("cls");
 			std::cout << excp.what() << '\n';
 		}
 	}

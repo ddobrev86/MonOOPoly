@@ -12,6 +12,7 @@ public:
 	CardDeck() = default;
 
 	void addCard(const SharedPtr<Card>& card);
+	void addCard(SharedPtr<Card>&& card);
 	const SharedPtr<Card>& drawCard();
 };
 

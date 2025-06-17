@@ -5,8 +5,8 @@ class Launcher
 {
 public:
 	static void run();
-	static void startGame(Monopoly* monopoly);
-	static void createElements(Monopoly* monopoly);
+	static void startGame(Monopoly* monopoly, bool& isDefault);
+	static void createElements(Monopoly* monopoly, bool isDefault);
 	static void playGame(Monopoly* monopoly);
 };
 

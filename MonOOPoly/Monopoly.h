@@ -8,6 +8,8 @@
 #include "utilities.h"
 #include "CardField.h"
 #include "CardDeck.h"
+#include "MovePositionCard.h"
+#include "PaymentCard.h"
 
 class Monopoly
 {
@@ -30,7 +32,8 @@ public:
 	static Monopoly* getInstance();
 
 	static void printGameTypeOptions();
-	static void printCreateElementsCommands();
+	static void printDefaultCreateElementsCommands();
+	static void printManualCreateElementsCommands();
 
 	void loadDefualtGame();
 	bool canStartGame() const;
@@ -70,10 +73,13 @@ public:
 
 	void addCardField();
 
+	void addMoveCard(unsigned positions);
+	void addPaymentCard(int value);
+
 	size_t getPlayerCount() const;
 
 	void printPlayersTurnMessage();
-	void fieldActionUntilSuccess(SharedPtr<Field>& currentField);
+	//void fieldActionUntilSuccess(SharedPtr<Field>& currentField);
 	
 	void actPlayerThrowDiceCommand();
 	void actBuyMortgageCommand();

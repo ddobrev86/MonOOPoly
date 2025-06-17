@@ -12,7 +12,7 @@ void GoToJail::printLandingMessage() const
 
 void GoToJail::printFieldInfo() const
 {
-    std::cout << "Go to Jail";
+    std::cout << "Go to Jail\n";
 }
 
 bool GoToJail::action(SharedPtr<Player>& player)

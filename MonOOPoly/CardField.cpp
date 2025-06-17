@@ -21,5 +21,5 @@ bool CardField::action(SharedPtr<Player>& player)
 
 void CardField::printFieldInfo() const
 {
-	std::cout << "Card Field";
+	std::cout << "Card Field\n";
 }

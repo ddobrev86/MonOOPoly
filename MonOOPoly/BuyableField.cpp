@@ -47,6 +47,7 @@ bool BuyableField::action(SharedPtr<Player>& player)
 		std::cout << "\nDo you want to buy this property?(y|n): ";
 		if (InputProcessor::askYesOrNo() == 'y')
 			buy(player);
+		system("cls");
 	}
 	else
 	{
@@ -93,10 +94,11 @@ void BuyableField::printLandingMessage() const
 
 void BuyableField::printFieldInfo() const
 {
+	if (owner.isInitalized())
+		setColor(owner->getColor());
 	std::cout << name;
-	/*if (owner.isInitalized())
-		std::cout << " -> " << owner->getUsername();*/
-	std::cout << '\n';
+
+	resetColor();
 }
 
 //void BuyableField::printFieldInfo() const

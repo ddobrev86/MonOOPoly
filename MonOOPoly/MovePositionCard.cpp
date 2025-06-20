@@ -10,10 +10,11 @@ MovePositionCard::MovePositionCard(int positionsToMove, size_t boardSize)
 void MovePositionCard::printCardInfo() const
 {
 	std::cout << "You drew a Movement Card\n";
-	std::cout << "Move with " << absoluteValue(positionsToMove) << " positions " << (positionsToMove > 0 ? "forwards" : "backwards") << '\n';
+	std::cout << "Move with " << absoluteValue(positionsToMove) << " positions " << (positionsToMove > 0 ? "forwards" : "backwards") << "\n\n";
 }
 
-void MovePositionCard::applyEffect(SharedPtr<Player>& player) const
+bool MovePositionCard::applyEffect(SharedPtr<Player>& player) const
 {
 	player->moveWith(positionsToMove, boardSize);
+	return false;
 }

@@ -12,6 +12,8 @@ Station::Station(const MyString& name,
 
 void Station::buy(SharedPtr<Player>&player)
 {
+	BuyableField::buy(player);
+
 	if (!ownersipMap.containsKey(player))
 		ownersipMap.addPair(MyPair<SharedPtr<Player>, size_t>(player, 0));
 

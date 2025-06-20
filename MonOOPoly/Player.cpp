@@ -2,12 +2,16 @@
 #include "utilities.h"
 #include "Bank.h"
 
+int Player::nextColor = 31;
+
 Player::Player(const MyString& username)
 {
     this->username = username;
     balance = 0;
     currentPos = 0;
     inJail = false;
+
+    color = (Colors)(nextColor++);
 }
 
 bool Player::compareUsername(const MyString& username)
@@ -107,4 +111,9 @@ void Player::getOutOfJail()
 size_t Player::getRemainingToRansom() const
 {
     return remainingToRansom;
+}
+
+int Player::getColor() const
+{
+    return (int)color;
 }

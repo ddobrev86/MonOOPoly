@@ -14,13 +14,13 @@ bool CardField::action(SharedPtr<Player>& player)
 {
 	SharedPtr<Card> drawnCard = deck->drawCard();
 	drawnCard->printCardInfo();
-	drawnCard->applyEffect(player);
+	bool canContinue = drawnCard->applyEffect(player);
 	deck->addCard(drawnCard);
 
-	return true;
+	return canContinue;
 }
 
 void CardField::printFieldInfo() const
 {
-	std::cout << "Card Field\n";
+	std::cout << "Card Field";
 }

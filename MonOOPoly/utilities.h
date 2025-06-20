@@ -6,6 +6,10 @@ char digitToChar(unsigned digit);
 void reverse(char* str, size_t size);
 unsigned absoluteValue(int num);
 
+void setColor(int textColor);
+
+void resetColor();
+
 namespace GameConstants
 {
 	const size_t MAX_PLAYER_COUNT = 6;

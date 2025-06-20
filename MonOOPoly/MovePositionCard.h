@@ -10,6 +10,6 @@ public:
 	MovePositionCard(int positionsToMove, size_t boardSize);
 
 	void printCardInfo() const override;
-	void applyEffect(SharedPtr<Player>& player) const override;
+	bool applyEffect(SharedPtr<Player>& player) const override;
 };
 

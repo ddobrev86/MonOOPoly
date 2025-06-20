@@ -12,11 +12,11 @@ void Start::printLandingMessage() const
 
 void Start::printFieldInfo() const
 {
-    std::cout << "Start\n";
+    std::cout << "Start";
 }
 
 bool Start::action(SharedPtr<Player>& player)
 {
-    Bank::giveTo(player, 200);
+    Bank::landOnStart(player);
     return true;
 }

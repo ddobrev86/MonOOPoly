@@ -76,66 +76,88 @@ void Monopoly::printManualCreateElementsCommands()
 
 void Monopoly::loadDefualtGame()
 {
-	FieldFamily* browns = new PropertyFamily("Brown", 50, 50);
-	FieldFamily* lightBlues = new PropertyFamily("Light Blue", 50, 50);
-	FieldFamily* pinks = new PropertyFamily("Pink", 100, 100);
-	FieldFamily* oranges = new PropertyFamily("Orange", 100, 100);
-	FieldFamily* reds = new PropertyFamily("Red", 150, 150);
-	FieldFamily* yellows = new PropertyFamily("Yellow", 150, 150);
-	FieldFamily* greens = new PropertyFamily("Green", 200, 200);
-	FieldFamily* darkBlues = new PropertyFamily("Dark Blue", 200, 200);
-	FieldFamily* stations = new FieldFamily("Stations");
-	FieldFamily* facilities = new FieldFamily("Facilities");
+	addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily("Brown", 50, 50)));
+	addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily("Light Blue", 50, 50)));
+	addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily("Pink", 100, 100)));
+	addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily("Orange", 100, 100)));
+	addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily("Red", 150, 150)));
+	addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily("Yellow", 150, 150)));
+	addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily("Green", 200, 200)));
+	addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily("Dark Blue", 200, 200)));
+	addFieldFamily(SharedPtr<FieldFamily>(new FieldFamily("Stations")));
+	addFieldFamily(SharedPtr<FieldFamily>(new FieldFamily("Facilities")));
+	hasFacilities = true;
+	hasStations = true;
 
-	browns->addField(SharedPtr<BuyableField>(new Property("Old Kent Road", 60, 80)));
-	browns->addField(SharedPtr<BuyableField>(new Property("Whitechapel Road", 60, 100)));
+	addProperty("Brown", "Old Kent Road", 60, 80);
+	addCardField();
+	addProperty("Brown", "Whitechapel Road", 60, 100);
+	addCardField();
 
-	lightBlues->addField(SharedPtr<BuyableField>(new Property("The Angel, Islington", 100, 100)));
-	lightBlues->addField(SharedPtr<BuyableField>(new Property("Euston Road", 100, 100)));
-	lightBlues->addField(SharedPtr<BuyableField>(new Property("Pentonville Road", 120, 120)));
+	addStation("Kings Cross Station", 200, 25);
 
-	pinks->addField(SharedPtr<BuyableField>(new Property("Pall Mall", 140, 120)));
-	pinks->addField(SharedPtr<BuyableField>(new Property("Whitehall", 140, 120)));
-	pinks->addField(SharedPtr<BuyableField>(new Property("Northumberland Avenue", 160, 140)));
+	addProperty("Light Blue", "The Angel, Islington", 100, 100);
+	addCardField();
+	addProperty("Light Blue", "Euston Road", 100, 100);
+	addProperty("Light Blue", "Pentonville Road", 120, 120);
 
-	oranges->addField(SharedPtr<BuyableField>(new Property("Bow Street", 180, 140)));
-	oranges->addField(SharedPtr<BuyableField>(new Property("Marlborough Street", 180, 140)));
-	oranges->addField(SharedPtr<BuyableField>(new Property("Vine Street", 200, 160)));
+	addProperty("Pink", "Pentonville Road", 120, 120);
+	addFacility("Electric Company", 150);
+	addProperty("Pink", "Pentonville Road", 120, 120);
+	addProperty("Pink", "Pentonville Road", 120, 120);
 
-	reds->addField(SharedPtr<BuyableField>(new Property("Strand", 220, 160)));
-	reds->addField(SharedPtr<BuyableField>(new Property("Fleet Street", 220, 160)));
-	reds->addField(SharedPtr<BuyableField>(new Property("Trafalgar Square", 240, 180)));
+	addStation("Marylebone Station", 200, 25);
 
-	yellows->addField(SharedPtr<BuyableField>(new Property("Leicester Square", 260, 180)));
-	yellows->addField(SharedPtr<BuyableField>(new Property("Coventry Street", 260, 180)));
-	yellows->addField(SharedPtr<BuyableField>(new Property("Piccadilly", 280, 200)));
+	addProperty("Orange", "Bow Street", 180, 140);
+	addCardField();
+	addProperty("Orange", "Marlborough Street", 180, 140);
+	addProperty("Orange", "Vine Street", 200, 160);
 
-	greens->addField(SharedPtr<BuyableField>(new Property("Regent Street", 300, 200)));
-	greens->addField(SharedPtr<BuyableField>(new Property("Oxford Street", 300, 200)));
-	greens->addField(SharedPtr<BuyableField>(new Property("Bond Street", 320, 220)));
+	addProperty("Red", "Strand", 220, 160);
+	addCardField();
+	addProperty("Red", "Fleet Street", 220, 160);
+	addProperty("Red", "Trafalgar Square", 240, 180);
 
-	darkBlues->addField(SharedPtr<BuyableField>(new Property("Park Lane", 350, 250)));
-	darkBlues->addField(SharedPtr<BuyableField>(new Property("Mayfair", 400, 300)));
+	addStation("Fenchurch St. Station", 200, 25);
 
-	stations->addField(SharedPtr<BuyableField>(new Station("Kings Cross Station", 200, 25)));
-	stations->addField(SharedPtr<BuyableField>(new Station("Marylebone Station", 200, 25)));
-	stations->addField(SharedPtr<BuyableField>(new Station("Fenchurch St. Station", 200, 25)));
-	stations->addField(SharedPtr<BuyableField>(new Station("Liverpool Street Station", 200, 25)));
+	addProperty("Yellow", "Leicester Square", 260, 180);
+	addFacility("Water Works", 150);
+	addProperty("Yellow", "Coventry Street", 260, 180);
+	addProperty("Yellow", "Piccadilly", 280, 200);
 
-	facilities->addField(SharedPtr<BuyableField>(new Facility("Electric Company", 150)));
-	facilities->addField(SharedPtr<BuyableField>(new Facility("Water Works", 150)));
+	addProperty("Green", "Regent Street", 300, 200);
+	addCardField();
+	addProperty("Green", "Oxford Street", 300, 200);
+	addProperty("Green", "Bond Street", 320, 220);
 
-	addFieldFamily(SharedPtr<FieldFamily>(browns));
-	addFieldFamily(SharedPtr<FieldFamily>(lightBlues));
-	addFieldFamily(SharedPtr<FieldFamily>(pinks));
-	addFieldFamily(SharedPtr<FieldFamily>(oranges));
-	addFieldFamily(SharedPtr<FieldFamily>(reds));
-	addFieldFamily(SharedPtr<FieldFamily>(yellows));
-	addFieldFamily(SharedPtr<FieldFamily>(greens));
-	addFieldFamily(SharedPtr<FieldFamily>(darkBlues));
-	addFieldFamily(SharedPtr<FieldFamily>(stations));
-	addFieldFamily(SharedPtr<FieldFamily>(facilities));
-	addCardFields(8);
+	addStation("Liverpool Street Station", 200, 25);
+
+	addCardField();
+	addProperty("Dark Blue", "Park Lane", 350, 250);
+	addCardField();
+	addProperty("Dark Blue", "Mayfair", 400, 300);
+	//FieldFamily* browns = new PropertyFamily("Brown", 50, 50);
+	//FieldFamily* lightBlues = new PropertyFamily("Light Blue", 50, 50);
+	//FieldFamily* pinks = new PropertyFamily("Pink", 100, 100);
+	//FieldFamily* oranges = new PropertyFamily("Orange", 100, 100);
+	//FieldFamily* reds = new PropertyFamily("Red", 150, 150);
+	//FieldFamily* yellows = new PropertyFamily("Yellow", 150, 150);
+	//FieldFamily* greens = new PropertyFamily("Green", 200, 200);
+	//FieldFamily* darkBlues = new PropertyFamily("Dark Blue", 200, 200);
+	//FieldFamily* stations = new FieldFamily("Stations");
+	//FieldFamily* facilities = new FieldFamily("Facilities");
+
+	//addFieldFamily(SharedPtr<FieldFamily>(browns));
+	//addFieldFamily(SharedPtr<FieldFamily>(lightBlues));
+	//addFieldFamily(SharedPtr<FieldFamily>(pinks));
+	//addFieldFamily(SharedPtr<FieldFamily>(oranges));
+	//addFieldFamily(SharedPtr<FieldFamily>(reds));
+	//addFieldFamily(SharedPtr<FieldFamily>(yellows));
+	//addFieldFamily(SharedPtr<FieldFamily>(greens));
+	//addFieldFamily(SharedPtr<FieldFamily>(darkBlues));
+	//addFieldFamily(SharedPtr<FieldFamily>(stations));
+	//addFieldFamily(SharedPtr<FieldFamily>(facilities));
+	//addCardFields(8);
 }
 
 bool Monopoly::canStartGame() const
@@ -157,14 +179,14 @@ void Monopoly::startGame()
 		throw std::runtime_error(message.c_str());
 	}
 
-	randomiseBoard();
+	//randomiseBoard();
 	//printBoard();
 	Bank::giveInitialBalance(players);
 }
 
 void Monopoly::printBoard() const
 {
-	board->printBoard();
+	board->printBoard(players);
 }
 
 void Monopoly::randomiseBoard()
@@ -372,27 +394,27 @@ void Monopoly::actPlayerThrowDiceCommand()
 	movePlayer();
 
 	SharedPtr<Field>& currentField = (*board)[players[currentPlayer]->getPosition()];
-	currentField->printLandingMessage();
-	currentField->action(players[currentPlayer]);
-	//fieldActionUntilSuccess(currentField);
+	//currentField->action(players[currentPlayer]);
+	fieldActionUntilSuccess(currentField);
 
 	currentPlayer++;
 	currentPlayer %= playerCount;
 }
 
-//void Monopoly::fieldActionUntilSuccess(SharedPtr<Field>& currentField)
-//{
-//	do
-//	{
-//		bool success = currentField->action(players[currentPlayer]);
-//		players[currentPlayer]->moveWith(0, board->getTotalSize());
-//		if (success)
-//			break;
-//
-//		currentField = board->operator[](players[currentPlayer]->getPosition());
-//
-//	} while (true);
-//}
+void Monopoly::fieldActionUntilSuccess(SharedPtr<Field>& currentField)
+{
+	do
+	{
+		currentField->printLandingMessage();
+		bool canContinue = currentField->action(players[currentPlayer]);
+		//players[currentPlayer]->moveWith(0, board->getTotalSize());
+		if (canContinue)
+			break;
+
+		currentField = (*board)[players[currentPlayer]->getPosition()];
+
+	} while (true);
+}
 
 size_t Monopoly::throwDice() const
 {

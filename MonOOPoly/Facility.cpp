@@ -24,6 +24,8 @@ bool Facility::action(SharedPtr<Player>& player)
 		std::cout << "Do you want to buy this property?(y|n): ";
 		if (InputProcessor::askYesOrNo() == 'y')
 			buy(player);
+
+		system("cls");
 	}
 	else
 	{

@@ -15,10 +15,12 @@ void PaymentCard::printCardInfo() const
 		std::cout << "You get " << balanceChange;
 }
 
-void PaymentCard::applyEffect(SharedPtr<Player>& player) const
+bool PaymentCard::applyEffect(SharedPtr<Player>& player) const
 {
 	if (balanceChange < 0)
 		Bank::getFrom(player, -balanceChange);
 	else
 		Bank::giveTo(player, balanceChange);
+
+	return true;
 }

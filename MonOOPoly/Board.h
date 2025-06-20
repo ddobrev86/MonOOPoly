@@ -37,6 +37,7 @@ public:
 	const SharedPtr<Field>& operator[](size_t index) const;
 
 	void printBoard() const;
+	void printBoard(const MyVector<SharedPtr<Player>>& players) const;
 
 	void switchFields(size_t firstIndex, size_t secondIndex);
 

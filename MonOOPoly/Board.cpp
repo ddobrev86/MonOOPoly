@@ -28,7 +28,7 @@ void Board::setUpCorners()
 	data.insertAt(0, SharedPtr<Field>(new Start()));
 	data.insertAt(size - 1, SharedPtr<Field>(new Jail()));
 	data.insertAt((size - 1) * 2, SharedPtr<Field>(new FreeParking()));
-	data.insertAt((size - 1) * 3, SharedPtr<Field>(new GoToJail(size)));
+	data.insertAt((size - 1) * 3, SharedPtr<Field>(new GoToJail(size - 1)));
 }
 
 bool Board::canAddCorners() const
@@ -102,6 +102,25 @@ void Board::printBoard() const
 	for (size_t i = 0; i < data.getSize(); i++)
 	{
 		data[i]->printFieldInfo();
+		std::cout << '\n';
+	}
+
+	std::cout << "\n----------\n\n";
+}
+
+void Board::printBoard(const MyVector<SharedPtr<Player>>& players) const
+{
+	std::cout << "\n----------\n\n";
+
+	for (size_t i = 0; i < data.getSize(); i++)
+	{
+		data[i]->printFieldInfo();
+		for (size_t k = 0; k < players.getSize(); k++)
+		{
+			if (players[k]->getPosition() == i)
+				std::cout << '\t' << players[k]->getUsername();
+		}
+		std::cout << '\n';
 	}
 
 	std::cout << "\n----------\n\n";

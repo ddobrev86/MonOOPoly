@@ -3,14 +3,27 @@
 #include "UniquePtr.hpp"
 #include "SharedPtr.hpp"
 
+enum class Colors
+{
+	RED = 31,
+	Green,
+	Yellow,
+	Blue,	
+	Magenta,
+	White = 37
+};
+
 class Player
 {
 private:
+	static int nextColor;
+
 	MyString username;
 	unsigned balance;
 	size_t currentPos;
 	bool inJail;
 	size_t remainingToRansom;
+	Colors color;
 
 public:
 	Player(const MyString& username);
@@ -38,5 +51,7 @@ public:
 	void getOutOfJail();
 
 	size_t getRemainingToRansom() const;
+	
+	int getColor() const;
 };
 

@@ -1,6 +1,16 @@
 #include "utilities.h"
 #include <iostream>
 
+void setColor(int textColor)
+{
+	std::cout << "\033[" << textColor << "m";
+}
+
+void resetColor() 
+{ 
+	std::cout << "\033[0m"; 
+}
+
 unsigned twoToPower(unsigned power)
 {
 	unsigned result = 1;

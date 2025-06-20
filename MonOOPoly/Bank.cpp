@@ -16,12 +16,26 @@ void Bank::giveTo(SharedPtr<Player>& player, unsigned sum)
 	player->addToBalance(sum);
 }
 
-void Bank::goTroughStart(SharedPtr<Player>& player)
+void Bank::landOnStart(SharedPtr<Player>& player)
 {
 	giveTo(player, 200);
 }
 
-void Bank::goTroughStart(Player* player)
+void Bank::landOnStart(Player* player)
 {
 	player->addToBalance(200);
+}
+
+void Bank::goTroughStart(SharedPtr<Player>& player)
+{
+	std::cout << "You have gone over Start\n";
+	std::cout << "You receive $200";
+	landOnStart(player);
+}
+
+void Bank::goTroughStart(Player* player)
+{
+	std::cout << "You have gone over Start\n";
+	std::cout << "You receive $200";
+	landOnStart(player);
 }

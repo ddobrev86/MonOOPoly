@@ -79,7 +79,7 @@ public:
 	size_t getPlayerCount() const;
 
 	void printPlayersTurnMessage();
-	//void fieldActionUntilSuccess(SharedPtr<Field>& currentField);
+	void fieldActionUntilSuccess(SharedPtr<Field>& currentField);
 	
 	void actPlayerThrowDiceCommand();
 	void actBuyMortgageCommand();

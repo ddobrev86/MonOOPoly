@@ -4,11 +4,12 @@
 class MovePositionCard : public Card
 {
 private:
-	size_t positionsToMove;
+	int positionsToMove;
 	size_t boardSize;
 public:
-	MovePositionCard(size_t positionsToMove, size_t boardSize);
+	MovePositionCard(int positionsToMove, size_t boardSize);
 
+	void printCardInfo() const override;
 	void applyEffect(SharedPtr<Player>& player) const override;
 };
 

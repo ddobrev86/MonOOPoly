@@ -97,10 +97,14 @@ SharedPtr<Field>& Board::operator[](size_t index)
 
 void Board::printBoard() const
 {
+	std::cout << "\n----------\n\n";
+
 	for (size_t i = 0; i < data.getSize(); i++)
 	{
 		data[i]->printFieldInfo();
 	}
+
+	std::cout << "\n----------\n\n";
 }
 
 void Board::switchFields(size_t firstIndex, size_t secondIndex)

@@ -8,6 +8,7 @@ private:
 public:
 	PaymentCard(int balanceChange);
 
+	void printCardInfo() const override;
 	void applyEffect(SharedPtr<Player>& player) const override;
 };
 

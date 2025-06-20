@@ -93,7 +93,10 @@ void BuyableField::printLandingMessage() const
 
 void BuyableField::printFieldInfo() const
 {
-	std::cout << name << '\n';
+	std::cout << name;
+	/*if (owner.isInitalized())
+		std::cout << " -> " << owner->getUsername();*/
+	std::cout << '\n';
 }
 
 //void BuyableField::printFieldInfo() const

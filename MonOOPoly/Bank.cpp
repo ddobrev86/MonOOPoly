@@ -15,3 +15,13 @@ void Bank::giveTo(SharedPtr<Player>& player, unsigned sum)
 {
 	player->addToBalance(sum);
 }
+
+void Bank::goTroughStart(SharedPtr<Player>& player)
+{
+	giveTo(player, 200);
+}
+
+void Bank::goTroughStart(Player* player)
+{
+	player->addToBalance(200);
+}

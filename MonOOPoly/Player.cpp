@@ -1,4 +1,6 @@
 #include "Player.h"
+#include "utilities.h"
+#include "Bank.h"
 
 Player::Player(const MyString& username)
 {
@@ -33,10 +35,21 @@ void Player::moveTo(size_t newPos)
     currentPos = newPos;
 }
 
-void Player::moveWith(size_t positions, size_t boardSize)
+void Player::moveWith(int positions, size_t boardSize)
 {
+    if(positions < 0 && currentPos - positions > boardSize)
+    { 
+        currentPos = boardSize + currentPos + positions;
+        return;
+    }
+
     currentPos += positions;
-    currentPos %= boardSize;
+
+    if (currentPos > boardSize)
+    {
+        Bank::goTroughStart(this);
+        currentPos %= boardSize;
+    }
 }
 
 void Player::addToBalance(size_t balanceChange)

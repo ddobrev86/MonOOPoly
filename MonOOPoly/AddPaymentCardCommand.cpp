@@ -6,6 +6,8 @@ void AddPaymentCardCommand::execute(Monopoly* monopoly) const
     std::cin >> value;
 
     monopoly->addPaymentCard(value);
+
+    system("cls");
     std::cout << "Payment Card added successfully\n";
 }
 

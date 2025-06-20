@@ -12,5 +12,8 @@ public:
 
 	static void getFrom(SharedPtr<Player>& player, unsigned sum);
 	static void giveTo(SharedPtr<Player>& player, unsigned sum);
+
+	static void goTroughStart(SharedPtr<Player>& player);
+	static void goTroughStart(Player* player);
 };
 

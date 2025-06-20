@@ -35,3 +35,8 @@ void reverse(char* str, size_t size)
 	for (size_t i = 0; i < end; i++)
 		std::swap(str[i], str[size - i - 1]);
 }
+
+unsigned absoluteValue(int num)
+{
+	return (num > 0 ? num : -num);
+}

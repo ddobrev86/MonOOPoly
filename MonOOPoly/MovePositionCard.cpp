@@ -1,9 +1,16 @@
 #include "MovePositionCard.h"
+#include "utilities.h"
 
-MovePositionCard::MovePositionCard(size_t positionsToMove, size_t boardSize)
+MovePositionCard::MovePositionCard(int positionsToMove, size_t boardSize)
 {
 	this->positionsToMove = positionsToMove;
 	this->boardSize = boardSize;
+}
+
+void MovePositionCard::printCardInfo() const
+{
+	std::cout << "You drew a Movement Card\n";
+	std::cout << "Move with " << absoluteValue(positionsToMove) << " positions " << (positionsToMove > 0 ? "forwards" : "backwards") << '\n';
 }
 
 void MovePositionCard::applyEffect(SharedPtr<Player>& player) const

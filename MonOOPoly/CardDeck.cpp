@@ -18,3 +18,8 @@ const SharedPtr<Card>& CardDeck::drawCard()
 
 	return cardToReturn;
 }
+
+bool CardDeck::isEmpty() const
+{
+	return cards.isEmpty();
+}

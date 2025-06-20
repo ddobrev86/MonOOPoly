@@ -6,6 +6,8 @@ void AddMoveCardCommand::execute(Monopoly* monopoly) const
     std::cin >> positions;
 
     monopoly->addMoveCard(positions);
+
+    system("cls");
     std::cout << "Movement Card added successfully\n";
 }
 

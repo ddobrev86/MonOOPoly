@@ -55,7 +55,10 @@ void Monopoly::printGameTypeOptions()
 
 void Monopoly::printDefaultCreateElementsCommands()
 {
-	std::cout << "To add player -> add_player <username>\n";
+	std::cout << "Choose option: \n";
+	std::cout << "\t1. Add player -> add_player <username>\n";
+	std::cout << "\t2. Add movement card-> add_movement_card <positions_to_move>\n";
+	std::cout << "\t3. Add payment card -> add_payment_card <value>\n";
 	std::cout << "\nWhen ready, type start\n";
 }
 
@@ -137,7 +140,7 @@ void Monopoly::loadDefualtGame()
 
 bool Monopoly::canStartGame() const
 {
-	return players.getSize() == playerCount && board->isBoardFull();
+	return players.getSize() == playerCount && board->isBoardFull() && !deck->isEmpty();
 }
 
 void Monopoly::startGame()
@@ -146,9 +149,11 @@ void Monopoly::startGame()
 	{
 		MyString message = " You have ";
 		message += MyString(playerCount - players.getSize());
-		message += " missing players and ";
+		message += " missing players, ";
 		message += MyString(board->getMissingFields());
-		message += " missing fields";
+		message += " missing fields and ";
+		message += MyString(deck->isEmpty());
+		message += " missing cards";
 		throw std::runtime_error(message.c_str());
 	}
 
@@ -341,7 +346,7 @@ void Monopoly::printPlayersTurnMessage()
 {
 	//system("cls");
 	printBoard();
-	std::cout << "\n----------\n\n";
+	//std::cout << "\n----------\n\n";
 
 	std::cout << "Player " << players[currentPlayer]->getUsername() << "\'s turn\n";
 	

@@ -41,7 +41,7 @@ void Player::moveTo(size_t newPos)
 
 void Player::moveWith(int positions, size_t boardSize)
 {
-    if(positions < 0 && currentPos - positions > boardSize)
+    if(positions < 0 && currentPos + positions < 0)
     { 
         currentPos = boardSize + currentPos + positions;
         return;
@@ -49,10 +49,11 @@ void Player::moveWith(int positions, size_t boardSize)
 
     currentPos += positions;
 
-    if (currentPos > boardSize)
+    if (currentPos >= boardSize)
     {
-        Bank::goTroughStart(this);
         currentPos %= boardSize;
+        if(currentPos != 0)
+            Bank::goTroughStart(this);
     }
 }
 

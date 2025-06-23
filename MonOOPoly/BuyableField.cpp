@@ -55,7 +55,15 @@ bool BuyableField::action(SharedPtr<Player>& player)
 		{
 			Bank::getFrom(player, calculateTotalRent());
 			std::cout << "You have been taxed\n";
+			system("pause");
+			system("cls");
 			//TODO add warning when exceeding balance
+		}
+		else
+		{
+			std::cout << "You are the owner\n";
+			system("pause");
+			system("cls");
 		}
 	}
 

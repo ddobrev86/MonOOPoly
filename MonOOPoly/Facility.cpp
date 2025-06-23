@@ -4,7 +4,7 @@
 Facility::Facility(const MyString& name, 
     unsigned price) : SpecialField(name, price, 0)
 {
-    multiplier = 1;
+    multiplier = 0;
 }
 
 unsigned Facility::calculateTotalRent() const
@@ -31,7 +31,7 @@ bool Facility::action(SharedPtr<Player>& player)
 	{
 		if (!belongsToPlayer(player))
 		{
-			std::cout << "You have to give " << ++multiplier * 5 << "% of your balance";
+			std::cout << "You have to give " << ++multiplier * 5 << "% of your balance\n";
 			player->removePercent(multiplier * 0.05);
 			std::cout << "You have been taxed\n";
 			//TODO add warning when exceeding balance

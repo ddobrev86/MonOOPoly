@@ -29,13 +29,13 @@ void Bank::landOnStart(Player* player)
 void Bank::goTroughStart(SharedPtr<Player>& player)
 {
 	std::cout << "You have gone over Start\n";
-	std::cout << "You receive $200";
+	std::cout << "You receive $200\n";
 	landOnStart(player);
 }
 
 void Bank::goTroughStart(Player* player)
 {
 	std::cout << "You have gone over Start\n";
-	std::cout << "You receive $200";
+	std::cout << "You receive $200\n\n";
 	landOnStart(player);
 }

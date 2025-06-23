@@ -39,6 +39,8 @@ public:
 	bool canStartGame() const;
 	void startGame();
 
+	void fillDeckWithCards();
+
 	Monopoly(const Monopoly& other) = delete;
 	Monopoly& operator=(const Monopoly& other) = delete;
 	
@@ -79,7 +81,7 @@ public:
 	size_t getPlayerCount() const;
 
 	void printPlayersTurnMessage();
-	void fieldActionUntilSuccess(SharedPtr<Field>& currentField);
+	void fieldActionUntilSuccess(SharedPtr<Field> currentField);
 	
 	void actPlayerThrowDiceCommand();
 	void actBuyMortgageCommand();

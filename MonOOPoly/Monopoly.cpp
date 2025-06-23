@@ -56,9 +56,9 @@ void Monopoly::printGameTypeOptions()
 void Monopoly::printDefaultCreateElementsCommands()
 {
 	std::cout << "Choose option: \n";
-	std::cout << "\t1. Add player -> add_player <username>\n";
-	std::cout << "\t2. Add movement card-> add_movement_card <positions_to_move>\n";
-	std::cout << "\t3. Add payment card -> add_payment_card <value>\n";
+	std::cout << "Add player -> add_player <username>\n";
+	//std::cout << "\t2. Add movement card-> add_movement_card <positions_to_move>\n";
+	//std::cout << "\t3. Add payment card -> add_payment_card <value>\n";
 	std::cout << "\nWhen ready, type start\n";
 }
 
@@ -84,10 +84,10 @@ void Monopoly::loadDefualtGame()
 	addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily("Yellow", 150, 150)));
 	addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily("Green", 200, 200)));
 	addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily("Dark Blue", 200, 200)));
-	addFieldFamily(SharedPtr<FieldFamily>(new FieldFamily("Stations")));
+	/*addFieldFamily(SharedPtr<FieldFamily>(new FieldFamily("Stations")));
 	addFieldFamily(SharedPtr<FieldFamily>(new FieldFamily("Facilities")));
 	hasFacilities = true;
-	hasStations = true;
+	hasStations = true;*/
 
 	addProperty("Brown", "Old Kent Road", 60, 80);
 	addCardField();
@@ -101,10 +101,10 @@ void Monopoly::loadDefualtGame()
 	addProperty("Light Blue", "Euston Road", 100, 100);
 	addProperty("Light Blue", "Pentonville Road", 120, 120);
 
-	addProperty("Pink", "Pentonville Road", 120, 120);
+	addProperty("Pink", "Pall Mall", 120, 120);
 	addFacility("Electric Company", 150);
-	addProperty("Pink", "Pentonville Road", 120, 120);
-	addProperty("Pink", "Pentonville Road", 120, 120);
+	addProperty("Pink", "Whitehall", 120, 120);
+	addProperty("Pink", "Northumberland Avenue", 140, 140);
 
 	addStation("Marylebone Station", 200, 25);
 
@@ -136,6 +136,8 @@ void Monopoly::loadDefualtGame()
 	addProperty("Dark Blue", "Park Lane", 350, 250);
 	addCardField();
 	addProperty("Dark Blue", "Mayfair", 400, 300);
+
+	fillDeckWithCards();
 	//FieldFamily* browns = new PropertyFamily("Brown", 50, 50);
 	//FieldFamily* lightBlues = new PropertyFamily("Light Blue", 50, 50);
 	//FieldFamily* pinks = new PropertyFamily("Pink", 100, 100);
@@ -182,6 +184,16 @@ void Monopoly::startGame()
 	//randomiseBoard();
 	//printBoard();
 	Bank::giveInitialBalance(players);
+}
+
+void Monopoly::fillDeckWithCards()
+{
+	deck->addCard(SharedPtr<Card>(new MovePositionCard(3, board->getTotalSize())));
+	deck->addCard(SharedPtr<Card>(new PaymentCard(200)));
+	deck->addCard(SharedPtr<Card>(new MovePositionCard(-1, board->getTotalSize())));
+	deck->addCard(SharedPtr<Card>(new MovePositionCard(2, board->getTotalSize())));
+	deck->addCard(SharedPtr<Card>(new PaymentCard(-200)));
+	deck->addCard(SharedPtr<Card>(new PaymentCard(300)));
 }
 
 void Monopoly::printBoard() const
@@ -368,9 +380,13 @@ void Monopoly::printPlayersTurnMessage()
 {
 	//system("cls");
 	printBoard();
-	//std::cout << "\n----------\n\n";
 
-	std::cout << "Player " << players[currentPlayer]->getUsername() << "\'s turn\n";
+	std::cout << "Player";
+	setColor(players[currentPlayer]->getColor());;
+	std::cout << players[currentPlayer]->getUsername();
+	resetColor();
+	std::cout << "\'s turn\n";
+	std::cout << "Balance: " << players[currentPlayer]->getBalance() << '\n';
 	
 	if (players[currentPlayer]->isInJail())
 	{
@@ -378,6 +394,10 @@ void Monopoly::printPlayersTurnMessage()
 		{
 			currentPlayer++;
 			currentPlayer %= playerCount;
+			
+			system("cls");
+			printPlayersTurnMessage();
+			
 			return;
 		}
 	}
@@ -401,7 +421,7 @@ void Monopoly::actPlayerThrowDiceCommand()
 	currentPlayer %= playerCount;
 }
 
-void Monopoly::fieldActionUntilSuccess(SharedPtr<Field>& currentField)
+void Monopoly::fieldActionUntilSuccess(SharedPtr<Field> currentField)
 {
 	do
 	{
@@ -466,7 +486,7 @@ void Monopoly::findValidFamilies(MyVector<SharedPtr<FieldFamily>>& validFamilies
 void Monopoly::printValidFamiliesMessage(const MyVector<SharedPtr<FieldFamily>>& validFamilies) const
 {
 	std::cout << "Choose one of the following properties and the type of mortgage";
-	std::cout << "\nFormat: build <mortgage_type> <property_name>";
+	std::cout << "\nFormat: build <mortgage_type> <property_name>\n";
 	for (size_t i = 0; i < validFamilies.getSize(); i++)
 	{
 		validFamilies[i]->printFamilyInfo();
@@ -588,7 +608,7 @@ SharedPtr<FieldFamily>& Monopoly::findFieldFamily(const MyString& familyName)
 {
 	for (size_t i = 0; i < fieldFamilies.getSize(); i++)
 	{
-		if (fieldFamilies[i]->comapreName(familyName));
+		if (fieldFamilies[i]->comapreName(familyName))
 			return fieldFamilies[i];
 	}
 

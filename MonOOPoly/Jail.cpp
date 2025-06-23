@@ -6,6 +6,8 @@ Jail::Jail() : CornerField()
 void Jail::printLandingMessage() const
 {
     std::cout << "You have landed on Jail\n";
+    system("pause");
+    system("cls");
 }
 
 void Jail::printFieldInfo() const

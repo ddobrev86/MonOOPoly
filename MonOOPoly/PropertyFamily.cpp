@@ -11,13 +11,13 @@ PropertyFamily::PropertyFamily(const MyString& name,
 void PropertyFamily::addField(SharedPtr<BuyableField>& field)
 {
 	field->setUpMortgages(castle, cottage);
-	FieldFamily::addField(field);
+	this->add(field);
 }
 
 void PropertyFamily::addField(SharedPtr<BuyableField>&& field)
 {
 	field->setUpMortgages(castle, cottage);
-	FieldFamily::addField(field);
+	this->add(std::move(field));
 }
 
 void PropertyFamily::printFamilyInfo() const

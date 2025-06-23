@@ -6,6 +6,8 @@ FreeParking::FreeParking() : CornerField()
 void FreeParking::printLandingMessage() const
 {
     std::cout << "You have landed on Free Parking. Enjoy!\n";
+    system("pause");
+    system("cls");
 }
 
 void FreeParking::printFieldInfo() const

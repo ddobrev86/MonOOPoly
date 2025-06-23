@@ -8,6 +8,8 @@ GoToJail::GoToJail(size_t jailPosition) : CornerField()
 void GoToJail::printLandingMessage() const
 {
     std::cout << "You have landed on Go to Jail. Sorry!\n";
+    system("pause");
+    system("cls");
 }
 
 void GoToJail::printFieldInfo() const

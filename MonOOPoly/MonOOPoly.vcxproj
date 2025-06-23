@@ -152,6 +152,7 @@
     <ClCompile Include="BuildCommand.cpp" />
     <ClCompile Include="BuyableField.cpp" />
     <ClCompile Include="BuyMortgageCommand.cpp" />
+    <ClCompile Include="CantAffordException.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="CardDeck.cpp" />
     <ClCompile Include="CardField.cpp" />
@@ -181,6 +182,7 @@
     <ClCompile Include="MyString.cpp" />
     <ClCompile Include="PaymentCard.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PrintOwnershipMapCommand.cpp" />
     <ClCompile Include="Property.cpp" />
     <ClCompile Include="PropertyFamily.cpp" />
     <ClCompile Include="SpecialField.cpp" />
@@ -206,6 +208,7 @@
     <ClInclude Include="BuildCommand.h" />
     <ClInclude Include="BuyableField.h" />
     <ClInclude Include="BuyMortgageCommand.h" />
+    <ClInclude Include="CantAffordException.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="CardDeck.h" />
     <ClInclude Include="CardField.h" />
@@ -240,6 +243,7 @@
     <ClInclude Include="MyVector.hpp" />
     <ClInclude Include="PaymentCard.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PrintOwnershipMapCommand.h" />
     <ClInclude Include="Property.h" />
     <ClInclude Include="PropertyFamily.h" />
     <ClInclude Include="SharedPtr.hpp" />

@@ -31,12 +31,31 @@ bool Facility::action(SharedPtr<Player>& player)
 	{
 		if (!belongsToPlayer(player))
 		{
-			std::cout << "You have to give " << ++multiplier * 5 << "% of your balance\n";
 			player->removePercent(multiplier * 0.05);
-			std::cout << "You have been taxed\n";
+			printTaxingMessage();
+
+			system("pause");
+			system("cls");
 			//TODO add warning when exceeding balance
 		}
 	}
 
 	return true;
+}
+
+void Facility::printLandingMessage() const
+{
+	std::cout << "You have landed on " << name << '\n';
+
+	if (isFree())
+	{
+		std::cout << "No one owns this facility. You can buy it!\n";
+		std::cout << "It costs " << price << '\n';
+	}
+	else
+	{
+		std::cout << "This facility belongs to ";
+		owner->printUsernameInColor();
+		std::cout << "\nYou have to give " << ++multiplier * 5 << "% of your balance\n";
+	}
 }

@@ -1,4 +1,5 @@
 #include "Bank.h"
+#include "CantAffordException.h"
 
 void Bank::giveInitialBalance(MyVector<SharedPtr<Player>>& players)
 {
@@ -6,9 +7,24 @@ void Bank::giveInitialBalance(MyVector<SharedPtr<Player>>& players)
 		players[i]->addToBalance(1500);
 }
 
-void Bank::getFrom(SharedPtr<Player>& player, unsigned sum)
+void Bank::getFrom(SharedPtr<Player>& player, unsigned sum, bool isImportant)
 {
-	player->removeFromBalance(sum);
+	if (isImportant)
+	{
+		try
+		{
+			player->removeFromBalance(sum);
+		}
+		catch (const std::exception& excp)
+		{
+			std::cout << excp.what();
+			throw new CantAffordException("You have to trade");
+		}
+	}
+	else
+	{
+		player->removeFromBalance(sum);
+	}
 }
 
 void Bank::giveTo(SharedPtr<Player>& player, unsigned sum)

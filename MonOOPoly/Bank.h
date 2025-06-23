@@ -10,7 +10,7 @@ private:
 public:
 	static void giveInitialBalance(MyVector<SharedPtr<Player>>& players);
 
-	static void getFrom(SharedPtr<Player>& player, unsigned sum);
+	static void getFrom(SharedPtr<Player>& player, unsigned sum, bool isImportant);
 	static void giveTo(SharedPtr<Player>& player, unsigned sum);
 
 	static void landOnStart(SharedPtr<Player>& player);

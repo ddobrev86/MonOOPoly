@@ -6,11 +6,11 @@
 enum class Colors
 {
 	RED = 31,
-	Green,
-	Yellow,
-	Blue,	
-	Magenta,
-	White = 37
+	GREEN,
+	YELLOW,
+	BLUE,	
+	MAGENTA,
+	CYAN
 };
 
 class Player
@@ -53,5 +53,6 @@ public:
 	size_t getRemainingToRansom() const;
 	
 	int getColor() const;
+	void printUsernameInColor() const;
 };
 

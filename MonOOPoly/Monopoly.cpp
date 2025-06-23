@@ -382,9 +382,7 @@ void Monopoly::printPlayersTurnMessage()
 	printBoard();
 
 	std::cout << "Player";
-	setColor(players[currentPlayer]->getColor());;
-	std::cout << players[currentPlayer]->getUsername();
-	resetColor();
+	players[currentPlayer]->printUsernameInColor();
 	std::cout << "\'s turn\n";
 	std::cout << "Balance: " << players[currentPlayer]->getBalance() << '\n';
 	
@@ -406,6 +404,7 @@ void Monopoly::printPlayersTurnMessage()
 	std::cout << "\t1. throw_dice\n";
 	std::cout << "\t2. buy_mortgage\n";
 	std::cout << "\t3. trade\n";
+	std::cout << "\t4. ownership_map\n";
 }
 
 //throw_dice
@@ -507,6 +506,18 @@ void Monopoly::actBuildCommand(const MyString& propertyName,
 	std::cout << "You successfully built a " << mortgageType;
 }
 
+void Monopoly::printOwnershipMap() const
+{
+	for (size_t i = 0; i < fieldFamilies.getSize(); i++)
+	{
+		fieldFamilies[i]->printFamilyInfo();
+		std::cout << '\n';
+	}
+
+	system("pause");
+	system("cls");
+}
+
 //in Jail
 bool Monopoly::throwPair() const
 {
@@ -523,6 +534,11 @@ bool Monopoly::throwPair() const
 
 bool Monopoly::getPlayerOutOfJail()
 {
+	system("cls");
+	std::cout << "Player";
+	players[currentPlayer]->printUsernameInColor();
+	std::cout << "\'s turn\n";
+
 	std::cout << "You are in jail.\n";
 	if (players[currentPlayer]->getRemainingToRansom())
 	{
@@ -535,24 +551,30 @@ bool Monopoly::getPlayerOutOfJail()
 		std::cout << "Do you want to pay $100 to get out of jail?(y|n): ";
 		if (InputProcessor::askYesOrNo() == 'y')
 		{
-			Bank::getFrom(players[currentPlayer], 100);
+			Bank::getFrom(players[currentPlayer], 100, false);
 			players[currentPlayer]->getOutOfJail();
 			return true;
 		}
 	}
 
+	bool getOut;
 	bool isPair = throwPair();
 	if (!isPair)
 	{
 		std::cout << "You have to stay in jail for one more turn\n";
-		return false;
+		getOut = false;
 	}
 	else
 	{
 		std::cout << "You got out of jail!\n";
 		players[currentPlayer]->getOutOfJail();
-		return true;
+		getOut = true;
 	}
+
+	system("pause");
+	system("cls");
+
+	return getOut;
 }
 
 void Monopoly::tradeBetweenPlayers(const MyString& receiverName, 

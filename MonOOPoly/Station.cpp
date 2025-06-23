@@ -24,12 +24,28 @@ unsigned Station::calculateTotalRent() const
 {
 	if (!ownersipMap.containsKey(owner))
 		return 0;
-
-	multiplier++;
 	return rent * twoToPower(ownersipMap[owner] - 1) * multiplier;
 }
 
 BuyableField* Station::clone() const
 {
 	return new Station(*this);
+}
+
+void Station::printLandingMessage() const
+{
+	multiplier++;
+	std::cout << "You have landed on " << name << '\n';
+
+	if (isFree())
+	{
+		std::cout << "No one owns this station. You can buy it!\n";
+		std::cout << "It costs " << price << '\n';
+	}
+	else
+	{
+		std::cout << "This station belongs to ";
+		owner->printUsernameInColor();
+		std::cout << "\nRent: " << calculateTotalRent() << '\n';
+	}
 }

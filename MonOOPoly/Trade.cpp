@@ -10,7 +10,7 @@ void Trade::sellToPlayer(SharedPtr<Player>& sender,
 
 	if (InputProcessor::askYesOrNo() == 'y')
 	{
-		Bank::getFrom(receiver, sellPrice);
+		Bank::getFrom(receiver, sellPrice, true);
 		Bank::giveTo(sender, sellPrice);
 		field->sell();
 		//field->changeOwner(receiver);

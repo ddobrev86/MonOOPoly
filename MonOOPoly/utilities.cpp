@@ -50,3 +50,10 @@ unsigned absoluteValue(int num)
 {
 	return (num > 0 ? num : -num);
 }
+
+void printTaxingMessage()
+{
+	setColor(90);
+	std::cout << "You have been taxed\n";
+	resetColor();
+}

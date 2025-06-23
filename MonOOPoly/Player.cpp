@@ -118,3 +118,10 @@ int Player::getColor() const
 {
     return (int)color;
 }
+
+void Player::printUsernameInColor() const
+{
+    setColor((int)color);;
+    std::cout << username;
+    resetColor();
+}

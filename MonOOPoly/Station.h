@@ -17,6 +17,8 @@ public:
 
 	unsigned calculateTotalRent() const override;
 	BuyableField* clone() const override;
+
+	void printLandingMessage() const override;
 };
 
 

@@ -21,7 +21,7 @@ void PaymentCard::printCardInfo() const
 bool PaymentCard::applyEffect(SharedPtr<Player>& player) const
 {
 	if (balanceChange < 0)
-		Bank::getFrom(player, -balanceChange);
+		Bank::getFrom(player, -balanceChange, true);
 	else
 		Bank::giveTo(player, balanceChange);
 

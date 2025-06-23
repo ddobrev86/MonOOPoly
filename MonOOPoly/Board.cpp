@@ -120,9 +120,8 @@ void Board::printBoard(const MyVector<SharedPtr<Player>>& players) const
 		{
 			if (players[k]->getPosition() == i)
 			{
-				setColor(players[k]->getColor());
-				std::cout << '\t' << players[k]->getUsername();
-				resetColor();
+				std::cout << '\t';
+				players[k]->printUsernameInColor();
 			}
 		}
 		std::cout << '\n';

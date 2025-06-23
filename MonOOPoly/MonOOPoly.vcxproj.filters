@@ -216,6 +216,12 @@
     <ClCompile Include="AddPaymentCardCommand.cpp">
       <Filter>Commands\GameElementsCommands\Cards</Filter>
     </ClCompile>
+    <ClCompile Include="PrintOwnershipMapCommand.cpp">
+      <Filter>Commands\Game Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="CantAffordException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyQueue.hpp">
@@ -394,6 +400,12 @@
     </ClInclude>
     <ClInclude Include="AddPaymentCardCommand.h">
       <Filter>Commands\GameElementsCommands\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="PrintOwnershipMapCommand.h">
+      <Filter>Commands\Game Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="CantAffordException.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

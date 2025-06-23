@@ -36,7 +36,7 @@ void BuyableField::buy(SharedPtr<Player>& player)
 	if (!player->canAfford(price))
 		throw std::runtime_error("You cannot afford to buy this property");
 
-	Bank::getFrom(player, price);
+	Bank::getFrom(player, price, false);
 	owner = player;
 }
 
@@ -51,10 +51,14 @@ bool BuyableField::action(SharedPtr<Player>& player)
 	}
 	else
 	{
+		unsigned totalRent = calculateTotalRent();
 		if (!belongsToPlayer(player))
 		{
-			Bank::getFrom(player, calculateTotalRent());
-			std::cout << "You have been taxed\n";
+			Bank::getFrom(player, totalRent, true);
+
+			printTaxingMessage();
+
+			Bank::giveTo(owner, totalRent);
 			system("pause");
 			system("cls");
 			//TODO add warning when exceeding balance
@@ -95,8 +99,9 @@ void BuyableField::printLandingMessage() const
 	}
 	else
 	{
-		std::cout << "This property belongs to " << owner->getUsername() << '\n';
-		std::cout << "Rent: " << calculateTotalRent() << '\n';
+		std::cout << "This property belongs to ";
+		owner->printUsernameInColor();
+		std::cout << "\nRent: " << calculateTotalRent() << '\n';
 	}
 }
 

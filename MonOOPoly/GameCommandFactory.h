@@ -1,8 +1,6 @@
 #pragma once
 #include "MyString.h"
-#include "BuildCommand.h"
-#include "ThrowDiceCommand.h"
-#include "BuyMortgageCommand.h"
+#include "Command.h"
 
 class GameCommandFactory
 {

@@ -26,7 +26,7 @@ void BuyableField::sell()
 	owner = nullptr;
 }
 
-void BuyableField::changeOwner(const SharedPtr<Player>& newOwner)
+void BuyableField::sellTo(const SharedPtr<Player>& newOwner)
 {
 	owner = newOwner;
 }
@@ -59,22 +59,21 @@ bool BuyableField::action(SharedPtr<Player>& player)
 			printTaxingMessage();
 
 			Bank::giveTo(owner, totalRent);
-			system("pause");
-			system("cls");
 			//TODO add warning when exceeding balance
 		}
 		else
 		{
 			std::cout << "You are the owner\n";
-			system("pause");
-			system("cls");
 		}
+
+		system("pause");
+		system("cls");
 	}
 
 	return true;
 }
 
-bool BuyableField::belongsToPlayer(const SharedPtr<Player>& player)
+bool BuyableField::belongsToPlayer(const SharedPtr<Player>& player) const
 {
 	if (isFree())
 		return false;
@@ -127,4 +126,9 @@ bool BuyableField::compareName(const MyString& name) const
 const MyString& BuyableField::getName() const
 {
 	return name;
+}
+
+SharedPtr<Player>& BuyableField::getOwner()
+{
+	return owner;
 }

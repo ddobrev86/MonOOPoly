@@ -1,6 +1,6 @@
 #include "AddMoveCardCommand.h"
 
-void AddMoveCardCommand::execute(Monopoly* monopoly) const
+void AddMoveCardCommand::execute(Monopoly* monopoly)
 {
     unsigned positions;
     std::cin >> positions;

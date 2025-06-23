@@ -1,6 +1,6 @@
 #include "AddPaymentCardCommand.h"
 
-void AddPaymentCardCommand::execute(Monopoly* monopoly) const
+void AddPaymentCardCommand::execute(Monopoly* monopoly)
 {
     int value;
     std::cin >> value;

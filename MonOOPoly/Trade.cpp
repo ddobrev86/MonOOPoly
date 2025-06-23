@@ -1,41 +1,43 @@
 #include "Trade.h"
 #include "InputProcessor.h"
 
-void Trade::sellToPlayer(SharedPtr<Player>& sender,
-	SharedPtr<Player>& receiver, SharedPtr<BuyableField>& field)
+void Trade::sellToPlayer(SharedPtr<Player>& receiver, 
+	SharedPtr<BuyableField>& field, int& neededAmount)
 {
 	unsigned sellPrice = field->sellPriceToPlayer();
-	std::cout << field->getName() << " goes for " << sellPrice << '\n';
 	std::cout << receiver->getUsername() << " do you accept this offer(y|n): ";
 
 	if (InputProcessor::askYesOrNo() == 'y')
 	{
-		Bank::getFrom(receiver, sellPrice, true);
-		Bank::giveTo(sender, sellPrice);
-		field->sell();
-		//field->changeOwner(receiver);
+		Bank::getFrom(receiver, sellPrice, false);
+		Bank::giveTo(field->getOwner(), sellPrice);
+		field->sellTo(receiver);
 
+		neededAmount -= sellPrice;
 		return;
 	}
 	
 	throw std::runtime_error("Deal is cancelled");
 }
 
-void Trade::sellToBank(SharedPtr<Player>& sender, SharedPtr<BuyableField>& field)
+void Trade::sellToBank(SharedPtr<BuyableField>& field, int& neededAmount)
 {
 	unsigned sellPrice = field->sellPriceToBank();
 
-	std::cout << field->getName() << " goes for " << sellPrice << '\n';
-	std::cout << sender->getUsername() << " do you accept this offer(y|n): ";
+	//std::cout << field->getName() << " goes for " << sellPrice << '\n';
+	//std::cout << sender->getUsername() << " do you accept this offer(y|n): ";
+
+	Bank::giveTo(field->getOwner(), sellPrice);
+	field->sell();
+	neededAmount -= sellPrice;
+	//field->changeOwner(receiver);
+	/*return;
 
 	if (InputProcessor::askYesOrNo() == 'y')
 	{
-		Bank::giveTo(sender, sellPrice);
-		field->sell();
-		//field->changeOwner(receiver);
-		return;
+		
 	}
 
-	throw std::runtime_error("Deal is cancelled");
+	throw std::runtime_error("Deal is cancelled");*/
 
 }

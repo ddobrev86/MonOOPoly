@@ -33,11 +33,15 @@ bool Facility::action(SharedPtr<Player>& player)
 		{
 			player->removePercent(multiplier * 0.05);
 			printTaxingMessage();
-
-			system("pause");
-			system("cls");
 			//TODO add warning when exceeding balance
 		}
+		else
+		{
+			std::cout << "You are the owner\n";
+		}
+
+		system("pause");
+		system("cls");
 	}
 
 	return true;

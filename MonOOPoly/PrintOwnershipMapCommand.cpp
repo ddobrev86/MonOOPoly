@@ -1,6 +1,6 @@
 #include "PrintOwnershipMapCommand.h"
 
-void PrintOwnershipMapCommand::execute(Monopoly* monopoly) const
+void PrintOwnershipMapCommand::execute(Monopoly* monopoly)
 {
     monopoly->printOwnershipMap();
 }

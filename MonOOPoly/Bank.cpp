@@ -18,7 +18,8 @@ void Bank::getFrom(SharedPtr<Player>& player, unsigned sum, bool isImportant)
 		catch (const std::exception& excp)
 		{
 			std::cout << excp.what();
-			throw new CantAffordException("You have to trade");
+			throw CantAffordException("You have to trade", 
+				sum - player->getBalance());
 		}
 	}
 	else

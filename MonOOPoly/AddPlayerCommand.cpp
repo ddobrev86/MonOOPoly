@@ -1,6 +1,6 @@
 #include "AddPlayerCommand.h"
 
-void AddPlayerCommand::execute(Monopoly* monopoly) const
+void AddPlayerCommand::execute(Monopoly* monopoly)
 {
     MyString username;
     username.readLong();

@@ -1,6 +1,6 @@
 #include "DefualtGameCommand.h"
 
-void DefualtGameCommand::execute(Monopoly* monopoly) const
+void DefualtGameCommand::execute(Monopoly* monopoly)
 {
     unsigned playerCount;
 

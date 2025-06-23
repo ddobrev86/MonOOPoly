@@ -1,6 +1,6 @@
 #include "AddStationCommand.h"
 
-void AddStationCommand::execute(Monopoly* monopoly) const
+void AddStationCommand::execute(Monopoly* monopoly)
 {
     MyString name;
     unsigned price, rent;

@@ -4,6 +4,6 @@
 class AddPropertyCommand : public Command
 {
 public:
-	void execute(Monopoly* monopoly) const override;
+	void execute(Monopoly* monopoly) override;
 	Command* clone() const override;
 };

@@ -8,7 +8,7 @@ private:
 public:
 	BuyMortgageCommand(bool& shouldBuild);
 
-	void execute(Monopoly* monopoly) const override;
+	void execute(Monopoly* monopoly) override;
 	Command* clone() const override;
 };
 

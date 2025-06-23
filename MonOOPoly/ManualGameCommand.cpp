@@ -1,6 +1,6 @@
 #include "ManualGameCommand.h"
 
-void ManualGameCommand::execute(Monopoly* monopoly) const
+void ManualGameCommand::execute(Monopoly* monopoly)
 {
     unsigned playerCount, boardSize;
 

@@ -1,6 +1,6 @@
 #include "AddFacilityCommand.h"
 
-void AddFacilityCommand::execute(Monopoly* monopoly) const
+void AddFacilityCommand::execute(Monopoly* monopoly)
 {
     MyString name;
     unsigned price;

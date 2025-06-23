@@ -18,7 +18,7 @@ public:
 	unsigned sellPriceToBank() const;
 	unsigned sellPriceToPlayer() const;
 	void sell();
-	void changeOwner(const SharedPtr<Player>& newOwner);
+	void sellTo(const SharedPtr<Player>& newOwner);
 
 	virtual void setUpMortgages(const SharedPtr<Mortgage>& castle,
 		const SharedPtr<Mortgage>& cottage) = 0;
@@ -28,7 +28,7 @@ public:
 	virtual void buy(SharedPtr<Player>& player);
 	bool action(SharedPtr<Player>& player) override;
 
-	bool belongsToPlayer(const SharedPtr<Player>& player);
+	bool belongsToPlayer(const SharedPtr<Player>& player) const;
 	bool isFree() const;
 
 	void printLandingMessage() const override;
@@ -37,5 +37,6 @@ public:
 	bool compareName(const MyString& name) const;
 
 	const MyString& getName() const;
+	SharedPtr<Player>& getOwner();
 };
 

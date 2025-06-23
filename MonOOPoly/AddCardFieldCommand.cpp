@@ -1,6 +1,6 @@
 #include "AddCardFieldCommand.h"
 
-void AddCardFieldCommand::execute(Monopoly* monopoly) const
+void AddCardFieldCommand::execute(Monopoly* monopoly)
 {
     monopoly->addCardField();
 

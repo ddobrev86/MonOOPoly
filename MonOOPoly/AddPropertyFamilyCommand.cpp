@@ -1,6 +1,6 @@
 #include "AddPropertyFamilyCommand.h"
 
-void AddPropertyFamilyCommand::execute(Monopoly* monopoly) const
+void AddPropertyFamilyCommand::execute(Monopoly* monopoly)
 {
     MyString name;
     unsigned cottageCost, castleCost;

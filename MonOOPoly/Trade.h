@@ -8,9 +8,9 @@
 class Trade
 {
 public:
-	static void sellToPlayer(SharedPtr<Player>& sender, 
-		SharedPtr<Player>& receiver, SharedPtr<BuyableField>& field);
+	static void sellToPlayer(SharedPtr<Player>& receiver, 
+		SharedPtr<BuyableField>& field, int& neededAmount);
 
-	static void sellToBank(SharedPtr<Player>& sender , SharedPtr<BuyableField>& field);
+	static void sellToBank(SharedPtr<BuyableField>& field, int& neededAmount);
 };
 

@@ -54,5 +54,6 @@ public:
 	
 	int getColor() const;
 	void printUsernameInColor() const;
+	void lowerRansom();
 };
 

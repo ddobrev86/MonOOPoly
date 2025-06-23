@@ -6,6 +6,7 @@
 #include "Facility.h"
 #include "Bank.h"
 #include "Trade.h"
+#include "EndGameException.h"
 
 Monopoly* Monopoly::instance = nullptr;
 
@@ -189,11 +190,11 @@ void Monopoly::startGame()
 void Monopoly::fillDeckWithCards()
 {
 	deck->addCard(SharedPtr<Card>(new MovePositionCard(3, board->getTotalSize())));
-	deck->addCard(SharedPtr<Card>(new PaymentCard(200)));
+	deck->addCard(SharedPtr<Card>(new PaymentCard(-200)));
 	deck->addCard(SharedPtr<Card>(new MovePositionCard(-1, board->getTotalSize())));
 	deck->addCard(SharedPtr<Card>(new MovePositionCard(2, board->getTotalSize())));
 	deck->addCard(SharedPtr<Card>(new PaymentCard(-200)));
-	deck->addCard(SharedPtr<Card>(new PaymentCard(300)));
+	deck->addCard(SharedPtr<Card>(new PaymentCard(-300)));
 }
 
 void Monopoly::printBoard() const
@@ -392,12 +393,11 @@ void Monopoly::printPlayersTurnMessage()
 		{
 			currentPlayer++;
 			currentPlayer %= playerCount;
-			
-			system("cls");
-			printPlayersTurnMessage();
-			
-			return;
 		}
+
+		system("cls");
+		printPlayersTurnMessage();
+		return;
 	}
 
 	std::cout << "Choose action: \n";
@@ -506,6 +506,7 @@ void Monopoly::actBuildCommand(const MyString& propertyName,
 	std::cout << "You successfully built a " << mortgageType;
 }
 
+//ownership map
 void Monopoly::printOwnershipMap() const
 {
 	for (size_t i = 0; i < fieldFamilies.getSize(); i++)
@@ -577,24 +578,24 @@ bool Monopoly::getPlayerOutOfJail()
 	return getOut;
 }
 
+//trade
 void Monopoly::tradeBetweenPlayers(const MyString& receiverName, 
-	const MyString& propertyName)
+	SharedPtr<BuyableField>& field, int& neededAmount)
 {
 	if (players[currentPlayer]->compareUsername(receiverName))
 		throw std::invalid_argument("You can't trade with yourself");
 
-	SharedPtr<BuyableField> field = findBuyableField(fieldFamilies, propertyName);
 	SharedPtr<Player> receiver = findPlayer(receiverName);
-	
-	Trade::sellToPlayer(players[currentPlayer], receiver, field);
+
+	Trade::sellToPlayer(receiver, field, neededAmount);
 }
 
-void Monopoly::tradeWithBank(const MyString& propertyName)
+void Monopoly::tradeWithBank(SharedPtr<BuyableField>& field, int& neededAmount)
 {
-	SharedPtr<BuyableField> field = findBuyableField(fieldFamilies, propertyName);
-	Trade::sellToBank(players[currentPlayer], field);
+	Trade::sellToBank(field, neededAmount);
 }
 
+//find elements
 SharedPtr<BuyableField>& Monopoly::findBuyableField(const MyVector<SharedPtr<FieldFamily>>& families,
 	const MyString& propertyName)
 {
@@ -635,4 +636,43 @@ SharedPtr<FieldFamily>& Monopoly::findFieldFamily(const MyString& familyName)
 	}
 
 	throw std::invalid_argument("There isn't a field family with this name");
+}
+
+void Monopoly::findOwnedFields(MyVector<SharedPtr<BuyableField>>& ownedFields) const
+{
+	for (size_t i = 0; i < fieldFamilies.getSize(); i++)
+	{
+		fieldFamilies[i]->findOwnedFields(ownedFields, players[currentPlayer]);
+	}
+}
+
+void Monopoly::printPlayersThatCanAfford(unsigned amount) const
+{
+	bool atLeastOne = false;
+
+	for (size_t i = 0; i < players.getSize(); i++)
+	{
+		if (i == currentPlayer)
+			continue;
+
+		if (players[i]->canAfford(amount))
+		{
+			atLeastOne = true;
+			std::cout << '\t' << players[i]->getUsername() << '\n';
+		}
+	}
+
+	if (!atLeastOne)
+		std::cout << "No one can afford this!\n";
+}
+
+void Monopoly::playerExitGame()
+{
+	players.removeAt(currentPlayer);
+	playerCount--;
+
+	currentPlayer %= playerCount;
+
+	if (playerCount == 1)
+		throw EndGameException(players[currentPlayer]);
 }

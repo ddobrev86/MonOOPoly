@@ -222,6 +222,12 @@
     <ClCompile Include="CantAffordException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EndGameException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TradingCommandFactory.cpp">
+      <Filter>Commands\Game Commands\TradeCommands</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyQueue.hpp">
@@ -406,6 +412,12 @@
     </ClInclude>
     <ClInclude Include="CantAffordException.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EndGameException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TradingCommandFactory.h">
+      <Filter>Commands\Game Commands\TradeCommands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

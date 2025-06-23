@@ -3,8 +3,14 @@
 
 class TradeWithPlayerCommand : public Command
 {
+private:
+	SharedPtr<BuyableField> fieldToTrade;
+	int& neededAmount;
 public:
-	void execute(Monopoly* monopoly) const override;
+	TradeWithPlayerCommand(const SharedPtr<BuyableField>& fieldToTrade,
+		int& neededAmount);
+
+	void execute(Monopoly* monopoly) override;
 	Command* clone() const override;
 };
 

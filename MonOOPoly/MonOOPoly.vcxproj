@@ -161,6 +161,7 @@
     <ClCompile Include="CornerField.cpp" />
     <ClCompile Include="Cottage.cpp" />
     <ClCompile Include="DefualtGameCommand.cpp" />
+    <ClCompile Include="EndGameException.cpp" />
     <ClCompile Include="Facility.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="FieldFamily.cpp" />
@@ -192,6 +193,7 @@
     <ClCompile Include="Trade.cpp" />
     <ClCompile Include="TradeWithBankCommand.cpp" />
     <ClCompile Include="TradeWithPlayerCommand.cpp" />
+    <ClCompile Include="TradingCommandFactory.cpp" />
     <ClCompile Include="utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +218,7 @@
     <ClInclude Include="Command.h" />
     <ClInclude Include="CornerField.h" />
     <ClInclude Include="DefualtGameCommand.h" />
+    <ClInclude Include="EndGameException.h" />
     <ClInclude Include="Facility.h" />
     <ClInclude Include="FieldFamily.h" />
     <ClInclude Include="FreeParking.h" />
@@ -254,6 +257,7 @@
     <ClInclude Include="Trade.h" />
     <ClInclude Include="TradeWithBankCommand.h" />
     <ClInclude Include="TradeWithPlayerCommand.h" />
+    <ClInclude Include="TradingCommandFactory.h" />
     <ClInclude Include="UniquePtr.hpp" />
     <ClInclude Include="utilities.h" />
   </ItemGroup>

@@ -125,3 +125,9 @@ void Player::printUsernameInColor() const
     std::cout << username;
     resetColor();
 }
+
+void Player::lowerRansom()
+{
+    if (remainingToRansom > 0)
+        remainingToRansom--;
+}

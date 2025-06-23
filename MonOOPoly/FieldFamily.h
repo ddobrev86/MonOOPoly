@@ -26,5 +26,8 @@ public:
 
 	bool comapreName(const SharedPtr<FieldFamily>& other) const;
 	bool comapreName(const MyString& name) const;
+
+	void findOwnedFields(MyVector<SharedPtr<BuyableField>>& ownedFields, 
+		const SharedPtr<Player>& owner) const;
 };
 

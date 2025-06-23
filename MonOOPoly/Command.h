@@ -6,7 +6,7 @@
 class Command
 {
 public:
-	virtual void execute(Monopoly* monopoly) const = 0;
+	virtual void execute(Monopoly* monopoly) = 0;
 	virtual Command* clone() const = 0;
 	virtual ~Command() = default;
 };

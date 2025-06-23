@@ -1,6 +1,6 @@
 #include "ThrowDiceCommand.h"
 
-void ThrowDiceCommand::execute(Monopoly* monopoly) const
+void ThrowDiceCommand::execute(Monopoly* monopoly)
 {
 	monopoly->actPlayerThrowDiceCommand();
 }

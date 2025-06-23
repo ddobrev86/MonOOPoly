@@ -3,10 +3,18 @@
 
 class Launcher
 {
-public:
-	static void run();
+private:
 	static void startGame(Monopoly* monopoly, bool& isDefault);
 	static void createElements(Monopoly* monopoly, bool isDefault);
 	static void playGame(Monopoly* monopoly);
+	static void trade(Monopoly* monopoly, SharedPtr<BuyableField>& fieldToTrade,
+		int& neededAmount);
+
+	static void printFieldsToTradeMessage(const MyVector<SharedPtr<BuyableField>>& ownedFields,
+		int neededAmount);
+	static void obligatoryTrade(Monopoly* monopoly, int neededAmount);
+public:
+	static void run();
+	
 };
 

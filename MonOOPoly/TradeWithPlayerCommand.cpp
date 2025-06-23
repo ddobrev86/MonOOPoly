@@ -1,11 +1,18 @@
 #include "TradeWithPlayerCommand.h"
 
-void TradeWithPlayerCommand::execute(Monopoly* monopoly) const
+TradeWithPlayerCommand::TradeWithPlayerCommand(const SharedPtr<BuyableField>& fieldToTrade,
+    int& neededAmount) : neededAmount(neededAmount)
 {
-    MyString receiverName, propertyName;
-    std::cin >> receiverName >> propertyName;
+    this->fieldToTrade = fieldToTrade;
+    //this->neededAmount = neededAmount;
+}
+
+void TradeWithPlayerCommand::execute(Monopoly* monopoly)
+{
+    MyString receiverName;
+    std::cin >> receiverName;
     
-    monopoly->tradeBetweenPlayers(receiverName, propertyName);
+    monopoly->tradeBetweenPlayers(receiverName, fieldToTrade, neededAmount);
 }
 
 Command* TradeWithPlayerCommand::clone() const

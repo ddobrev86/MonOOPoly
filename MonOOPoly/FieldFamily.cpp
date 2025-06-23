@@ -84,3 +84,13 @@ bool FieldFamily::canBuyMortgages() const
 
 	return true;
 }
+
+void FieldFamily::findOwnedFields(MyVector<SharedPtr<BuyableField>>& ownedFields,
+	const SharedPtr<Player>& owner) const
+{
+	for (size_t i = 0; i < data.getSize(); i++)
+	{
+		if (data[i]->belongsToPlayer(owner))
+			ownedFields.push_back(data[i]);
+	}
+}

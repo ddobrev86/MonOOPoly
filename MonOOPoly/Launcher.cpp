@@ -2,6 +2,9 @@
 #include "GameCommandFactory.h"
 #include "GameElementsCommandFactory.h"
 #include "GameCreationCommandFactory.h"
+#include "CantAffordException.h"
+#include "EndGameException.h"
+#include "TradingCommandFactory.h"
 
 void Launcher::run()
 {
@@ -62,6 +65,9 @@ void Launcher::startGame(Monopoly* monopoly, bool& isDefault)
 		if (!command)
 		{
 			std::cout << "Invalid command\n\n";
+			system("pause");
+			system("cls");
+
 			continue;
 		}
 
@@ -73,6 +79,9 @@ void Launcher::startGame(Monopoly* monopoly, bool& isDefault)
 		catch (const std::exception& excp)
 		{
 			std::cout << excp.what() << "\n\n";
+
+			system("pause");
+			system("cls");
 		}
 	}
 }
@@ -146,6 +155,9 @@ void Launcher::playGame(Monopoly* monopoly)
 		{
 			system("cls");
 			std::cout << "Invalid command\n";
+
+			system("pause");
+			system("cls");
 			continue;
 		}
 
@@ -156,10 +168,117 @@ void Launcher::playGame(Monopoly* monopoly)
 			//system("cls");
 			command->execute(monopoly);
 		}
+		catch(const EndGameException& excp)
+		{
+			std::cout << excp.what();
+			break;
+		}
+		catch (const CantAffordException& excp)
+		{
+			std::cout << excp.what() << '\n';
+			obligatoryTrade(monopoly, excp.getNeededAmount());
+		}
 		catch (const std::exception& excp)
 		{
 			//system("cls");
 			std::cout << excp.what() << '\n';
+
+			system("pause");
+			system("cls");
+		}
+	}
+}
+
+void Launcher::printFieldsToTradeMessage(const MyVector<SharedPtr<BuyableField>>& ownedFields, int neededAmount)
+{
+	std::cout << "You have to get $" << neededAmount << "\nYou own:\n";
+	for (size_t i = 0; i < ownedFields.getSize(); i++)
+	{
+		std::cout << i + 1 << ". " << ownedFields[i]->getName() << '\n';
+		std::cout << "\tPrice to bank: " << ownedFields[i]->sellPriceToBank()
+			<< "\tPrice to player: " << ownedFields[i]->sellPriceToPlayer() << '\n';
+	}
+}
+
+void Launcher::obligatoryTrade(Monopoly* monopoly, int neededAmount)
+{
+	monopoly = Monopoly::getInstance();
+	MyVector<SharedPtr<BuyableField>> ownedFields;
+	size_t fieldPosition;
+
+	monopoly->findOwnedFields(ownedFields);
+
+	while (neededAmount)
+	{
+		if (ownedFields.isEmpty())
+		{
+			std::cout << "You have nothing to sell - you have gone bankrupt!\n";
+			monopoly->playerExitGame();
+			return;
+		}
+
+		printFieldsToTradeMessage(ownedFields, neededAmount);
+
+		std::cout << "Choose which property you want to sell (number): ";
+		std::cin >> fieldPosition;
+		fieldPosition--;
+
+		try
+		{
+			SharedPtr<BuyableField> fieldToSell = ownedFields[fieldPosition];
+			ownedFields.removeAt(fieldPosition);
+			trade(monopoly, fieldToSell, neededAmount);
+		}
+		catch (const std::exception& excp)
+		{
+			system("cls");
+			std::cout << "Type valid number!\n";
+		}
+	}
+}
+
+void Launcher::trade(Monopoly* monopoly, SharedPtr<BuyableField>& fieldToTrade,
+	int& neededAmount)
+{
+	MyString cmd;
+	monopoly = Monopoly::getInstance();
+
+	while (true)
+	{
+		std::cout << "Players that can afford to buy this property:\n";
+		monopoly->printPlayersThatCanAfford(fieldToTrade->sellPriceToPlayer());
+
+		std::cout << "\nChoose option: \n";
+		std::cout << "\ttrade_with_bank\n";
+		std::cout << "\ttrade_with_player <username>\n";
+
+		std::cout << "Enter command: ";
+		std::cin >> cmd;
+
+		Command* command = TradingCommandFactory::createCommand(cmd, fieldToTrade, neededAmount);
+
+		if (!command)
+		{
+			system("cls");
+			std::cout << "Invalid command\n";
+
+			system("pause");
+			system("cls");
+			continue;
+		}
+
+		try
+		{
+			command->execute(monopoly);
+			break;
+		}
+		catch (const std::exception& excp)
+		{
+			system("cls");
+			std::cout << excp.what() << '\n';
+
+			system("pause");
+			system("cls");
 		}
 	}
 }

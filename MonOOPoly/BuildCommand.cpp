@@ -3,7 +3,7 @@
 BuildCommand::BuildCommand(bool& shouldBuild) : shouldBuild(shouldBuild)
 {}
 
-void BuildCommand::execute(Monopoly* monopoly) const
+void BuildCommand::execute(Monopoly* monopoly)
 {
 	MyString propertyName, mortgageType;
 	std::cin >> mortgageType;

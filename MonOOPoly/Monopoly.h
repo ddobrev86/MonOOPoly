@@ -99,13 +99,17 @@ public:
 	bool getPlayerOutOfJail();
 
 	void tradeBetweenPlayers(const MyString& receiverName,
-		const MyString& propertyName);
-	void tradeWithBank(const MyString& propertyName);
+		SharedPtr<BuyableField>& field, int& neededAmount);
+	void tradeWithBank(SharedPtr<BuyableField>& field, int& neededAmount);
 
 	SharedPtr<BuyableField>& findBuyableField(const MyVector<SharedPtr<FieldFamily>>& families,
 		const MyString& propertyName);
 	SharedPtr<Player>& findPlayer(const MyString& playerName);
 
 	SharedPtr<FieldFamily>& findFieldFamily(const MyString& familyName);
+	void findOwnedFields(MyVector<SharedPtr<BuyableField>>& ownedFields) const;
+
+	void playerExitGame();
+	void printPlayersThatCanAfford(unsigned amount) const;
 };
 

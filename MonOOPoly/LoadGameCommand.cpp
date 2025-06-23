@@ -1,6 +1,6 @@
 #include "LoadGameCommand.h"
 
-void LoadGameCommand::execute(Monopoly* monopoly) const
+void LoadGameCommand::execute(Monopoly* monopoly)
 {
 
 }

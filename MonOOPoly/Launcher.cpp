@@ -377,7 +377,7 @@ void Launcher::printGameTypeOptions()
 	std::cout << "Choose game type: \n";
 	std::cout << "\t1. Start default game -> default\n";
 	std::cout << "\t2. Enter board manually -> manual\n";
-	std::cout << "\t3. Load from file -> load\n";
+	//std::cout << "\t3. Load from file -> load\n";
 }
 
 void Launcher::printDefaultCreateElementsCommands()

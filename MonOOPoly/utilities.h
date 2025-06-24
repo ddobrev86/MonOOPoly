@@ -6,6 +6,7 @@ char digitToChar(unsigned digit);
 void reverse(char* str, size_t size);
 unsigned absoluteValue(int num);
 void printTaxingMessage();
+void removeLeadingSpaces(char* str);
 
 void setColor(int textColor);
 

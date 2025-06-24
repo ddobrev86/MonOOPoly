@@ -186,6 +186,8 @@ std::istream& operator>>(std::istream& is, MyString& str)
 	char buff[1024];
 	is >> buff;
 
+	//removeLeadingSpaces(buff);
+
 	size_t buffStringSize = strlen(buff);
 	if (buffStringSize >= str.capacity)
 		str.resize(getMaxResizeCapacity(buffStringSize));
@@ -201,6 +203,8 @@ void MyString::readLong()
 	char buff[1024];
 
 	std::cin.getline(buff, 1024);
+
+	removeLeadingSpaces(buff);
 
 	size_t buffStringSize = strlen(buff);
 	size = buffStringSize;
@@ -256,6 +260,11 @@ MyString MyString::substr(unsigned begin, unsigned howMany)
 
 bool operator==(const MyString& lhs, const MyString& rhs)
 {
+	const char* f = lhs.c_str();
+	const char* s = rhs.c_str();
+
+	int res = strcmp(lhs.c_str(), rhs.c_str());
+
 	return strcmp(lhs.c_str(), rhs.c_str()) == 0;
 }
 

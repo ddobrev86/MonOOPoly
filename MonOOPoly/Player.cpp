@@ -16,6 +16,7 @@ Player::Player(const MyString& username)
 
 bool Player::compareUsername(const MyString& username)
 {
+    bool test = (this->username == username);
     return this->username == username;
 }
 
@@ -26,6 +27,7 @@ bool Player::compareUsername(const UniquePtr<Player>& other)
 
 bool Player::compareUsername(const SharedPtr<Player>& other)
 {
+    bool test = (this->username == username);
     return username == other->username;
 }
 

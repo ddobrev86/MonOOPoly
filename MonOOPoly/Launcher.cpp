@@ -51,11 +51,9 @@ void Launcher::startGame(Monopoly* monopoly, bool& isDefault)
 {
 	MyString cmd;
 	//system = Monopoly::getInstance();
-
-	Monopoly::printGameTypeOptions();
-
 	while (true)
 	{
+		Monopoly::printGameTypeOptions();
 
 		std::cout << "Enter command: ";
 		std::cin >> cmd;
@@ -183,6 +181,7 @@ void Launcher::playGame(Monopoly* monopoly)
 			//system("cls");
 			std::cout << excp.what() << '\n';
 
+			monopoly->goToNextPlayer();
 			system("pause");
 			system("cls");
 		}
@@ -214,6 +213,10 @@ void Launcher::obligatoryTrade(Monopoly* monopoly, int neededAmount)
 		{
 			std::cout << "You have nothing to sell - you have gone bankrupt!\n";
 			monopoly->playerExitGame();
+
+			system("pause");
+			system("cls");
+
 			return;
 		}
 
@@ -246,7 +249,18 @@ void Launcher::trade(Monopoly* monopoly, SharedPtr<BuyableField>& fieldToTrade,
 	while (true)
 	{
 		std::cout << "Players that can afford to buy this property:\n";
-		monopoly->printPlayersThatCanAfford(fieldToTrade->sellPriceToPlayer());
+		try
+		{
+			monopoly->printPlayersThatCanAfford(fieldToTrade->sellPriceToPlayer());
+		}
+		catch(const std::runtime_error& excp)
+		{
+			std::cout << excp.what() << '\n';
+			system("pause");
+			system("cls");
+
+			continue;
+		}
 
 		std::cout << "\nChoose option: \n";
 		std::cout << "\ttrade_with_bank\n";

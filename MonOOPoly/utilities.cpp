@@ -1,5 +1,6 @@
 #include "utilities.h"
 #include <iostream>
+#pragma warning (disable:4996)
 
 void setColor(int textColor)
 {
@@ -56,4 +57,34 @@ void printTaxingMessage()
 	setColor(90);
 	std::cout << "You have been taxed\n";
 	resetColor();
+}
+
+void removeLeadingSpaces(char* str)
+{
+	size_t spacesCount = 0;
+	size_t idx = 0, cpyIdx = 0;
+	while (str[idx] == ' ')
+	{
+		spacesCount++;
+		idx++;
+	}
+
+	if (spacesCount == 0)
+		return;
+
+	char* strCopy = new char[strlen(str) + 1];
+	strcpy(strCopy, str);
+	cpyIdx += spacesCount;
+
+	idx = 0;
+	while (strCopy[cpyIdx])
+	{
+		str[idx] = strCopy[cpyIdx];
+		idx++;
+		cpyIdx++;
+	}
+
+	str[idx] = '\0';
+
+	delete[] strCopy;
 }

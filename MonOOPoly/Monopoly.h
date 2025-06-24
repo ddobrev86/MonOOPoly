@@ -34,6 +34,8 @@ public:
 	static void printGameTypeOptions();
 	static void printDefaultCreateElementsCommands();
 	static void printManualCreateElementsCommands();
+	
+	void goToNextPlayer();
 
 	void loadDefualtGame();
 	bool canStartGame() const;

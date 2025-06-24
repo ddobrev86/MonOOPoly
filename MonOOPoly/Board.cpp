@@ -98,7 +98,7 @@ SharedPtr<Field>& Board::operator[](size_t index)
 
 void Board::printBoard() const
 {
-	std::cout << "\n----------\n\n";
+	//std::cout << "\n----------\n\n";
 
 	for (size_t i = 0; i < data.getSize(); i++)
 	{
@@ -111,7 +111,7 @@ void Board::printBoard() const
 
 void Board::printBoard(const MyVector<SharedPtr<Player>>& players) const
 {
-	std::cout << "\n----------\n\n";
+	//std::cout << "\n----------\n\n";
 
 	for (size_t i = 0; i < data.getSize(); i++)
 	{

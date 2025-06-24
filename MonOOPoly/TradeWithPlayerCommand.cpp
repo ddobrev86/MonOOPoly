@@ -10,7 +10,7 @@ TradeWithPlayerCommand::TradeWithPlayerCommand(const SharedPtr<BuyableField>& fi
 void TradeWithPlayerCommand::execute(Monopoly* monopoly)
 {
     MyString receiverName;
-    std::cin >> receiverName;
+    receiverName.readLong();
     
     monopoly->tradeBetweenPlayers(receiverName, fieldToTrade, neededAmount);
 }

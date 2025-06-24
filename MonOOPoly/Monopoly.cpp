@@ -75,6 +75,12 @@ void Monopoly::printManualCreateElementsCommands()
 	std::cout << "\nWhen ready, type start\n";
 }
 
+void Monopoly::goToNextPlayer()
+{
+	currentPlayer++;
+	currentPlayer %= playerCount;
+}
+
 void Monopoly::loadDefualtGame()
 {
 	addFieldFamily(SharedPtr<FieldFamily>(new PropertyFamily("Brown", 50, 50)));
@@ -382,7 +388,7 @@ void Monopoly::printPlayersTurnMessage()
 	//system("cls");
 	printBoard();
 
-	std::cout << "Player";
+	std::cout << "Player ";
 	players[currentPlayer]->printUsernameInColor();
 	std::cout << "\'s turn\n";
 	std::cout << "Balance: " << players[currentPlayer]->getBalance() << '\n';
@@ -536,7 +542,7 @@ bool Monopoly::throwPair() const
 bool Monopoly::getPlayerOutOfJail()
 {
 	system("cls");
-	std::cout << "Player";
+	std::cout << "Player ";
 	players[currentPlayer]->printUsernameInColor();
 	std::cout << "\'s turn\n";
 
@@ -564,6 +570,7 @@ bool Monopoly::getPlayerOutOfJail()
 	{
 		std::cout << "You have to stay in jail for one more turn\n";
 		getOut = false;
+		players[currentPlayer]->lowerRansom();
 	}
 	else
 	{
@@ -621,7 +628,9 @@ SharedPtr<Player>& Monopoly::findPlayer(const MyString& playerName)
 	for (size_t i = 0; i < players.getSize(); i++)
 	{
 		if (players[i]->compareUsername(playerName))
+		{
 			return players[i];
+		}
 	}
 
 	throw std::invalid_argument("Invalid username");
@@ -663,7 +672,7 @@ void Monopoly::printPlayersThatCanAfford(unsigned amount) const
 	}
 
 	if (!atLeastOne)
-		std::cout << "No one can afford this!\n";
+		throw std::runtime_error("No one can afford this!");
 }
 
 void Monopoly::playerExitGame()

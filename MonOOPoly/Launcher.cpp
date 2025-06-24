@@ -20,34 +20,6 @@ void Launcher::run()
 	createElements(monopoly, isDefault);
 
 	playGame(monopoly);
-	//system("cls");
-	/*while (true)
-	{
-		Monopoly::printGameTypeOptions();
-
-		std::cout << "Enter command: ";
-		std::cin >> cmd;
-
-		if (cmd == "end")
-		{
-			delete system;
-			system = nullptr;
-			break;
-		}
-
-		Command* command = CommandFactory::createCommand(cmd);
-
-		if (!command)
-		{
-			std::cout << "Invalid command\n";
-		}
-		else
-		{
-			command->execute(system);
-		}
-
-		std::cout << "\n\n";
-	}*/
 }
 
 void Launcher::startGame(Monopoly* monopoly, bool& isDefault)
@@ -171,13 +143,23 @@ void Launcher::playGame(Monopoly* monopoly)
 		}
 		catch(const EndGameException& excp)
 		{
+			system("cls");
 			std::cout << excp.what();
 			break;
 		}
 		catch (const CantAffordException& excp)
 		{
 			std::cout << excp.what() << '\n';
-			obligatoryTrade(monopoly, excp.getNeededAmount());
+			try
+			{
+				obligatoryTrade(monopoly, excp.getNeededAmount());
+			}
+			catch (const EndGameException& excp)
+			{
+				system("cls");
+				std::cout << excp.what();
+				break;
+			}
 		}
 		catch (const std::exception& excp)
 		{
@@ -218,7 +200,6 @@ void Launcher::obligatoryTrade(Monopoly* monopoly, int neededAmount)
 
 			system("pause");
 			system("cls");
-
 			return;
 		}
 
@@ -231,29 +212,32 @@ void Launcher::obligatoryTrade(Monopoly* monopoly, int neededAmount)
 		{
 			monopoly->playerExitGame();
 			PendingPayment::clear();
-
+			std::cout << "You have lost the game\n";
 			system("pause");
 			system("cls");
 			return;
 		}
 
 		fieldPosition--;
-
 		try
 		{
 			SharedPtr<BuyableField> fieldToSell = ownedFields[fieldPosition];
 			trade(monopoly, fieldToSell, neededAmount);
 			ownedFields.removeAt(fieldPosition);
 		}
+		catch (const EndGameException& excp)
+		{
+			throw excp;
+		}
 		catch (const GiveUpException& excp)
 		{
 			std::cout << excp.what() << '\n';
+			monopoly->playerExitGame();
 			PendingPayment::clear();
 
 			system("pause");
 			system("cls");
-
-			break;
+			return;
 		}
 		catch (const std::exception& excp)
 		{
@@ -305,11 +289,8 @@ void Launcher::trade(Monopoly* monopoly, SharedPtr<BuyableField>& fieldToTrade,
 		std::cin >> cmd;
 
 		if (cmd == "give_up")
-		{
-			monopoly->playerExitGame();
-
 			throw GiveUpException();
-		}
+
 
 		Command* command = TradingCommandFactory::createCommand(cmd, fieldToTrade, neededAmount);
 

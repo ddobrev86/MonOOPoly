@@ -591,9 +591,17 @@ bool Monopoly::getPlayerOutOfJail()
 		std::cout << "Do you want to pay $100 to get out of jail?(y|n): ";
 		if (InputProcessor::askYesOrNo() == 'y')
 		{
-			Bank::getFrom(players[currentPlayer], 100, false);
-			players[currentPlayer]->getOutOfJail();
-			return true;
+			try 
+			{
+				Bank::getFrom(players[currentPlayer], 100, false);
+				players[currentPlayer]->getOutOfJail();
+				return true;
+			}
+			catch(const std::exception& excp)
+			{
+				std::cout << excp.what() << '\n';
+			}
+			
 		}
 	}
 
@@ -625,7 +633,7 @@ void Monopoly::tradeBetweenPlayers(const MyString& receiverName,
 	if (players[currentPlayer]->compareUsername(receiverName))
 		throw std::invalid_argument("You can't trade with yourself");
 
-	SharedPtr<Player> receiver = findPlayer(receiverName);
+	SharedPtr<Player> receiver = findPlayerThatCanAfford(receiverName, field->sellPriceToPlayer());
 
 	Trade::sellToPlayer(receiver, field, neededAmount);
 }
@@ -663,6 +671,22 @@ SharedPtr<Player>& Monopoly::findPlayer(const MyString& playerName)
 		if (players[i]->compareUsername(playerName))
 		{
 			return players[i];
+		}
+	}
+
+	throw std::invalid_argument("Invalid username");
+}
+
+SharedPtr<Player>& Monopoly::findPlayerThatCanAfford(const MyString& playerName, unsigned neededAmount)
+{
+	for (size_t i = 0; i < players.getSize(); i++)
+	{
+		if (players[i]->compareUsername(playerName))
+		{
+			if(players[i]->canAfford(neededAmount))
+				return players[i];
+
+			throw std::invalid_argument("Player cannot afford this");
 		}
 	}
 

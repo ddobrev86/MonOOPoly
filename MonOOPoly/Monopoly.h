@@ -107,6 +107,7 @@ public:
 	SharedPtr<BuyableField>& findBuyableField(const MyVector<SharedPtr<FieldFamily>>& families,
 		const MyString& propertyName);
 	SharedPtr<Player>& findPlayer(const MyString& playerName);
+	SharedPtr<Player>& findPlayerThatCanAfford(const MyString& playerName, unsigned neededAmount);
 
 	SharedPtr<FieldFamily>& findFieldFamily(const MyString& familyName);
 	void findOwnedFields(MyVector<SharedPtr<BuyableField>>& ownedFields) const;

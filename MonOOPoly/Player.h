@@ -2,6 +2,7 @@
 #include "MyString.h"
 #include "UniquePtr.hpp"
 #include "SharedPtr.hpp"
+#include <fstream>
 
 enum class Colors
 {
@@ -56,5 +57,8 @@ public:
 	int getColor() const;
 	void printUsernameInColor() const;
 	void lowerRansom();
+
+	void saveToFile(std::ofstream& ofs) const;
+	void readFromFile(std::ifstream& ifs);
 };
 

@@ -7,6 +7,9 @@ EndGameException::EndGameException(const SharedPtr<Player>& winner)
 
 const char* EndGameException::what() const
 {
-    MyString message = "Congratulations " + winner->getUsername() + ". You won!\n";
+    MyString message = "Congratulations ";
+    message += winner->getUsername();
+    message += ". You won!\n";
+
     return message.c_str();
 }

@@ -21,6 +21,7 @@ bool Facility::action(SharedPtr<Player>& player)
 {
 	if (isFree())
 	{
+		std::cout << "\nYour balance: " << player->getBalance() << '\n';
 		std::cout << "Do you want to buy this property?(y|n): ";
 		if (InputProcessor::askYesOrNo() == 'y')
 			buy(player);
@@ -38,7 +39,7 @@ bool Facility::action(SharedPtr<Player>& player)
 		}
 		else
 		{
-			std::cout << "You are the owner\n";
+			std::cout << "\nYou are the owner\n";
 		}
 
 		system("pause");

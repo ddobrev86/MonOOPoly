@@ -143,3 +143,35 @@ void Player::lowerRansom()
     if (remainingToRansom > 0)
         remainingToRansom--;
 }
+
+void Player::readFromFile(std::ifstream& ifs)
+{
+    if (!ifs.is_open())
+        return;
+
+    int colorAsInt;
+
+    username.readFromFile(ifs);
+    ifs.read((char*)&balance, sizeof(unsigned));
+    ifs.read((char*)&currentPos, sizeof(size_t));
+    ifs.read((char*)&inJail, sizeof(bool));
+    ifs.read((char*)&remainingToRansom, sizeof(size_t));
+    ifs.read((char*)&colorAsInt, sizeof(int));
+
+    this->color = (Colors)colorAsInt;
+}
+
+void Player::saveToFile(std::ofstream& ofs) const
+{
+    if (!ofs.is_open())
+        return;
+
+    int colorAsInt = (int)color;
+
+    username.saveToFile(ofs);
+    ofs.write((const char*)&balance, sizeof(unsigned));
+    ofs.write((const char*)&currentPos, sizeof(size_t));
+    ofs.write((const char*)&inJail, sizeof(bool));
+    ofs.write((const char*)&remainingToRansom, sizeof(size_t));
+    ofs.write((const char*)&colorAsInt, sizeof(int));
+}

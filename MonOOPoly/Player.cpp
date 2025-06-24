@@ -73,7 +73,11 @@ void Player::removeFromBalance(size_t balanceChange)
 {
     //TODO: add validation if balanceChange is smaller than balance 
     if (!canAfford(balanceChange))
-        throw std::invalid_argument("\nYou don't have enough money to continue with this action!");
+    {
+        MyString errorMessage = '\n' + username + ", you don't have enough money to continue with this action!";
+        throw std::invalid_argument(errorMessage.c_str());
+    }
+        
     
     balance -= balanceChange;
 }

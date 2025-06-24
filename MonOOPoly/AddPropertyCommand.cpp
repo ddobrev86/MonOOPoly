@@ -5,9 +5,17 @@ void AddPropertyCommand::execute(Monopoly* monopoly)
     MyString propertyName, fieldFamily;
     unsigned price, rent;
 
-    fieldFamily.readLong();
+    //std::cout << "Enter property name: ";
     propertyName.readLong();
-    std::cin >> price >> rent;
+
+    std::cout << "Enter family name: ";
+    fieldFamily.readLong();
+
+    std::cout << "Enter price: ";
+    std::cin >> price;
+    
+    std::cout << "Enter rent: ";
+    std::cin >> rent;
 
     monopoly->addProperty(fieldFamily, propertyName, price, rent);
 

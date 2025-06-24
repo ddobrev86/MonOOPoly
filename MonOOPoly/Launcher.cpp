@@ -223,8 +223,16 @@ void Launcher::obligatoryTrade(Monopoly* monopoly, int neededAmount)
 
 		printFieldsToTradeMessage(ownedFields, neededAmount);
 
-		std::cout << "Choose which property you want to sell (number): ";
+		std::cout << "Choose which property you want to sell (number).\nType 0 to give up: ";
 		std::cin >> fieldPosition;
+
+		if (fieldPosition == 0)
+		{
+			monopoly->playerExitGame();
+			PendingPayment::clear();
+			return;
+		}
+
 		fieldPosition--;
 
 		try
@@ -273,9 +281,16 @@ void Launcher::trade(Monopoly* monopoly, SharedPtr<BuyableField>& fieldToTrade,
 		std::cout << "\nChoose option: \n";
 		std::cout << "\ttrade_with_bank\n";
 		std::cout << "\ttrade_with_player <username>\n";
+		std::cout << "\t give_up\n";
 
 		std::cout << "Enter command: ";
 		std::cin >> cmd;
+
+		if (cmd == "give_up")
+		{
+			monopoly->playerExitGame();
+			break;
+		}
 
 		Command* command = TradingCommandFactory::createCommand(cmd, fieldToTrade, neededAmount);
 

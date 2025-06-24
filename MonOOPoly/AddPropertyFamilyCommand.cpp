@@ -6,7 +6,12 @@ void AddPropertyFamilyCommand::execute(Monopoly* monopoly)
     unsigned cottageCost, castleCost;
 
     name.readLong();
-    std::cin >> cottageCost >> castleCost;
+
+    std::cout << "Enter cottage price: ";
+    std::cin >> cottageCost;
+
+    std::cout << "Enter castle price: ";
+    std::cin >> castleCost;
 
     monopoly->addPropertyFamily(name, cottageCost, castleCost);
 

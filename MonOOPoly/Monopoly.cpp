@@ -68,11 +68,13 @@ void Monopoly::printManualCreateElementsCommands()
 {
 	std::cout << "Choose option: \n";
 	std::cout << "\t1. Add player -> add_player <username>\n";
-	std::cout << "\t2. Add property family -> add_property_family <family_name> <cottage_price> <castle_price>\n";
-	std::cout << "\t3. Add property -> add_property <property_family> <property_name> <price> <rent>\n";
-	std::cout << "\t4. Add station -> add_station <station_name> <price> <rent>\n";
-	std::cout << "\t5. Add facility -> add_facility <facility_name> <price>\n";
+	std::cout << "\t2. Add property family -> add_property_family <family_name>\n";
+	std::cout << "\t3. Add property -> add_property <property_name>\n";
+	std::cout << "\t4. Add station -> add_station <station_name>\n";
+	std::cout << "\t5. Add facility -> add_facility <facility_name>\n";
 	std::cout << "\t6. Add card field -> add_card_field\n";
+	std::cout << "\t7. Add movement card -> add_movement_card\n";
+	std::cout << "\t8. Add payment card -> add_payment_card\n";
 	std::cout << "\nWhen ready, type start\n";
 }
 

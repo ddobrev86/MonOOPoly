@@ -3,6 +3,8 @@
 void AddMoveCardCommand::execute(Monopoly* monopoly)
 {
     unsigned positions;
+
+    std::cout << "Enter positions to move(positive or negative): ";
     std::cin >> positions;
 
     monopoly->addMoveCard(positions);

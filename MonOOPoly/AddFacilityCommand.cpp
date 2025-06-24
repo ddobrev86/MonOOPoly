@@ -5,7 +5,10 @@ void AddFacilityCommand::execute(Monopoly* monopoly)
     MyString name;
     unsigned price;
 
+    //std::cout << "Enter facility name: ";
     name.readLong();
+
+    std::cout << "Enter price: ";
     std::cin >> price;
 
     monopoly->addFacility(name, price);

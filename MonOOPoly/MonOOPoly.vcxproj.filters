@@ -58,6 +58,9 @@
     <Filter Include="Commands\GameElementsCommands\Fields">
       <UniqueIdentifier>{6e286a88-9f2d-418c-ada0-aefc86d32d61}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Exceptions">
+      <UniqueIdentifier>{8f091d31-6295-4282-8b76-91c9dca1054d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MonOOPoly.cpp">
@@ -219,20 +222,20 @@
     <ClCompile Include="PrintOwnershipMapCommand.cpp">
       <Filter>Commands\Game Commands</Filter>
     </ClCompile>
-    <ClCompile Include="CantAffordException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EndGameException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TradingCommandFactory.cpp">
       <Filter>Commands\Game Commands\TradeCommands</Filter>
     </ClCompile>
     <ClCompile Include="BuildCommandFactory.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Commands\Game Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="CantAffordException.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="EndGameException.cpp">
+      <Filter>Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="PendingPayment.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Trade utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -416,20 +419,20 @@
     <ClInclude Include="PrintOwnershipMapCommand.h">
       <Filter>Commands\Game Commands</Filter>
     </ClInclude>
-    <ClInclude Include="CantAffordException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EndGameException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TradingCommandFactory.h">
       <Filter>Commands\Game Commands\TradeCommands</Filter>
     </ClInclude>
     <ClInclude Include="BuildCommandFactory.h">
-      <Filter>Header Files</Filter>
+      <Filter>Commands\Game Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="CantAffordException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="EndGameException.h">
+      <Filter>Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="PendingPayment.h">
-      <Filter>Header Files</Filter>
+      <Filter>Trade utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

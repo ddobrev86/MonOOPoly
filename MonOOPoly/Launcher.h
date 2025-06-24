@@ -15,6 +15,7 @@ private:
 	static void obligatoryTrade(Monopoly* monopoly, int neededAmount);
 public:
 	static void run();
-	
+	static void build(Monopoly* monopoly);
+
 };
 

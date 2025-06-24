@@ -7,7 +7,7 @@ MyDictionary<SharedPtr<Player>, size_t> Station::ownersipMap;
 Station::Station(const MyString& name,
 	unsigned price, unsigned rent) : SpecialField(name, price, rent)
 {
-	multiplier = 0;
+	multiplier = 1;
 }
 
 void Station::buy(SharedPtr<Player>&player)
@@ -34,7 +34,6 @@ BuyableField* Station::clone() const
 
 void Station::printLandingMessage() const
 {
-	multiplier++;
 	std::cout << "You have landed on " << name << '\n';
 
 	if (isFree())
@@ -46,6 +45,23 @@ void Station::printLandingMessage() const
 	{
 		std::cout << "This station belongs to ";
 		owner->printUsernameInColor();
-		std::cout << "\nRent: " << calculateTotalRent() << '\n';
+		multiplier++;
 	}
+}
+
+void Station::sell()
+{
+	ownersipMap[owner]--;
+	owner = nullptr;
+}
+
+void Station::sellTo(const SharedPtr<Player>& newOwner)
+{
+	ownersipMap[owner]--;
+
+	if (!ownersipMap.containsKey(newOwner))
+		ownersipMap.addPair(MyPair<SharedPtr<Player>, size_t>(newOwner, 0));
+
+	ownersipMap[newOwner]++;
+	owner = newOwner;
 }

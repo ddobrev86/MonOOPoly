@@ -228,6 +228,12 @@
     <ClCompile Include="TradingCommandFactory.cpp">
       <Filter>Commands\Game Commands\TradeCommands</Filter>
     </ClCompile>
+    <ClCompile Include="BuildCommandFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PendingPayment.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyQueue.hpp">
@@ -418,6 +424,12 @@
     </ClInclude>
     <ClInclude Include="TradingCommandFactory.h">
       <Filter>Commands\Game Commands\TradeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildCommandFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PendingPayment.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

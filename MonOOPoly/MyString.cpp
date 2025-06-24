@@ -260,11 +260,6 @@ MyString MyString::substr(unsigned begin, unsigned howMany)
 
 bool operator==(const MyString& lhs, const MyString& rhs)
 {
-	const char* f = lhs.c_str();
-	const char* s = rhs.c_str();
-
-	int res = strcmp(lhs.c_str(), rhs.c_str());
-
 	return strcmp(lhs.c_str(), rhs.c_str()) == 0;
 }
 

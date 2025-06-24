@@ -5,7 +5,9 @@ void Trade::sellToPlayer(SharedPtr<Player>& receiver,
 	SharedPtr<BuyableField>& field, int& neededAmount)
 {
 	unsigned sellPrice = field->sellPriceToPlayer();
-	std::cout << receiver->getUsername() << " do you accept this offer(y|n): ";
+	std::cout << "\n\t";
+	receiver->printUsernameInColor();
+	std::cout << " do you accept this offer(y|n): ";
 
 	if (InputProcessor::askYesOrNo() == 'y')
 	{
@@ -14,6 +16,8 @@ void Trade::sellToPlayer(SharedPtr<Player>& receiver,
 		field->sellTo(receiver);
 
 		neededAmount -= sellPrice;
+
+		system("cls");
 		return;
 	}
 	

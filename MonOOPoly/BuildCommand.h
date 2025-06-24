@@ -4,9 +4,9 @@
 class BuildCommand : public Command
 {
 private:
-	bool& shouldBuild;
+	MyVector<SharedPtr<FieldFamily>>& validFamilies;
 public:
-	BuildCommand(bool& shouldBuild);
+	BuildCommand(MyVector<SharedPtr<FieldFamily>>& validFamilies);
 
 	void execute(Monopoly* monopoly) override;
 	Command* clone() const override;

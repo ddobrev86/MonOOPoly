@@ -17,8 +17,8 @@ public:
 
 	bool containsField(const SharedPtr<BuyableField>& property);
 
-	size_t howManyBelongToPlayer(const SharedPtr<Player>& player);
-	bool ownsAll(const SharedPtr<Player>& player);
+	size_t howManyBelongToPlayer(const SharedPtr<Player>& player) const;
+	bool ownsAll(const SharedPtr<Player>& player) const;
 
 	bool canBuyMortgages() const;
 
@@ -29,5 +29,7 @@ public:
 
 	void findOwnedFields(MyVector<SharedPtr<BuyableField>>& ownedFields, 
 		const SharedPtr<Player>& owner) const;
+
+	void removeOwner(const SharedPtr<Player>& player);
 };
 

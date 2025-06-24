@@ -8,20 +8,27 @@ bool GameCommandFactory::shouldBuild = false;
 
 Command* GameCommandFactory::createCommand(const MyString& command)
 {
-    if (shouldBuild)
+    if (command == "throw_dice")
+        return new ThrowDiceCommand();
+    else if (command == "buy_mortgage")
+        return new BuyMortgageCommand();
+    else if (command == "ownership_map")
+        return new PrintOwnershipMapCommand();
+
+    /*if (shouldBuild)
     {
         if (command == "build")
-            return new BuildCommand(shouldBuild);
+            return new BuildCommand();
     }
     else
     {
         if (command == "throw_dice")
             return new ThrowDiceCommand();
         else if (command == "buy_mortgage")
-            return new BuyMortgageCommand(shouldBuild);
+            return new BuyMortgageCommand();
         else if (command == "ownership_map")
             return new PrintOwnershipMapCommand();
-    }
+    }*/
 
     return nullptr;
 }

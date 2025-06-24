@@ -1,5 +1,6 @@
 #include "PaymentCard.h"
 #include "Bank.h"
+#include "PendingPayment.h"
 
 PaymentCard::PaymentCard(int balanceChange)
 {
@@ -21,7 +22,12 @@ void PaymentCard::printCardInfo() const
 bool PaymentCard::applyEffect(SharedPtr<Player>& player) const
 {
 	if (balanceChange < 0)
+	{
+		PendingPayment::clear();
+		PendingPayment::setPayer(player);
+
 		Bank::getFrom(player, -balanceChange, true);
+	}
 	else
 		Bank::giveTo(player, balanceChange);
 

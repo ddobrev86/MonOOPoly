@@ -19,6 +19,9 @@ public:
 	BuyableField* clone() const override;
 
 	void printLandingMessage() const override;
+
+	void sell() override;
+	void sellTo(const SharedPtr<Player>& newOwner) override;
 };
 
 

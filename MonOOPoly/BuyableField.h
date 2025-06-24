@@ -17,8 +17,8 @@ public:
 
 	unsigned sellPriceToBank() const;
 	unsigned sellPriceToPlayer() const;
-	void sell();
-	void sellTo(const SharedPtr<Player>& newOwner);
+	virtual void sell();
+	virtual void sellTo(const SharedPtr<Player>& newOwner);
 
 	virtual void setUpMortgages(const SharedPtr<Mortgage>& castle,
 		const SharedPtr<Mortgage>& cottage) = 0;
@@ -38,5 +38,7 @@ public:
 
 	const MyString& getName() const;
 	SharedPtr<Player>& getOwner();
+
+	void printUpForSaleMessage() const;
 };
 

@@ -87,11 +87,12 @@ public:
 	
 	void actPlayerThrowDiceCommand();
 	void actBuyMortgageCommand();
-	void actBuildCommand(const MyString& propertyName, const MyString& mortgageType);
+	void actBuildCommand(const MyString& propertyName, 
+		const MyString& mortgageType, MyVector<SharedPtr<FieldFamily>>& validFamilies);
 	void printOwnershipMap() const;
 
-	void findValidFamilies(MyVector<SharedPtr<FieldFamily>>& validFamilies,
-		bool& canBuy);
+	bool canBuild() const;
+	void findValidFamilies(MyVector<SharedPtr<FieldFamily>>& validFamilies);
 	void printValidFamiliesMessage(const MyVector<SharedPtr<FieldFamily>>& validFamilies) const;
 
 	bool throwPair() const;

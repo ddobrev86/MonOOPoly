@@ -1,4 +1,5 @@
 #include "MortgageManager.h"
+#include "Bank.h"
 
 MortgageManager::MortgageManager(const SharedPtr<Mortgage>& castle, 
 	const SharedPtr<Mortgage>& cottage) : castle(castle), cottage(cottage)
@@ -16,26 +17,21 @@ void MortgageManager::buyMortgage(const SharedPtr<Mortgage>& mortgage)
 }
 
 void MortgageManager::buildMortgage(const MyString& mortgageType, 
-	const SharedPtr<Player>& owner, unsigned rent)
+	SharedPtr<Player>& owner, unsigned rent)
 {
-	unsigned totalOwed = getTotalRent(rent);
-	if (owner->canAfford(totalOwed))
-	{
-		if (mortgageType == "cottage")
-		{
-			mortgages.push_back(cottage);
-			return;
-		}
-		else if (mortgageType == "castle")
-		{
-			mortgages.push_back(castle);
-			return;
-		}
+	SharedPtr<Mortgage> mortgage;
 
+	if (mortgageType == "cottage")
+		mortgage = cottage;
+	else if (mortgageType == "castle")
+		mortgage = castle;
+	else
 		throw std::invalid_argument("Invalid mortgage type");
-	}
 
-	throw std::runtime_error("You can't afford to build this property");
+	Bank::getFrom(owner, mortgage->getPrice(), false);
+	mortgages.push_back(mortgage);
+
+	//throw std::runtime_error("You can't afford to build this mortgage");
 }
 
 bool MortgageManager::canBuyCastle() const

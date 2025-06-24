@@ -20,6 +20,11 @@ bool Player::compareUsername(const MyString& username)
     return this->username == username;
 }
 
+Player::~Player()
+{
+    nextColor--;
+}
+
 bool Player::compareUsername(const UniquePtr<Player>& other)
 {
     return username == other->username;
@@ -68,7 +73,7 @@ void Player::removeFromBalance(size_t balanceChange)
 {
     //TODO: add validation if balanceChange is smaller than balance 
     if (!canAfford(balanceChange))
-        throw std::invalid_argument("You don't have enough money to continue with this action!");
+        throw std::invalid_argument("\nYou don't have enough money to continue with this action!");
     
     balance -= balanceChange;
 }

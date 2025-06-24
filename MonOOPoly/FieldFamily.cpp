@@ -30,7 +30,7 @@ bool FieldFamily::containsField(const SharedPtr<BuyableField>& property)
 	return false;
 }
 
-size_t FieldFamily::howManyBelongToPlayer(const SharedPtr<Player>& player)
+size_t FieldFamily::howManyBelongToPlayer(const SharedPtr<Player>& player) const
 {
 	size_t count = 0;
 	for (size_t i = 0; i < data.getSize(); i++)
@@ -42,7 +42,7 @@ size_t FieldFamily::howManyBelongToPlayer(const SharedPtr<Player>& player)
 	return count;
 }
 
-bool FieldFamily::ownsAll(const SharedPtr<Player>& player)
+bool FieldFamily::ownsAll(const SharedPtr<Player>& player) const
 {
 	for (size_t i = 0; i < data.getSize(); i++)
 	{
@@ -67,6 +67,15 @@ void FieldFamily::printFamilyInfo() const
 bool FieldFamily::comapreName(const SharedPtr<FieldFamily>& other) const
 {
 	return name == other->name;
+}
+
+void FieldFamily::removeOwner(const SharedPtr<Player>& player)
+{
+	for (size_t i = 0; i < data.getSize(); i++)
+	{
+		if (data[i]->belongsToPlayer(player))
+			data[i]->sell();
+	}
 }
 
 bool FieldFamily::comapreName(const MyString& name) const

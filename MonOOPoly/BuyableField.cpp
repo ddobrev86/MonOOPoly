@@ -1,6 +1,7 @@
 #include "BuyableField.h"
 #include "InputProcessor.h"
 #include "Bank.h"
+#include "PendingPayment.h"
 
 BuyableField::BuyableField(const MyString& name, unsigned price, unsigned rent)
 {
@@ -44,6 +45,7 @@ bool BuyableField::action(SharedPtr<Player>& player)
 {
 	if (isFree())
 	{
+		std::cout << "\nYour balance: " << player->getBalance() << '\n';
 		std::cout << "\nDo you want to buy this property?(y|n): ";
 		if (InputProcessor::askYesOrNo() == 'y')
 			buy(player);
@@ -54,6 +56,12 @@ bool BuyableField::action(SharedPtr<Player>& player)
 		unsigned totalRent = calculateTotalRent();
 		if (!belongsToPlayer(player))
 		{
+			std::cout << "\nRent: " << calculateTotalRent() << '\n';
+
+			PendingPayment::clear();
+			PendingPayment::addReceiver(owner);
+			PendingPayment::setPayer(player);
+
 			Bank::getFrom(player, totalRent, true);
 
 			printTaxingMessage();
@@ -63,7 +71,7 @@ bool BuyableField::action(SharedPtr<Player>& player)
 		}
 		else
 		{
-			std::cout << "You are the owner\n";
+			std::cout << "\nYou are the owner\n";
 		}
 
 		system("pause");
@@ -100,7 +108,6 @@ void BuyableField::printLandingMessage() const
 	{
 		std::cout << "This property belongs to ";
 		owner->printUsernameInColor();
-		std::cout << "\nRent: " << calculateTotalRent() << '\n';
 	}
 }
 
@@ -131,4 +138,11 @@ const MyString& BuyableField::getName() const
 SharedPtr<Player>& BuyableField::getOwner()
 {
 	return owner;
+}
+
+void BuyableField::printUpForSaleMessage() const
+{
+	std::cout << name << '\n';
+	std::cout << "\tPrice to bank: " << sellPriceToBank()
+		<< "\tPrice to player: " << sellPriceToPlayer() << '\n';
 }

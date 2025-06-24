@@ -1,6 +1,6 @@
 #include "BuildCommand.h"
 
-BuildCommand::BuildCommand(bool& shouldBuild) : shouldBuild(shouldBuild)
+BuildCommand::BuildCommand(MyVector<SharedPtr<FieldFamily>>& validFamilies) : validFamilies(validFamilies)
 {}
 
 void BuildCommand::execute(Monopoly* monopoly)
@@ -11,13 +11,11 @@ void BuildCommand::execute(Monopoly* monopoly)
 
 	try
 	{
-		monopoly->actBuildCommand(propertyName, mortgageType);
-		shouldBuild = false;
+		monopoly->actBuildCommand(propertyName, mortgageType, validFamilies);
 	}
-	catch (const std::runtime_error& rntExcp)
+	catch (const std::runtime_error& excp)
 	{
-		shouldBuild = false;
-		std::cout << rntExcp.what();
+		std::cout << excp.what() << '\n';
 	}
 	catch (const std::exception& excp)
 	{

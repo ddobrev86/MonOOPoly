@@ -7,6 +7,7 @@
 #include "Bank.h"
 #include "Trade.h"
 #include "EndGameException.h"
+#include "Launcher.h"
 
 Monopoly* Monopoly::instance = nullptr;
 
@@ -198,9 +199,11 @@ void Monopoly::fillDeckWithCards()
 	deck->addCard(SharedPtr<Card>(new MovePositionCard(3, board->getTotalSize())));
 	deck->addCard(SharedPtr<Card>(new PaymentCard(-200)));
 	deck->addCard(SharedPtr<Card>(new MovePositionCard(-1, board->getTotalSize())));
+	deck->addCard(SharedPtr<Card>(new PaymentCard(300)));
 	deck->addCard(SharedPtr<Card>(new MovePositionCard(2, board->getTotalSize())));
-	deck->addCard(SharedPtr<Card>(new PaymentCard(-200)));
+	deck->addCard(SharedPtr<Card>(new PaymentCard(200)));
 	deck->addCard(SharedPtr<Card>(new PaymentCard(-300)));
+	deck->addCard(SharedPtr<Card>(new MovePositionCard(-2, board->getTotalSize())));
 }
 
 void Monopoly::printBoard() const
@@ -386,13 +389,6 @@ size_t Monopoly::getPlayerCount() const
 void Monopoly::printPlayersTurnMessage()
 {
 	//system("cls");
-	printBoard();
-
-	std::cout << "Player ";
-	players[currentPlayer]->printUsernameInColor();
-	std::cout << "\'s turn\n";
-	std::cout << "Balance: " << players[currentPlayer]->getBalance() << '\n';
-	
 	if (players[currentPlayer]->isInJail())
 	{
 		if (!getPlayerOutOfJail())
@@ -405,6 +401,13 @@ void Monopoly::printPlayersTurnMessage()
 		printPlayersTurnMessage();
 		return;
 	}
+
+	printBoard();
+
+	std::cout << "Player ";
+	players[currentPlayer]->printUsernameInColor();
+	std::cout << "\'s turn\n";
+	std::cout << "Balance: " << players[currentPlayer]->getBalance() << '\n';
 
 	std::cout << "Choose action: \n";
 	std::cout << "\t1. throw_dice\n";
@@ -464,18 +467,33 @@ void Monopoly::movePlayer()
 void Monopoly::actBuyMortgageCommand()
 {
 	MyVector<SharedPtr<FieldFamily>> validFamilies;
-	bool canBuy = false;
 
-	findValidFamilies(validFamilies, canBuy);
-
-	if (!canBuy)
+	if (canBuild())
+		Launcher::build(this);
+	else
+	{
+		currentPlayer--;
 		throw std::runtime_error("You can't buy any mortgages");
-	
-	printValidFamiliesMessage(validFamilies);
+	}
 }
 
-void Monopoly::findValidFamilies(MyVector<SharedPtr<FieldFamily>>& validFamilies,
-	bool& canBuy)
+bool Monopoly::canBuild() const
+{
+	bool canBuy = false;
+
+	for (size_t i = 0; i < fieldFamilies.getSize(); i++)
+	{
+		if (fieldFamilies[i]->canBuyMortgages() && 
+			fieldFamilies[i]->ownsAll(players[currentPlayer]))
+		{
+			canBuy = true;
+		}
+	}
+
+	return canBuy;
+}
+
+void Monopoly::findValidFamilies(MyVector<SharedPtr<FieldFamily>>& validFamilies)
 {
 	for (size_t i = 0; i < fieldFamilies.getSize(); i++)
 	{
@@ -483,15 +501,12 @@ void Monopoly::findValidFamilies(MyVector<SharedPtr<FieldFamily>>& validFamilies
 			fieldFamilies[i]->ownsAll(players[currentPlayer]))
 		{
 			validFamilies.push_back(fieldFamilies[i]);
-			canBuy = true;
 		}
 	}
 }
 
 void Monopoly::printValidFamiliesMessage(const MyVector<SharedPtr<FieldFamily>>& validFamilies) const
 {
-	std::cout << "Choose one of the following properties and the type of mortgage";
-	std::cout << "\nFormat: build <mortgage_type> <property_name>\n";
 	for (size_t i = 0; i < validFamilies.getSize(); i++)
 	{
 		validFamilies[i]->printFamilyInfo();
@@ -501,15 +516,17 @@ void Monopoly::printValidFamiliesMessage(const MyVector<SharedPtr<FieldFamily>>&
 
 //build
 void Monopoly::actBuildCommand(const MyString& propertyName, 
-	const MyString& mortgageType)
+	const MyString& mortgageType, MyVector<SharedPtr<FieldFamily>>& validFamilies)
 {
-	MyVector<SharedPtr<FieldFamily>> validFamilies;
-	bool canBuy = false;
-	findValidFamilies(validFamilies, canBuy);
-
+	//MyVector<SharedPtr<FieldFamily>> validFamilies;
+	////bool canBuy = false;
+	//findValidFamilies(validFamilies);
+	//printValidFamiliesMessage(validFamilies);
 	SharedPtr<BuyableField> field = findBuyableField(validFamilies, propertyName);
 	field->buildMortgage(mortgageType);
-	std::cout << "You successfully built a " << mortgageType;
+	std::cout << "You successfully built a " << mortgageType << '\n';
+	system("pause");
+	system("cls");
 }
 
 //ownership map
@@ -555,6 +572,7 @@ bool Monopoly::getPlayerOutOfJail()
 	}
 	else
 	{
+		std::cout << "Balance: " << players[currentPlayer]->getBalance() << '\n';
 		std::cout << "Do you want to pay $100 to get out of jail?(y|n): ";
 		if (InputProcessor::askYesOrNo() == 'y')
 		{
@@ -667,7 +685,8 @@ void Monopoly::printPlayersThatCanAfford(unsigned amount) const
 		if (players[i]->canAfford(amount))
 		{
 			atLeastOne = true;
-			std::cout << '\t' << players[i]->getUsername() << '\n';
+			std::cout << '\t' << players[i]->getUsername() 
+				<< "\tBalance: " << players[i]->getBalance() << '\n';
 		}
 	}
 
@@ -677,6 +696,9 @@ void Monopoly::printPlayersThatCanAfford(unsigned amount) const
 
 void Monopoly::playerExitGame()
 {
+	for (size_t i = 0; i < fieldFamilies.getSize(); i++)
+		fieldFamilies[i]->removeOwner(players[currentPlayer]);
+
 	players.removeAt(currentPlayer);
 	playerCount--;
 

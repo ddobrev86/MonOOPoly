@@ -27,6 +27,7 @@ private:
 
 public:
 	Player(const MyString& username);
+	~Player();
 
 	bool compareUsername(const MyString& username);
 	bool compareUsername(const UniquePtr<Player>& other);

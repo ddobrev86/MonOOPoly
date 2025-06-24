@@ -24,7 +24,7 @@ public:
 
 	void buyMortgage(const SharedPtr<Mortgage>& mortgage);
 	void buildMortgage(const MyString& mortgageType,
-		const SharedPtr<Player>& owner, unsigned rent);
+		SharedPtr<Player>& owner, unsigned rent);
 
 	bool canBuyCastle() const;
 

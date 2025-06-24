@@ -2,9 +2,9 @@
 #include "InputProcessor.h"
 
 Facility::Facility(const MyString& name, 
-    unsigned price) : SpecialField(name, price, 0)
+    unsigned price) : SpecialField(name, price, 100)
 {
-    multiplier = 0;
+    multiplier = 1;
 }
 
 unsigned Facility::calculateTotalRent() const
@@ -31,6 +31,7 @@ bool Facility::action(SharedPtr<Player>& player)
 	{
 		if (!belongsToPlayer(player))
 		{
+			std::cout << "\nYou have to give " << multiplier * 5 << "% of your balance\n";
 			player->removePercent(multiplier * 0.05);
 			printTaxingMessage();
 			//TODO add warning when exceeding balance
@@ -60,6 +61,6 @@ void Facility::printLandingMessage() const
 	{
 		std::cout << "This facility belongs to ";
 		owner->printUsernameInColor();
-		std::cout << "\nYou have to give " << ++multiplier * 5 << "% of your balance\n";
+		multiplier++;
 	}
 }

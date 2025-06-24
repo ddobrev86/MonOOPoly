@@ -22,6 +22,7 @@ Monopoly::Monopoly(size_t playerCount, size_t boardSize)
 
 	hasStations = false;
 	hasFacilities = false;
+	jailPos = boardSize - 1;
 }
 
 Monopoly* Monopoly::getInstance(size_t playerCount, size_t boardSize)
@@ -421,11 +422,37 @@ void Monopoly::printPlayersTurnMessage()
 //throw_dice
 void Monopoly::actPlayerThrowDiceCommand()
 {
-	movePlayer();
+	bool isPair = false;
+	unsigned pairCount = 0;
 
-	SharedPtr<Field>& currentField = (*board)[players[currentPlayer]->getPosition()];
-	//currentField->action(players[currentPlayer]);
-	fieldActionUntilSuccess(currentField);
+	while (true)
+	{
+		movePlayer(isPair, pairCount);
+
+		if (pairCount >= 3)
+		{
+			std::cout << "You threw 3 consecutive pairs. You have to go to jail!\n";
+			players[currentPlayer]->goToJail(jailPos);
+
+			system("pause");
+			system("cls");
+
+			break;
+		}
+
+		SharedPtr<Field>& currentField = (*board)[players[currentPlayer]->getPosition()];
+		//currentField->action(players[currentPlayer]);
+		fieldActionUntilSuccess(currentField);
+
+		if (!players[currentPlayer]->isInJail() && isPair)
+		{
+			std::cout << "You threw a pair. You can throw again\n";
+			system("pause");
+			system("cls");
+		}
+		else
+			break;
+	}
 
 	currentPlayer++;
 	currentPlayer %= playerCount;
@@ -446,7 +473,7 @@ void Monopoly::fieldActionUntilSuccess(SharedPtr<Field> currentField)
 	} while (true);
 }
 
-size_t Monopoly::throwDice() const
+size_t Monopoly::throwDice(bool& isPair, unsigned& pairCount) const
 {
 	int firstDice, secondDice;
 	srand(time(0));
@@ -456,12 +483,22 @@ size_t Monopoly::throwDice() const
 
 	std::cout << "You threw a " << firstDice << " and a " << secondDice << "\n\n";
 
+	if (firstDice == secondDice)
+	{
+		isPair = true;
+		pairCount++;
+	}
+	else
+		isPair = false;
+
 	return firstDice + secondDice;
 }
 
-void Monopoly::movePlayer()
+void Monopoly::movePlayer(bool& isPair, unsigned& pairCount)
 {
-	size_t positions = throwDice();
+	size_t positions = throwDice(isPair, pairCount);
+	if (pairCount >= 3)
+		return;
 	players[currentPlayer]->moveWith(positions, board->getTotalSize());
 }
 
@@ -571,6 +608,8 @@ bool Monopoly::getPlayerOutOfJail()
 		std::cout << "You have to wait "
 			<< players[currentPlayer]->getRemainingToRansom()
 			<< " turns to be able to pay to get out\n";
+
+		std::cout << "You have to throw a pair to get out\n\n";
 	}
 	else
 	{

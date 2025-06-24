@@ -27,6 +27,7 @@ void PendingPayment::pay()
 void PendingPayment::clear()
 {
 	playersToPay.clear();
+	neededAmount = 0;
 }
 
 void PendingPayment::setPayer(const SharedPtr<Player>& payer)

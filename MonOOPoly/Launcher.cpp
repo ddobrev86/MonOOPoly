@@ -7,6 +7,7 @@
 #include "TradingCommandFactory.h"
 #include "BuildCommandFactory.h"
 #include "PendingPayment.h"
+#include "GiveUpException.h"
 
 void Launcher::run()
 {
@@ -230,6 +231,9 @@ void Launcher::obligatoryTrade(Monopoly* monopoly, int neededAmount)
 		{
 			monopoly->playerExitGame();
 			PendingPayment::clear();
+
+			system("pause");
+			system("cls");
 			return;
 		}
 
@@ -241,6 +245,16 @@ void Launcher::obligatoryTrade(Monopoly* monopoly, int neededAmount)
 			trade(monopoly, fieldToSell, neededAmount);
 			ownedFields.removeAt(fieldPosition);
 		}
+		catch (const GiveUpException& excp)
+		{
+			std::cout << excp.what() << '\n';
+			PendingPayment::clear();
+
+			system("pause");
+			system("cls");
+
+			break;
+		}
 		catch (const std::exception& excp)
 		{
 			system("cls");
@@ -249,7 +263,12 @@ void Launcher::obligatoryTrade(Monopoly* monopoly, int neededAmount)
 	}
 
 	PendingPayment::pay();
+
+	std::cout << "\nYou have paid your dept\n";
 	monopoly->goToNextPlayer();
+
+	system("pause");
+	system("cls");
 }
 
 void Launcher::trade(Monopoly* monopoly, SharedPtr<BuyableField>& fieldToTrade,
@@ -289,7 +308,8 @@ void Launcher::trade(Monopoly* monopoly, SharedPtr<BuyableField>& fieldToTrade,
 		if (cmd == "give_up")
 		{
 			monopoly->playerExitGame();
-			break;
+
+			throw GiveUpException();
 		}
 
 		Command* command = TradingCommandFactory::createCommand(cmd, fieldToTrade, neededAmount);

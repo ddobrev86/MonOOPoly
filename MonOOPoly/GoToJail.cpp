@@ -19,8 +19,7 @@ void GoToJail::printFieldInfo() const
 
 bool GoToJail::action(SharedPtr<Player>& player)
 {
-    player->goToJail();
-    player->moveTo(jailPosition);
+    player->goToJail(jailPosition);
     return true;
     //TODO change position to prison;
 }

@@ -74,7 +74,7 @@ void Player::removeFromBalance(size_t balanceChange)
     //TODO: add validation if balanceChange is smaller than balance 
     if (!canAfford(balanceChange))
     {
-        MyString errorMessage = '\n' + username + ", you don't have enough money to continue with this action!";
+        MyString errorMessage = "\n" + username + ", you don't have enough money to continue with this action!";
         throw std::invalid_argument(errorMessage.c_str());
     }
         
@@ -108,10 +108,11 @@ bool Player::isInJail() const
     return inJail;
 }
 
-void Player::goToJail()
+void Player::goToJail(size_t jailPos)
 {
     remainingToRansom = 2;
     inJail = true;
+    moveTo(jailPos);
 }
 
 void Player::getOutOfJail()

@@ -25,6 +25,7 @@ private:
 
 	bool hasStations;
 	bool hasFacilities;
+	size_t jailPos;
 
 	Monopoly(size_t playerCount, size_t boardSize);
 public:
@@ -96,8 +97,8 @@ public:
 	void printValidFamiliesMessage(const MyVector<SharedPtr<FieldFamily>>& validFamilies) const;
 
 	bool throwPair() const;
-	size_t throwDice() const;
-	void movePlayer();
+	size_t throwDice(bool& isPair, unsigned& pairCount) const;
+	void movePlayer(bool& isPair, unsigned& pairCount);
 
 	bool getPlayerOutOfJail();
 

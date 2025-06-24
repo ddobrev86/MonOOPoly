@@ -48,7 +48,7 @@ public:
 	unsigned getBalance() const;
 
 	bool isInJail() const;
-	void goToJail();
+	void goToJail(size_t jailPos);
 	void getOutOfJail();
 
 	size_t getRemainingToRansom() const;

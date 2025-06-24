@@ -170,6 +170,7 @@
     <ClCompile Include="GameCommandFactory.cpp" />
     <ClCompile Include="GameCreationCommandFactory.cpp" />
     <ClCompile Include="GameElementsCommandFactory.cpp" />
+    <ClCompile Include="GiveUpException.cpp" />
     <ClCompile Include="GoToJail.cpp" />
     <ClCompile Include="InputProcessor.cpp" />
     <ClCompile Include="Jail.cpp" />
@@ -228,6 +229,7 @@
     <ClInclude Include="GameCommandFactory.h" />
     <ClInclude Include="GameCreationCommandFactory.h" />
     <ClInclude Include="GameElementsCommandFactory.h" />
+    <ClInclude Include="GiveUpException.h" />
     <ClInclude Include="GoToJail.h" />
     <ClInclude Include="IteratibleContainer.hpp" />
     <ClInclude Include="Cottage.h" />

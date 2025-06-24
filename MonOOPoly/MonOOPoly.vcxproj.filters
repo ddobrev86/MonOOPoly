@@ -237,6 +237,9 @@
     <ClCompile Include="PendingPayment.cpp">
       <Filter>Trade utils</Filter>
     </ClCompile>
+    <ClCompile Include="GiveUpException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyQueue.hpp">
@@ -433,6 +436,9 @@
     </ClInclude>
     <ClInclude Include="PendingPayment.h">
       <Filter>Trade utils</Filter>
+    </ClInclude>
+    <ClInclude Include="GiveUpException.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

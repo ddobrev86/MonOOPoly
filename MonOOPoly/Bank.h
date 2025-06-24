@@ -11,6 +11,8 @@ public:
 	static void giveInitialBalance(MyVector<SharedPtr<Player>>& players);
 
 	static void getFrom(SharedPtr<Player>& player, unsigned sum, bool isImportant);
+	static void getEverythingFrom(SharedPtr<Player>& player, unsigned sum,
+		unsigned& amountToGive);
 	static void giveTo(SharedPtr<Player>& player, unsigned sum);
 
 	static void landOnStart(SharedPtr<Player>& player);

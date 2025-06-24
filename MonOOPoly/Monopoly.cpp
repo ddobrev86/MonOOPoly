@@ -47,38 +47,6 @@ Monopoly* Monopoly::getInstance()
 	return instance;
 }
 
-void Monopoly::printGameTypeOptions()
-{
-	std::cout << "Choose game type: \n";
-	std::cout << "\t1. Start default game -> default\n";
-	std::cout << "\t2. Enter board manually -> manual\n";
-	std::cout << "\t3. Load from file -> load\n";
-	//std::cout << "\t When ready, type start\n";
-}
-
-void Monopoly::printDefaultCreateElementsCommands()
-{
-	std::cout << "Choose option: \n";
-	std::cout << "Add player -> add_player <username>\n";
-	//std::cout << "\t2. Add movement card-> add_movement_card <positions_to_move>\n";
-	//std::cout << "\t3. Add payment card -> add_payment_card <value>\n";
-	std::cout << "\nWhen ready, type start\n";
-}
-
-void Monopoly::printManualCreateElementsCommands()
-{
-	std::cout << "Choose option: \n";
-	std::cout << "\t1. Add player -> add_player <username>\n";
-	std::cout << "\t2. Add property family -> add_property_family <family_name>\n";
-	std::cout << "\t3. Add property -> add_property <property_name>\n";
-	std::cout << "\t4. Add station -> add_station <station_name>\n";
-	std::cout << "\t5. Add facility -> add_facility <facility_name>\n";
-	std::cout << "\t6. Add card field -> add_card_field\n";
-	std::cout << "\t7. Add movement card -> add_movement_card\n";
-	std::cout << "\t8. Add payment card -> add_payment_card\n";
-	std::cout << "\nWhen ready, type start\n";
-}
-
 void Monopoly::goToNextPlayer()
 {
 	currentPlayer++;
@@ -199,14 +167,16 @@ void Monopoly::startGame()
 
 void Monopoly::fillDeckWithCards()
 {
-	deck->addCard(SharedPtr<Card>(new MovePositionCard(3, board->getTotalSize())));
-	deck->addCard(SharedPtr<Card>(new PaymentCard(-200)));
-	deck->addCard(SharedPtr<Card>(new MovePositionCard(-1, board->getTotalSize())));
-	deck->addCard(SharedPtr<Card>(new PaymentCard(300)));
-	deck->addCard(SharedPtr<Card>(new MovePositionCard(2, board->getTotalSize())));
-	deck->addCard(SharedPtr<Card>(new PaymentCard(200)));
-	deck->addCard(SharedPtr<Card>(new PaymentCard(-300)));
-	deck->addCard(SharedPtr<Card>(new MovePositionCard(-2, board->getTotalSize())));
+	addMoveCard(3);
+	addPaymentCard(-200);
+	addMoveCard(-1);
+	addPaymentCard(-300);
+	addGroupPaymentCard(100);
+	addMoveCard(2);
+	addPaymentCard(200);
+	addGroupPaymentCard(-50);
+	addPaymentCard(300);
+	addMoveCard(-2);
 }
 
 void Monopoly::printBoard() const
@@ -374,6 +344,11 @@ void Monopoly::addPaymentCard(int value)
 	deck->addCard(SharedPtr<Card>(new PaymentCard(value)));
 }
 
+void Monopoly::addGroupPaymentCard(int value)
+{
+	deck->addCard(SharedPtr<Card>(new GroupPaymentCard(value, players)));
+}
+
 void Monopoly::addField(SharedPtr<Field>& field)
 {
 	board->addField(field);
@@ -415,8 +390,7 @@ void Monopoly::printPlayersTurnMessage()
 	std::cout << "Choose action: \n";
 	std::cout << "\t1. throw_dice\n";
 	std::cout << "\t2. buy_mortgage\n";
-	std::cout << "\t3. trade\n";
-	std::cout << "\t4. ownership_map\n";
+	std::cout << "\t3. ownership_map\n";
 }
 
 //throw_dice

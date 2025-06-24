@@ -13,6 +13,10 @@ private:
 	static void printFieldsToTradeMessage(const MyVector<SharedPtr<BuyableField>>& ownedFields,
 		int neededAmount);
 	static void obligatoryTrade(Monopoly* monopoly, int neededAmount);
+
+	static void printGameTypeOptions();
+	static void printDefaultCreateElementsCommands();
+	static void printManualCreateElementsCommands();
 public:
 	static void run();
 	static void build(Monopoly* monopoly);

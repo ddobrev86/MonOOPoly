@@ -56,7 +56,7 @@ void Launcher::startGame(Monopoly* monopoly, bool& isDefault)
 	//system = Monopoly::getInstance();
 	while (true)
 	{
-		Monopoly::printGameTypeOptions();
+		printGameTypeOptions();
 
 		std::cout << "Enter command: ";
 		std::cin >> cmd;
@@ -95,9 +95,9 @@ void Launcher::createElements(Monopoly* monopoly, bool isDefault)
 	while (true)
 	{
 		if (isDefault)
-			Monopoly::printDefaultCreateElementsCommands();
+			printDefaultCreateElementsCommands();
 		else
-			Monopoly::printManualCreateElementsCommands();
+			printManualCreateElementsCommands();
 		
 		std::cout << "Enter command: ";
 		std::cin >> cmd;
@@ -293,7 +293,6 @@ void Launcher::trade(Monopoly* monopoly, SharedPtr<BuyableField>& fieldToTrade,
 			std::cout << excp.what() << '\n';
 			system("pause");
 			system("cls");
-
 			continue;
 		}
 
@@ -390,4 +389,34 @@ void Launcher::build(Monopoly* monopoly)
 			system("cls");
 		}
 	}
+}
+
+void Launcher::printGameTypeOptions()
+{
+	std::cout << "Choose game type: \n";
+	std::cout << "\t1. Start default game -> default\n";
+	std::cout << "\t2. Enter board manually -> manual\n";
+	std::cout << "\t3. Load from file -> load\n";
+}
+
+void Launcher::printDefaultCreateElementsCommands()
+{
+	std::cout << "Choose option: \n";
+	std::cout << "Add player -> add_player <username>\n";
+	std::cout << "\nWhen ready, type start\n";
+}
+
+void Launcher::printManualCreateElementsCommands()
+{
+	std::cout << "Choose option: \n";
+	std::cout << "\t1. Add player -> add_player <username>\n";
+	std::cout << "\t2. Add property family -> add_property_family <family_name>\n";
+	std::cout << "\t3. Add property -> add_property <property_name>\n";
+	std::cout << "\t4. Add station -> add_station <station_name>\n";
+	std::cout << "\t5. Add facility -> add_facility <facility_name>\n";
+	std::cout << "\t6. Add card field -> add_card_field\n";
+	std::cout << "\t7. Add movement card -> add_movement_card <positions_to_move>\n";
+	std::cout << "\t8. Add payment card -> add_payment_card <amount_to_give>\n";
+	std::cout << "\t9. Add group payment card -> add_group_payment_card <amount_to_give>\n";
+	std::cout << "\nWhen ready, type start\n";
 }

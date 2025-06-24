@@ -4,7 +4,7 @@ void AddPaymentCardCommand::execute(Monopoly* monopoly)
 {
     int value;
 
-    std::cout << "Enter amount(positive or negative): ";
+    //std::cout << "Enter amount(positive or negative): ";
     std::cin >> value;
 
     monopoly->addPaymentCard(value);

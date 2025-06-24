@@ -7,6 +7,7 @@
 #include "AddCardFieldCommand.h"
 #include "AddMoveCardCommand.h"
 #include "AddPaymentCardCommand.h"
+#include "AddGroupPaymentCardCommand.h"
 
 Command* GameElementsCommandFactory::createCommand(const MyString& command)
 {
@@ -21,11 +22,13 @@ Command* GameElementsCommandFactory::createCommand(const MyString& command)
     else if (command == "add_facility")
         return new AddFacilityCommand();
     else if (command == "add_card_field")
-        return new AddCardFieldCommand();    
+        return new AddCardFieldCommand();
     else if (command == "add_movement_card")
-        return new AddMoveCardCommand();    
+        return new AddMoveCardCommand();
     else if (command == "add_payment_card")
         return new AddPaymentCardCommand();
+    else if (command == "add_group_payment_card")
+        return new AddGroupPaymentCardCommand();
 
     return nullptr;
 }

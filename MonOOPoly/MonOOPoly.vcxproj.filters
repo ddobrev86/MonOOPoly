@@ -238,7 +238,13 @@
       <Filter>Trade utils</Filter>
     </ClCompile>
     <ClCompile Include="GiveUpException.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="GroupPaymentCard.cpp">
+      <Filter>Card utils</Filter>
+    </ClCompile>
+    <ClCompile Include="AddGroupPaymentCardCommand.cpp">
+      <Filter>Commands\GameElementsCommands\Cards</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -438,7 +444,13 @@
       <Filter>Trade utils</Filter>
     </ClInclude>
     <ClInclude Include="GiveUpException.h">
-      <Filter>Header Files</Filter>
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="GroupPaymentCard.h">
+      <Filter>Card utils</Filter>
+    </ClInclude>
+    <ClInclude Include="AddGroupPaymentCardCommand.h">
+      <Filter>Commands\GameElementsCommands\Cards</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

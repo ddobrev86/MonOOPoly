@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="AddCardFieldCommand.cpp" />
     <ClCompile Include="AddFacilityCommand.cpp" />
+    <ClCompile Include="AddGroupPaymentCardCommand.cpp" />
     <ClCompile Include="AddMoveCardCommand.cpp" />
     <ClCompile Include="AddPaymentCardCommand.cpp" />
     <ClCompile Include="AddPropertyCommand.cpp" />
@@ -172,6 +173,7 @@
     <ClCompile Include="GameElementsCommandFactory.cpp" />
     <ClCompile Include="GiveUpException.cpp" />
     <ClCompile Include="GoToJail.cpp" />
+    <ClCompile Include="GroupPaymentCard.cpp" />
     <ClCompile Include="InputProcessor.cpp" />
     <ClCompile Include="Jail.cpp" />
     <ClCompile Include="Launcher.cpp" />
@@ -202,6 +204,7 @@
   <ItemGroup>
     <ClInclude Include="AddCardFieldCommand.h" />
     <ClInclude Include="AddFacilityCommand.h" />
+    <ClInclude Include="AddGroupPaymentCardCommand.h" />
     <ClInclude Include="AddMoveCardCommand.h" />
     <ClInclude Include="AddPaymentCardCommand.h" />
     <ClInclude Include="AddPropertyCommand.h" />
@@ -231,6 +234,7 @@
     <ClInclude Include="GameElementsCommandFactory.h" />
     <ClInclude Include="GiveUpException.h" />
     <ClInclude Include="GoToJail.h" />
+    <ClInclude Include="GroupPaymentCard.h" />
     <ClInclude Include="IteratibleContainer.hpp" />
     <ClInclude Include="Cottage.h" />
     <ClInclude Include="Field.h" />

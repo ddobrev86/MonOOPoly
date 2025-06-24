@@ -24,6 +24,7 @@ unsigned Station::calculateTotalRent() const
 {
 	if (!ownersipMap.containsKey(owner))
 		return 0;
+
 	return rent * twoToPower(ownersipMap[owner] - 1) * multiplier;
 }
 
@@ -45,7 +46,9 @@ void Station::printLandingMessage() const
 	{
 		std::cout << "This station belongs to ";
 		owner->printUsernameInColor();
-		multiplier++;
+
+		if (multiplier < 18)
+			multiplier++;
 	}
 }
 

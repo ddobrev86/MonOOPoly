@@ -28,6 +28,23 @@ void Bank::getFrom(SharedPtr<Player>& player, unsigned sum, bool isImportant)
 	}
 }
 
+void Bank::getEverythingFrom(SharedPtr<Player>& player, unsigned sum, 
+	unsigned& amountToGive)
+{
+	unsigned balance = player->getBalance();
+
+	if (balance >= sum)
+	{
+		getFrom(player, sum, false);
+		amountToGive = sum;
+	}
+	else
+	{
+		getFrom(player, balance, false);
+		amountToGive = balance;
+	}
+}
+
 void Bank::giveTo(SharedPtr<Player>& player, unsigned sum)
 {
 	player->addToBalance(sum);

@@ -2,14 +2,14 @@
 #include "InputProcessor.h"
 
 Facility::Facility(const MyString& name, 
-    unsigned price) : SpecialField(name, price, 100)
+    unsigned price) : SpecialField(name, price, 20)
 {
     multiplier = 1;
 }
 
 unsigned Facility::calculateTotalRent() const
 {   
-    return 0;
+    return rent;
 }
 
 BuyableField* Facility::clone() const
@@ -61,6 +61,8 @@ void Facility::printLandingMessage() const
 	{
 		std::cout << "This facility belongs to ";
 		owner->printUsernameInColor();
-		multiplier++;
+
+		if(multiplier < 18)
+			multiplier++;
 	}
 }

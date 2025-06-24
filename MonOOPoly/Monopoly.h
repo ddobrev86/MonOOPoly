@@ -10,6 +10,7 @@
 #include "CardDeck.h"
 #include "MovePositionCard.h"
 #include "PaymentCard.h"
+#include "GroupPaymentCard.h"
 
 class Monopoly
 {
@@ -31,10 +32,6 @@ private:
 public:
 	static Monopoly* getInstance(size_t playerCount, size_t boardSize);
 	static Monopoly* getInstance();
-
-	static void printGameTypeOptions();
-	static void printDefaultCreateElementsCommands();
-	static void printManualCreateElementsCommands();
 	
 	void goToNextPlayer();
 
@@ -80,6 +77,7 @@ public:
 
 	void addMoveCard(unsigned positions);
 	void addPaymentCard(int value);
+	void addGroupPaymentCard(int value);
 
 	size_t getPlayerCount() const;
 
